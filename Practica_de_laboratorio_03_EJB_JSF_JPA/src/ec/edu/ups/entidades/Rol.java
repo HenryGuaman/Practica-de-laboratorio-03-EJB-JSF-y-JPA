@@ -1,7 +1,14 @@
 package ec.edu.ups.entidades;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+
 import javax.persistence.*;
+
+
+import ec.edu.ups.entidades.Rol;
+import ec.edu.ups.entidades.Usuario;
 
 /**
  * Entity implementation class for Entity: Rol
@@ -13,82 +20,61 @@ public class Rol implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
-	@Id
-	private int codigo;
-	private String nombreRol;
-	
-	
-	
-	public int getCodigo() {
-		return codigo;
-	}
+	 @Id
+	    private String nombre;
+	    private String descripcion;
 
+	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol")
+	    private List<Usuario> usuariosRolesList;
 
+	    public Rol(){}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
+	    public Rol(String nombre, String descripcion, List<Usuario> usuariosRolesList) {
+	        this.nombre = nombre;
+	        this.descripcion = descripcion;
+	        this.usuariosRolesList = usuariosRolesList;
+	    }
 
+	    public String getNombre() {
+	        return nombre;
+	    }
 
+	    public void setNombre(String nombre) {
+	        this.nombre = nombre;
+	    }
 
-	public String getNombreRol() {
-		return nombreRol;
-	}
+	    public String getDescripcion() {
+	        return descripcion;
+	    }
 
+	    public void setDescripcion(String descripcion) {
+	        this.descripcion = descripcion;
+	    }
 
+	    public boolean agregarUsuario(Usuario usuario){
+	        return this.usuariosRolesList.add(usuario);
+	    }
 
-	public void setNombreRol(String nombreRol) {
-		this.nombreRol = nombreRol;
-	}
+	    @Override
+	    public String toString() {
+	        return "Rol{" +
+	                "nombre='" + nombre + '\'' +
+	                ", descripcion='" + descripcion + '\'' +
+	                ", usuariosRolesList=" + usuariosRolesList +
+	                '}';
+	    }
 
-	
+	    @Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	        if (!(o instanceof Rol)) return false;
+	        Rol rol = (Rol) o;
+	        return Objects.equals(nombre, rol.nombre);
+	    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + codigo;
-		result = prime * result + ((nombreRol == null) ? 0 : nombreRol.hashCode());
-		return result;
-	}
-
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Rol other = (Rol) obj;
-		if (codigo != other.codigo)
-			return false;
-		if (nombreRol == null) {
-			if (other.nombreRol != null)
-				return false;
-		} else if (!nombreRol.equals(other.nombreRol))
-			return false;
-		return true;
-	}
-
-
-
-	public Rol() {
-	}
-
-
-
-	/**
-	 * @param codigo
-	 * @param nombreRol
-	 */
-	public Rol(int codigo, String nombreRol) {
-		this.codigo = codigo;
-		this.nombreRol = nombreRol;
-	}
-	
-	
+	    @Override
+	    public int hashCode() {
+	        return Objects.hash(nombre);
+	    }
    
 }
