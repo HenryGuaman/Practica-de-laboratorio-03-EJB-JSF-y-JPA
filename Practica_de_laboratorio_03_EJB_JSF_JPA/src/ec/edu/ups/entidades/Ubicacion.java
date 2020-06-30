@@ -14,6 +14,7 @@ public class Ubicacion implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigo;
 	private String pais;
 	private String provincia;
@@ -121,7 +122,7 @@ public class Ubicacion implements Serializable {
 	 * @param ciudad
 	 */
 	public Ubicacion(int codigo, String pais, String provincia, String ciudad) {
-		super();
+		
 		this.codigo = codigo;
 		this.pais = pais;
 		this.provincia = provincia;
@@ -131,7 +132,6 @@ public class Ubicacion implements Serializable {
 
 
 	public Ubicacion() {
-		super();
 	}
    
 }
