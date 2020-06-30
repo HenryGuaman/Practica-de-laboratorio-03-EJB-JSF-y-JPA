@@ -1,6 +1,8 @@
 package ec.edu.ups.entidades;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -19,6 +21,9 @@ public class Ubicacion implements Serializable {
 	private String pais;
 	private String provincia;
 	private String ciudad;
+	
+	@OneToMany(mappedBy = "ubicacion")
+	private List<Bodega> bodegas;
 	
 	
 	

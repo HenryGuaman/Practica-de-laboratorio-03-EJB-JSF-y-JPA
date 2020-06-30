@@ -14,19 +14,14 @@ public class FacturaDetalle implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int numDetalle;
 	private int cantidad;
 	private double total;
+	
+	@ManyToOne
 	private Producto producto;
 	
-	
-	
-	/**
-	 * @param numDetalle
-	 * @param cantidad
-	 * @param total
-	 * @param producto
-	 */
 	public FacturaDetalle(int numDetalle, int cantidad, double total, Producto producto) {
 		super();
 		this.numDetalle = numDetalle;

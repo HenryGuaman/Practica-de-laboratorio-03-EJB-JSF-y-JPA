@@ -22,66 +22,38 @@ public class FacturaCabecera implements Serializable {
 	private double iva;
 	private double descuento;
 	private double totalFact;
+	
+	@ManyToOne
 	private Usuario usuario;
-	private List<FacturaDetalle> listFactDetalle;
-	
-	
-	
-	
+	@ManyToOne
+	private FacturaDetalle facturaDetalle;
 	
 
 	public int getCodigo() {
 		return codigo;
 	}
 
-
-
-
-
-
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-
-
-
-
 
 
 	public Date getFecha() {
 		return fecha;
 	}
 
-
-
-
-
-
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-
-
-
-
 
 
 	public double getIva() {
 		return iva;
 	}
 
-
-
-
-
-
 	public void setIva(double iva) {
 		this.iva = iva;
 	}
-
-
-
-
 
 
 	public double getDescuento() {
@@ -90,15 +62,9 @@ public class FacturaCabecera implements Serializable {
 
 
 
-
-
-
 	public void setDescuento(double descuento) {
 		this.descuento = descuento;
 	}
-
-
-
 
 
 
@@ -111,13 +77,17 @@ public class FacturaCabecera implements Serializable {
 
 
 
+	public FacturaDetalle getFacturaDetalle() {
+		return facturaDetalle;
+	}
+
+	public void setFacturaDetalle(FacturaDetalle facturaDetalle) {
+		this.facturaDetalle = facturaDetalle;
+	}
+
 	public void setTotalFact(double totalFact) {
 		this.totalFact = totalFact;
 	}
-
-
-
-
 
 
 	public Usuario getUsuario() {
@@ -125,63 +95,14 @@ public class FacturaCabecera implements Serializable {
 	}
 
 
-
-
-
-
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
 
-
-
-
-
-	public List<FacturaDetalle> getListFactDetalle() {
-		return listFactDetalle;
-	}
-
-
-
-
-
-
-	public void setListFactDetalle(List<FacturaDetalle> listFactDetalle) {
-		this.listFactDetalle = listFactDetalle;
-	}
-
-	
-	
-	/**
-	 * @param codigo
-	 * @param fecha
-	 * @param iva
-	 * @param descuento
-	 * @param totalFact
-	 * @param usuario
-	 * @param listFactDetalle
-	 */
-	public FacturaCabecera(int codigo, Date fecha, double iva, double descuento, double totalFact, Usuario usuario,
-			List<FacturaDetalle> listFactDetalle) {
-		super();
-		this.codigo = codigo;
-		this.fecha = fecha;
-		this.iva = iva;
-		this.descuento = descuento;
-		this.totalFact = totalFact;
-		this.usuario = usuario;
-		this.listFactDetalle = listFactDetalle;
-	}
-
 	public FacturaCabecera() {
 		super();
 	}
-
-
-
-
-
 
 	@Override
 	public int hashCode() {
@@ -191,20 +112,15 @@ public class FacturaCabecera implements Serializable {
 		long temp;
 		temp = Double.doubleToLongBits(descuento);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((facturaDetalle == null) ? 0 : facturaDetalle.hashCode());
 		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
 		temp = Double.doubleToLongBits(iva);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((listFactDetalle == null) ? 0 : listFactDetalle.hashCode());
 		temp = Double.doubleToLongBits(totalFact);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
-
-
-
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -219,17 +135,17 @@ public class FacturaCabecera implements Serializable {
 			return false;
 		if (Double.doubleToLongBits(descuento) != Double.doubleToLongBits(other.descuento))
 			return false;
+		if (facturaDetalle == null) {
+			if (other.facturaDetalle != null)
+				return false;
+		} else if (!facturaDetalle.equals(other.facturaDetalle))
+			return false;
 		if (fecha == null) {
 			if (other.fecha != null)
 				return false;
 		} else if (!fecha.equals(other.fecha))
 			return false;
 		if (Double.doubleToLongBits(iva) != Double.doubleToLongBits(other.iva))
-			return false;
-		if (listFactDetalle == null) {
-			if (other.listFactDetalle != null)
-				return false;
-		} else if (!listFactDetalle.equals(other.listFactDetalle))
 			return false;
 		if (Double.doubleToLongBits(totalFact) != Double.doubleToLongBits(other.totalFact))
 			return false;
@@ -240,6 +156,27 @@ public class FacturaCabecera implements Serializable {
 			return false;
 		return true;
 	}
+
+	/**
+	 * @param codigo
+	 * @param fecha
+	 * @param iva
+	 * @param descuento
+	 * @param totalFact
+	 * @param usuario
+	 * @param facturaDetalle
+	 */
+	public FacturaCabecera(int codigo, Date fecha, double iva, double descuento, double totalFact, Usuario usuario,
+			FacturaDetalle facturaDetalle) {
+		this.codigo = codigo;
+		this.fecha = fecha;
+		this.iva = iva;
+		this.descuento = descuento;
+		this.totalFact = totalFact;
+		this.usuario = usuario;
+		this.facturaDetalle = facturaDetalle;
+	}
+
 
 	
 }

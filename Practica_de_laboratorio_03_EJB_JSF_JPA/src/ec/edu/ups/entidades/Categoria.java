@@ -1,6 +1,8 @@
 package ec.edu.ups.entidades;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -14,10 +16,12 @@ public class Categoria implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigo;
 	private String nombreCategoria;
 	
-	
+	@OneToMany(mappedBy = "categoria")
+	private List<Producto> producto;
 	
 	public int getCodigo() {
 		return codigo;
@@ -42,6 +46,18 @@ public class Categoria implements Serializable {
 	}
 
 	
+
+
+	public List<Producto> getProducto() {
+		return producto;
+	}
+
+
+
+	public void setProducto(List<Producto> producto) {
+		this.producto = producto;
+	}
+
 
 
 	@Override
