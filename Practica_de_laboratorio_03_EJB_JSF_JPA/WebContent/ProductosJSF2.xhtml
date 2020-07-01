@@ -3,6 +3,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
+      
 
 <h:head>
 	
@@ -60,6 +61,13 @@
 					rendered="#{p.editable}" />
 				<h:outputText value="#{p.cantidadStock}" rendered="#{not p.editable}" />
 			</h:column>	
+			
+			<h:column>
+				<f:facet name="header">Categoria</f:facet>
+				<h:inputText value="#{p.cantidadStock}" size="10"
+					rendered="#{p.editable}" />
+				<h:outputText value="#{p.cantidadStock}" rendered="#{not p.editable}" />
+			</h:column>	
 				
 			<h:column>
 				<f:facet name="header">Eliminar</f:facet>
@@ -75,14 +83,25 @@
 			</h:column>
 		</h:dataTable>
 		
-		<ul>
-			<li>Nombre:<h:inputText size="10" value="#{productosBean.nombre}"/></li> <b></b>
-			<li>Valor Unitario:<h:inputText size="10" value="#{productosBean.costoUnitario}"/></li>
-			<li>Cantidad:<h:inputText size="10" value="#{productosBean.cantidadStock}"/></li>
+			<h:panelGrid columns="1">
+			<h:outputText value="Nombre" />
+			<h:inputText id="text" value="#{productosBean.nombre}" cols="2" />
 			
-		</ul>
-		<h:commandButton value="Add" action="#{productosBean.add}" />
+			
+			<h3>Selecciona la Categoria</h3>
+			
+			<h:selectOneMenu value="#{productosBean.nombre}">
+				<f:selectItems value="#{productosBean.categorias}" var="list1" itemValue="#{list1.descripcion}" itemLabel="#{list1.descripcion}"/>	
+			</h:selectOneMenu>
+			
+			<h:commandButton value="Guardar" type="submit" action="#{productosBean.add}" />
+			<h:commandButton value="Nuevo" type="reset" />
+		</h:panelGrid>
+		
 	</h:form>
+	
+	
+	
 
 </body> 
 </html>
