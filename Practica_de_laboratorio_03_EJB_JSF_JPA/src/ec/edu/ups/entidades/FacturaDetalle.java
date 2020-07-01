@@ -23,17 +23,17 @@ public class FacturaDetalle implements Serializable {
 	private FacturaCabecera facturaCabecera;
 
 	@ManyToOne
-	private Producto producto;
+	private Product product;
 
 	public FacturaDetalle() {
 
 	}
 
-	public FacturaDetalle(int numDetalle, int cantidad, double total, Producto producto) {
+	public FacturaDetalle(int numDetalle, int cantidad, double total, Product product) {
 		this.numDetalle = numDetalle;
 		this.cantidad = cantidad;
 		this.total = total;
-		this.producto = producto;
+		this.product = product;
 	}
 
 	public int getNumDetalle() {
@@ -60,12 +60,12 @@ public class FacturaDetalle implements Serializable {
 		this.total = total;
 	}
 
-	public Producto getProducto() {
-		return producto;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProducto(Producto producto) {
-		this.producto = producto;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class FacturaDetalle implements Serializable {
 		int result = 1;
 		result = prime * result + cantidad;
 		result = prime * result + numDetalle;
-		result = prime * result + ((producto == null) ? 0 : producto.hashCode());
+		result = prime * result + ((product == null) ? 0 : product.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(total);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -94,10 +94,10 @@ public class FacturaDetalle implements Serializable {
 			return false;
 		if (numDetalle != other.numDetalle)
 			return false;
-		if (producto == null) {
-			if (other.producto != null)
+		if (product == null) {
+			if (other.product != null)
 				return false;
-		} else if (!producto.equals(other.producto))
+		} else if (!product.equals(other.product))
 			return false;
 		if (Double.doubleToLongBits(total) != Double.doubleToLongBits(other.total))
 			return false;
@@ -107,6 +107,6 @@ public class FacturaDetalle implements Serializable {
 	@Override
 	public String toString() {
 		return "FacturaDetalle{" + "numDetalle=" + numDetalle + ", cantidad=" + cantidad + ", total=" + total
-				+ ", facturaCabecera=" + facturaCabecera + ", producto=" + producto + '}';
+				+ ", facturaCabecera=" + facturaCabecera + ", product=" + product + '}';
 	}
 }
