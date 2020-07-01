@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Facturación</title>
+</h:head>
+
+<h:body>
+
+	<h2>Datos de la Factura</h2>
+
+	<h:form>
+		<div>
+			<label>Cliente:</label>
+			<h:inputText />
+		</div>
+	</h:form>
+
+
+	<div>
+		<h4>Ingresar Detalle Factura:</h4>
+
+		<h:form>
+			<label>Producto:</label>
+			<h:inputText />
+
+			<label>Cantidad:</label>
+			<h:inputText />
+
+			<label>Precio:</label>
+			<h:inputText />
+
+			<h:commandButton value="Añadir producto" />
+
+		</h:form>
+	</div>
+
+	<h:panelGrid>
+		<h:form>
+			<br />
+
+			<h:dataTable>
+
+				<h:column>
+					<f:facet name=" ">Producto</f:facet>
+				</h:column>
+
+				<h:column>
+					<f:facet name=" ">Cantidad</f:facet>
+				</h:column>
+
+				<h:column>
+					<f:facet name=" ">Precio</f:facet>
+					<h:inputText value="" size="10" rendered="" />
+					<h:outputText value="" rendered="" />
+				</h:column>
+
+				<h:column>
+					<h:commandLink value="Delete" rendered="" />
+				</h:column>
+
+				<h:column>
+					<h:commandLink value="Edit" rendered="" />
+					<h:commandLink value="Save" rendered="" />
+				</h:column>
+
+			</h:dataTable>
+
+		</h:form>
+	</h:panelGrid>
+	
+	<div>
+		<br />
+
+		<div>
+		    <label>Descuento:</label>
+			<h:outputLabel>0.00</h:outputLabel>
+			<br /> <label>Iva 12%:</label>
+			<h:outputLabel>0.00</h:outputLabel>
+			<br /><label>Subtotal:</label>
+			<h:outputLabel>0.00</h:outputLabel>
+			<br /> <label>Total:</label>
+			<h:outputLabel>0.00</h:outputLabel>
+		</div>
+	</div>
+	<br />
+</h:body>
+
+</html>
