@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	
+	<title>Productos</title>
+	<style>
+		.tabla {
+			border-collapse: collapse;
+		}
+		
+		.cabeceraTabla {
+			text-align: center;
+			background: none repeat scroll 0 0 #E5E5E5;
+			border-bottom: 1px solid #BBBBBB;
+			padding: 8px;
+		}
+		
+		.filaPar {
+			text-align: center;
+			background: none repeat scroll 0 0 #FFFFFFF;
+			border-top: 1px solid #BBBBBB;
+		}
+		
+		.filaImpar {
+			text-align: center;
+			background: none repeat scroll 0 0 #F9F9F9;
+			border-top: 1px solid #BBBBBB;
+		}
+	</style>
+</h:head> 
+<body> 
+
+	<h3>Gestión de productos</h3>
+	<h:form>
+		<h:dataTable value="#{productosBean.list}" var="p" styleClass="tabla"
+			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+			<h:column>
+				<f:facet name="header">Codigo</f:facet>#{p.codigo}</h:column>
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+				<h:inputText value="#{p.nombre}" size="10"
+					rendered="#{p.editable}" />
+				<h:outputText value="#{p.nombre}" rendered="#{not p.editable}" />
+			</h:column>	
+				
+				<h:column>
+				<f:facet name="header">Valor Unitario</f:facet>
+				<h:inputText value="#{p.costoUnitario}" size="10"
+					rendered="#{p.editable}" />
+				<h:outputText value="#{p.costoUnitario}" rendered="#{not p.editable}" />
+			</h:column>	
+			
+			<h:column>
+				<f:facet name="header">Cantidad</f:facet>
+				<h:inputText value="#{p.cantidadStock}" size="10"
+					rendered="#{p.editable}" />
+				<h:outputText value="#{p.cantidadStock}" rendered="#{not p.editable}" />
+			</h:column>	
+				
+			<h:column>
+				<f:facet name="header">Eliminar</f:facet>
+				<h:commandLink value="Eliminar" action="#{productosBean.delete(p)}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink value="Editar" action="#{productosBean.edit(p)}"
+					rendered="#{not p.editable}" />
+					
+				<h:commandLink value="Guardar" action="#{productosBean.save(p)}"
+					rendered="#{p.editable}" />
+			</h:column>
+		</h:dataTable>
+		
+		<ul>
+			<li>Nombre:<h:inputText size="10" value="#{productosBean.nombre}"/></li> <b></b>
+			<li>Valor Unitario:<h:inputText size="10" value="#{productosBean.costoUnitario}"/></li>
+			<li>Cantidad:<h:inputText size="10" value="#{productosBean.cantidadStock}"/></li>
+			
+		</ul>
+		<h:commandButton value="Add" action="#{productosBean.add}" />
+	</h:form>
+
+</body> 
+</html>
