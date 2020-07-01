@@ -30,8 +30,8 @@ public class CategoryBean implements Serializable{
 	    
 	    @PostConstruct
 	    public void init() {
-		ejbCategoryFacade.create(new Category("Hola"));
-		ejbCategoryFacade.create(new Category("1211"));
+		ejbCategoryFacade.create(new Category("Electrodomesticos"));
+		ejbCategoryFacade.create(new Category("Sanitarios"));
 		list = ejbCategoryFacade.findAll();
 	    }
 	        
