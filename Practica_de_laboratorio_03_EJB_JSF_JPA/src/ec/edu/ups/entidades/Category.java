@@ -23,6 +23,7 @@ public class Category implements Serializable{
     @Transient
     private boolean editable;
 
+    
     public Category() {
 
     }

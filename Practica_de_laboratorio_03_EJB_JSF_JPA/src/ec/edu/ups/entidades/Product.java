@@ -17,15 +17,19 @@ public class Product  implements Serializable{
     private Category categoria;
     @ManyToOne
 	private Bodega bodega;
+    
+    @Transient
+    private boolean editable;
 
     public Product() {
 
     }
 
-    public Product(String nombre, double costoUnitario) {
+    public Product(String nombre, double costoUnitario,int cantidad) {
 	super();
 	this.nombre = nombre;
 	this.costoUnitario = costoUnitario;
+	this.cantidadStock=cantidad;
     }
 
     public int getCodigo() {
@@ -76,7 +80,13 @@ public class Product  implements Serializable{
 	public void setBodega(Bodega bodega) {
 		this.bodega = bodega;
 	}
-	
+	 public boolean isEditable() {
+			return editable;
+		    }
+
+	 public void setEditable(boolean editable) {
+		this.editable = editable;
+	 }
 	
 
 	@Override
