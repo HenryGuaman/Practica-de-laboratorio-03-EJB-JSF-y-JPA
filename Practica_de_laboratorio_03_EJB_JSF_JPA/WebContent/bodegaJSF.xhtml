@@ -3,8 +3,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
-      
-      	<meta charset="utf-8"></meta>
+
+		<meta charset="utf-8"></meta>
 		<meta name="viewport"    content="width=device-width, initial-scale=1.0"></meta>
 		<meta name="description" content=""></meta>
 		<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)"></meta>
@@ -19,10 +19,9 @@
 		<!-- Custom styles for our template -->
 		<link rel="stylesheet" href="resources/assets/css/bootstrap-theme.css" media="screen" ></link>
 		<link rel="stylesheet" href="resources/assets/css/main.css"></link>
-
 <h:head>
 	
-	<title>Categorías</title>
+	<title>Bodegas</title>
 	<style>
 		.tabla {
 			border-collapse: collapse;
@@ -31,32 +30,32 @@
 		.cabeceraTabla {
 			text-align: center;
 			background: none repeat scroll 0 0 #E5E5E5;
-			border-bottom: 5px solid #BBBBBB;
+			border-bottom: 1px solid #BBBBBB;
 			padding: 8px;
 		}
 		
 		.filaPar {
 			text-align: center;
 			background: none repeat scroll 0 0 #FFFFFFF;
-			border-top: 5px solid #BBBBBB;
+			border-top: 1px solid #BBBBBB;
 		}
 		
 		.filaImpar {
 			text-align: center;
 			background: none repeat scroll 0 0 #F9F9F9;
-			border-top: 5px solid #BBBBBB;
+			border-top: 1px solid #BBBBBB;
 		}
 	</style>
-	
 </h:head> 
 <body> 
+
 	<!-- Fixed navbar -->
 	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
 		<div class="container">
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a  href="index.html">CATEGORÍAS</a>
+				<a  href="index.html">Bodega</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
@@ -81,49 +80,37 @@
 	
 	<br></br>
 	<br></br>
-	
+
+
 	<div class="panel-body">
-	<h3 class="page-header">GESTIÓN DE CATEGORÍAS</h3>
-	<h:form >
-		<h:dataTable border="1" style="margin: 0 auto;" value="#{categoryBean.list}" var="c" styleClass="tabla"
-			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-			<h:column >
-				<f:facet name="header">Codigo</f:facet>#{c.codigo}</h:column>
-			<h:column>
-				<f:facet name="header">Nombre</f:facet>
-				<h:inputText value="#{c.descripcion}" size="10"
-					rendered="#{c.editable}" />
-				<h:outputText value="#{c.descripcion}" rendered="#{not c.editable}" />
-			</h:column>			
-			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Delete" action="#{categoryBean.delete(c)}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Edit" action="#{categoryBean.edit(c)}"
-					rendered="#{not c.editable}" />
-				<h:commandLink value="Save" action="#{categoryBean.save(c)}"
-					rendered="#{c.editable}" />
-			</h:column>
-		</h:dataTable>
-		
-		<br></br>
-		<br></br>
-		<br></br>
-		
-		
-		<ul style="text-align:center;" >
-			<li >Agregar Nueva Categoría:<h:inputText size="12" value="#{categoryBean.descripcion}"/></li>
-		</ul>
-		<div style="text-align:center;">
-			<h:commandButton class="btn btn-action" value="Agregar" action="#{categoryBean.add}" />
-		</div>
-		
+	<h3 class="page-header">GESTIÓN DE BODEGAS</h3>
+	<h:form>
+		<h:panelGrid columns="1">
+			<h:outputText value="Nombre" />
+			<h:inputText id="text" value="#{bodegaBean.nombre}" cols="2" />
+			
+			<h3>Selecciona la ubicacion</h3>
+			<p>Pais:</p>
+			<h:selectOneMenu value="#{bodegaBean.nombre}">
+				<f:selectItems value="#{bodegaBean.ubicacion}" var="list1" itemValue="#{list1.pais}" itemLabel="#{list1.pais}"/>
+			</h:selectOneMenu>
+			
+			<p>Provincia</p>
+			<h:selectOneMenu id="cboProvincia" value="#{bodegaBean.nombre}">
+				<f:selectItems value="#{bodegaBean.ubicacion}" var="list1" itemValue="#{list1.provincia}" itemLabel="#{list1.provincia}"/>
+			</h:selectOneMenu>
+			
+			<p>Ciudad:</p>
+			<h:selectOneMenu id="cboCiudad" value="#{bodegaBean.nombre}">
+				<f:selectItems value="#{bodegaBean.ubicacion}" var="list1" itemValue="#{list1.ciudad}" itemLabel="#{list1.ciudad}"/>
+			</h:selectOneMenu>
+			
+			<h:commandButton value="Guardar" type="submit" action="#{bodegaBean.add}" />
+			<h:commandButton value="Nuevo" type="reset" />
+		</h:panelGrid>
 		
 	</h:form>
 	</div>
-	
 	<footer id="footer" class="top-space">
 
 		<div class="footer1">
@@ -133,7 +120,7 @@
 					<div class="col-md-3 widget">
 						<h3 class="widget-title">Contactos</h3>
 						<div class="widget-body">
-							<p>+593 987654321<br></br>
+							<p>+593 92 63517621<br></br>
 								<a href="mailto:#">eyungat@est.ups.edu.ec</a><br></br>
 								<br></br>
 								Cuenca-Ecuador
@@ -188,6 +175,6 @@
 	<script src="resources/assets/js/headroom.min.js"></script>
 	<script src="resources/assets/js/jQuery.headroom.min.js"></script>
 	<script src="resources/assets/js/template.js"></script>
-
+	
 </body> 
 </html>

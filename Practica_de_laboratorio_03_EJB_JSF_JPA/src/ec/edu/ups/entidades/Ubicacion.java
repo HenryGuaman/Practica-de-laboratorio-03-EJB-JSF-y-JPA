@@ -25,7 +25,8 @@ public class Ubicacion implements Serializable {
 	@OneToMany(mappedBy = "ubicacion")
 	private List<Bodega> bodegas;
 	
-	
+	@Transient
+    private boolean editable;
 	
 	public int getCodigo() {
 		return codigo;
@@ -74,6 +75,30 @@ public class Ubicacion implements Serializable {
 	}
 
 	
+
+	public List<Bodega> getBodegas() {
+		return bodegas;
+	}
+
+
+
+	public void setBodegas(List<Bodega> bodegas) {
+		this.bodegas = bodegas;
+	}
+
+
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -134,7 +159,13 @@ public class Ubicacion implements Serializable {
 		this.ciudad = ciudad;
 	}
 
-
+	public Ubicacion(String pais, String provincia, String ciudad) {
+		
+		this.codigo = codigo;
+		this.pais = pais;
+		this.provincia = provincia;
+		this.ciudad = ciudad;
+	}
 
 	public Ubicacion() {
 	}

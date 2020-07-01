@@ -3,8 +3,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
-      
-      	<meta charset="utf-8"></meta>
+      <meta charset="utf-8"></meta>
 		<meta name="viewport"    content="width=device-width, initial-scale=1.0"></meta>
 		<meta name="description" content=""></meta>
 		<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)"></meta>
@@ -19,10 +18,9 @@
 		<!-- Custom styles for our template -->
 		<link rel="stylesheet" href="resources/assets/css/bootstrap-theme.css" media="screen" ></link>
 		<link rel="stylesheet" href="resources/assets/css/main.css"></link>
-
 <h:head>
 	
-	<title>Categorías</title>
+	<title>Ubicacion</title>
 	<style>
 		.tabla {
 			border-collapse: collapse;
@@ -31,32 +29,31 @@
 		.cabeceraTabla {
 			text-align: center;
 			background: none repeat scroll 0 0 #E5E5E5;
-			border-bottom: 5px solid #BBBBBB;
+			border-bottom: 1px solid #BBBBBB;
 			padding: 8px;
 		}
 		
 		.filaPar {
 			text-align: center;
 			background: none repeat scroll 0 0 #FFFFFFF;
-			border-top: 5px solid #BBBBBB;
+			border-top: 1px solid #BBBBBB;
 		}
 		
 		.filaImpar {
 			text-align: center;
 			background: none repeat scroll 0 0 #F9F9F9;
-			border-top: 5px solid #BBBBBB;
+			border-top: 1px solid #BBBBBB;
 		}
 	</style>
-	
 </h:head> 
 <body> 
-	<!-- Fixed navbar -->
+		<!-- Fixed navbar -->
 	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
 		<div class="container">
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a  href="index.html">CATEGORÍAS</a>
+				<a  href="index.html">Ubicacion</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
@@ -66,7 +63,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalogos <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="categoryJSF.xhtml">Categorías</a></li>
-							<li class="active"><a href="bodegaJSF.xhtml">Bodegas</a></li>
+							<li class="active"><a href="bodegasJSF.xhtml">Bodegas</a></li>
 						</ul>
 					</li>
 					<li><a href="index.html">Salir</a></li>
@@ -80,31 +77,48 @@
 	<header id="head" class="secondary"></header>
 	
 	<br></br>
-	<br></br>
-	
+	<br></br>	
+
+
 	<div class="panel-body">
-	<h3 class="page-header">GESTIÓN DE CATEGORÍAS</h3>
-	<h:form >
-		<h:dataTable border="1" style="margin: 0 auto;" value="#{categoryBean.list}" var="c" styleClass="tabla"
+	<h3 class="page-header">GESTIÓN DE UBICACION</h3>
+	<h:form>
+		<h:dataTable border="1" style="margin: 0 auto;" value="#{ubicacionBean.list}" var="u" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-			<h:column >
-				<f:facet name="header">Codigo</f:facet>#{c.codigo}</h:column>
 			<h:column>
-				<f:facet name="header">Nombre</f:facet>
-				<h:inputText value="#{c.descripcion}" size="10"
-					rendered="#{c.editable}" />
-				<h:outputText value="#{c.descripcion}" rendered="#{not c.editable}" />
-			</h:column>			
+				<f:facet name="header">Codigo</f:facet>#{u.codigo}</h:column>
 			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Delete" action="#{categoryBean.delete(c)}" />
+				<f:facet name="header">Pais</f:facet>
+				<h:inputText value="#{u.pais}" size="10"
+					rendered="#{u.editable}" />
+				<h:outputText value="#{u.pais}" rendered="#{not u.editable}" />
+			</h:column>	
+				
+				<h:column>
+				<f:facet name="header">Provincia</f:facet>
+				<h:inputText value="#{u.provincia}" size="10"
+					rendered="#{u.editable}" />
+				<h:outputText value="#{u.provincia}" rendered="#{not u.editable}" />
+			</h:column>	
+			
+			<h:column>
+				<f:facet name="header">Ciudad</f:facet>
+				<h:inputText value="#{u.ciudad}" size="10"
+					rendered="#{u.editable}" />
+				<h:outputText value="#{u.ciudad}" rendered="#{not u.editable}" />
+			</h:column>	
+				
+			<h:column>
+				<f:facet name="header">Eliminar</f:facet>
+				<h:commandLink value="Eliminar" action="#{ubicacionBean.delete(u)}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Edit" action="#{categoryBean.edit(c)}"
-					rendered="#{not c.editable}" />
-				<h:commandLink value="Save" action="#{categoryBean.save(c)}"
-					rendered="#{c.editable}" />
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink value="Editar" action="#{ubicacionBean.edit(u)}"
+					rendered="#{not u.editable}" />
+					
+				<h:commandLink value="Guardar" action="#{ubicacionBean.save(u)}"
+					rendered="#{u.editable}" />
 			</h:column>
 		</h:dataTable>
 		
@@ -112,18 +126,18 @@
 		<br></br>
 		<br></br>
 		
-		
-		<ul style="text-align:center;" >
-			<li >Agregar Nueva Categoría:<h:inputText size="12" value="#{categoryBean.descripcion}"/></li>
+		<ul style="text-align:center;">
+			<li>Pais:<h:inputText size="10" value="#{ubicacionBean.pais}"/></li> <b></b>
+			<li>Provincia:<h:inputText size="10" value="#{ubicacionBean.provincia}"/></li>
+			<li>Ciudad:<h:inputText size="10" value="#{ubicacionBean.ciudad}"/></li>
+			
 		</ul>
 		<div style="text-align:center;">
-			<h:commandButton class="btn btn-action" value="Agregar" action="#{categoryBean.add}" />
+			<h:commandButton class="btn btn-action" value="Agregar" action="#{ubicacionBean.add}" />
 		</div>
-		
 		
 	</h:form>
 	</div>
-	
 	<footer id="footer" class="top-space">
 
 		<div class="footer1">
@@ -133,7 +147,7 @@
 					<div class="col-md-3 widget">
 						<h3 class="widget-title">Contactos</h3>
 						<div class="widget-body">
-							<p>+593 987654321<br></br>
+							<p>+593 92 63517621<br></br>
 								<a href="mailto:#">eyungat@est.ups.edu.ec</a><br></br>
 								<br></br>
 								Cuenca-Ecuador
@@ -188,6 +202,6 @@
 	<script src="resources/assets/js/headroom.min.js"></script>
 	<script src="resources/assets/js/jQuery.headroom.min.js"></script>
 	<script src="resources/assets/js/template.js"></script>
-
+	
 </body> 
 </html>

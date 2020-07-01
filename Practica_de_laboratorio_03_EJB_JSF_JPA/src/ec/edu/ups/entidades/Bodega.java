@@ -21,7 +21,8 @@ public class Bodega implements Serializable {
 	@ManyToOne
 	private Ubicacion ubicacion;
 	
-	
+	 @Transient
+	 private boolean editable;
 	
 	
 	public int getCodigo() {
@@ -66,6 +67,20 @@ public class Bodega implements Serializable {
 
 	
 	
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+
+
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+
+
 
 	@Override
 	public int hashCode() {
@@ -117,6 +132,17 @@ public class Bodega implements Serializable {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.ubicacion = ubicacion;
+	}
+
+
+
+
+	/**
+	 * @param nombre
+	 * @param ubicacion
+	 */
+	public Bodega(String nombre) {
+		this.nombre = nombre;
 	}
 
 

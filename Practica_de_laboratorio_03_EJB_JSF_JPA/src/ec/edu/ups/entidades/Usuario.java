@@ -20,7 +20,6 @@ public class Usuario implements Serializable {
 	private String direccion;
 	private String telefono;
 	private String correo;
-	private String usuario;
 	private String contrasenia;
 	
 	@ManyToOne
@@ -74,14 +73,6 @@ public class Usuario implements Serializable {
 		this.correo = correo;
 	}
 
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
 	public String getContrasenia() {
 		return contrasenia;
 	}
@@ -98,27 +89,15 @@ public class Usuario implements Serializable {
 		this.rol = rol;
 	}
 
-	/**
-	 * @param cedula
-	 * @param nombre
-	 * @param apellido
-	 * @param direccion
-	 * @param telefono
-	 * @param correo
-	 * @param usuario
-	 * @param contrasenia
-	 * @param rol
-	 */
-	public Usuario(String cedula, String nombre, String apellido, String direccion, String telefono, String correo,
-			String usuario, String contrasenia, Rol rol) {
-		super();
+
+	public Usuario(String cedula, String nombre, String apellido, String direccion, String telefono, String correo, String contrasenia, Rol rol) {
+		
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.correo = correo;
-		this.usuario = usuario;
 		this.contrasenia = contrasenia;
 		this.rol = rol;
 	}
@@ -142,7 +121,6 @@ public class Usuario implements Serializable {
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((rol == null) ? 0 : rol.hashCode());
 		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
-		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
 
@@ -194,11 +172,6 @@ public class Usuario implements Serializable {
 			if (other.telefono != null)
 				return false;
 		} else if (!telefono.equals(other.telefono))
-			return false;
-		if (usuario == null) {
-			if (other.usuario != null)
-				return false;
-		} else if (!usuario.equals(other.usuario))
 			return false;
 		return true;
 	}
