@@ -21,7 +21,7 @@ public class Categoria implements Serializable {
 	private String nombreCategoria;
 	
 	@OneToMany(mappedBy = "categoria")
-	private List<Producto> producto;
+	private List<Product> producto;
 	
 	public int getCodigo() {
 		return codigo;
@@ -45,19 +45,24 @@ public class Categoria implements Serializable {
 		this.nombreCategoria = nombreCategoria;
 	}
 
-	
 
-
-	public List<Producto> getProducto() {
+	public List<Product> getProducto() {
 		return producto;
 	}
 
 
 
-	public void setProducto(List<Producto> producto) {
+	public void setProducto(List<Product> producto) {
 		this.producto = producto;
 	}
 
+
+
+	public Categoria() {
+		super();
+	}
+
+	
 
 
 	@Override
@@ -66,6 +71,7 @@ public class Categoria implements Serializable {
 		int result = 1;
 		result = prime * result + codigo;
 		result = prime * result + ((nombreCategoria == null) ? 0 : nombreCategoria.hashCode());
+		result = prime * result + ((producto == null) ? 0 : producto.hashCode());
 		return result;
 	}
 
@@ -87,13 +93,12 @@ public class Categoria implements Serializable {
 				return false;
 		} else if (!nombreCategoria.equals(other.nombreCategoria))
 			return false;
+		if (producto == null) {
+			if (other.producto != null)
+				return false;
+		} else if (!producto.equals(other.producto))
+			return false;
 		return true;
-	}
-
-
-
-	public Categoria() {
-		super();
 	}
 
 

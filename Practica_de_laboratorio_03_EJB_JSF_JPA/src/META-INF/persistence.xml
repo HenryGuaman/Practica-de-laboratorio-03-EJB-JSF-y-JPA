@@ -4,10 +4,10 @@
 		<jta-data-source>jdbc/_practica</jta-data-source>
 		<class>ec.edu.ups.entidades.Rol</class>
 		<class>ec.edu.ups.entidades.Usuario</class>
-		<class>ec.edu.ups.entidades.Categoria</class>
+		<class>ec.edu.ups.entidades.Category</class>
 		<class>ec.edu.ups.entidades.Ubicacion</class>
 		<class>ec.edu.ups.entidades.Bodega</class>
-		<class>ec.edu.ups.entidades.Producto</class>
+		<class>ec.edu.ups.entidades.Product</class>
 		<class>ec.edu.ups.entidades.FacturaDetalle</class>
 		<class>ec.edu.ups.entidades.FacturaCabecera</class>
 		<properties>

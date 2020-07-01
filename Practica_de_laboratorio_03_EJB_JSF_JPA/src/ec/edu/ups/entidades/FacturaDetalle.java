@@ -20,9 +20,9 @@ public class FacturaDetalle implements Serializable {
 	private double total;
 	
 	@ManyToOne
-	private Producto producto;
+	private Product producto;
 	
-	public FacturaDetalle(int numDetalle, int cantidad, double total, Producto producto) {
+	public FacturaDetalle(int numDetalle, int cantidad, double total, Product producto) {
 		super();
 		this.numDetalle = numDetalle;
 		this.cantidad = cantidad;
@@ -66,19 +66,18 @@ public class FacturaDetalle implements Serializable {
 		this.total = total;
 	}
 
-
-
-	public Producto getProducto() {
+	public Product getProducto() {
 		return producto;
 	}
 
 
 
-	public void setProducto(Producto producto) {
+	public void setProducto(Product producto) {
 		this.producto = producto;
 	}
 
 	
+
 
 	@Override
 	public int hashCode() {
