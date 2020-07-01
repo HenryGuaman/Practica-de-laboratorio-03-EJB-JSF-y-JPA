@@ -11,73 +11,62 @@ import javax.persistence.*;
 
 public class FacturaDetalle implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int numDetalle;
 	private int cantidad;
 	private double total;
-	
+
 	@ManyToOne
-	private Product producto;
-	
-	public FacturaDetalle(int numDetalle, int cantidad, double total, Product producto) {
-		super();
+	private FacturaCabecera facturaCabecera;
+
+	@ManyToOne
+	private Producto producto;
+
+	public FacturaDetalle() {
+
+	}
+
+	public FacturaDetalle(int numDetalle, int cantidad, double total, Producto producto) {
 		this.numDetalle = numDetalle;
 		this.cantidad = cantidad;
 		this.total = total;
 		this.producto = producto;
 	}
-
-
 
 	public int getNumDetalle() {
 		return numDetalle;
 	}
 
-
-
 	public void setNumDetalle(int numDetalle) {
 		this.numDetalle = numDetalle;
 	}
-
-
 
 	public int getCantidad() {
 		return cantidad;
 	}
 
-
-
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-
-
 
 	public double getTotal() {
 		return total;
 	}
 
-
-
 	public void setTotal(double total) {
 		this.total = total;
 	}
 
-	public Product getProducto() {
+	public Producto getProducto() {
 		return producto;
 	}
 
-
-
-	public void setProducto(Product producto) {
+	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
-
-	
-
 
 	@Override
 	public int hashCode() {
@@ -91,8 +80,6 @@ public class FacturaDetalle implements Serializable {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -117,10 +104,9 @@ public class FacturaDetalle implements Serializable {
 		return true;
 	}
 
-
-
-	public FacturaDetalle() {
-		super();
+	@Override
+	public String toString() {
+		return "FacturaDetalle{" + "numDetalle=" + numDetalle + ", cantidad=" + cantidad + ", total=" + total
+				+ ", facturaCabecera=" + facturaCabecera + ", producto=" + producto + '}';
 	}
-   
 }
