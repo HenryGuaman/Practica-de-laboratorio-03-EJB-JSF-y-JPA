@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+		<meta charset="utf-8"></meta>
+		<meta name="viewport"    content="width=device-width, initial-scale=1.0"></meta>
+		<meta name="description" content=""></meta>
+		<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)"></meta>
+	
+	
+		<link rel="shortcut icon" href="resources/assets/images/gt_favicon.png"></link>
+	
+		<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"></link>
+		<link rel="stylesheet" href="resources/assets/css/bootstrap.min.css"></link>
+		<link rel="stylesheet" href="resources/assets/css/font-awesome.min.css"></link>
+
+		<!-- Custom styles for our template -->
+		<link rel="stylesheet" href="resources/assets/css/bootstrap-theme.css" media="screen" ></link>
+		<link rel="stylesheet" href="resources/assets/css/main.css"></link>
+<h:head>
+	
+	<title>CRUD Empleados</title>
+	<!-- Bootstrap core CSS-->
+	<link href="principal/vendor/bootstrap/css/bootstrap.min.css"
+		rel="stylesheet"></link>
+
+	<!-- Custom styles for this template  -->
+	<link href="principal/css/shop-homepage.css" rel="stylesheet"></link>
+	<style>
+		.tabla {
+			border-collapse: collapse;
+		}
+		
+		.cabeceraTabla {
+			text-align: center;
+			background: none repeat scroll 0 0 #E5E5E5;
+			border-bottom: 1px solid #BBBBBB;
+			padding: 8px;
+		}
+		
+		.filaPar {
+			text-align: center;
+			background: none repeat scroll 0 0 #FFFFFFF;
+			border-top: 1px solid #BBBBBB;
+		}
+		
+		.filaImpar {
+			text-align: center;
+			background: none repeat scroll 0 0 #F9F9F9;
+			border-top: 1px solid #BBBBBB;
+		}
+	</style>
+</h:head> 
+<body> 
+	<h:form>
+	<h:dataTable value="#{usuarioBean.listEmpleados}" var="c" styleClass="tabla"
+			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>#{c.nombre}</h:column>
+			<h:column>
+				<f:facet name="header">Apellido</f:facet>
+				<h:inputText value="#{c.apellido}" size="10"
+					rendered="#{c.editable}" />
+				<h:outputText value="#{c.apellido}" rendered="#{not c.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Correo</f:facet>#{c.correo}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Cargo</f:facet>#{c.rol.cargo}
+			</h:column>			
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Delete" action="#{usuarioBean.deleteEmpleado(c)}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Edit" action="#{usuarioBean.edit(c)}"
+					rendered="#{not c.editable}" />
+				<h:commandLink value="Save" action="#{usuarioBean.save(c)}"
+					rendered="#{c.editable}" />
+			</h:column>
+		</h:dataTable>
+	
+		<ul>
+			<li>Nombre:<h:inputText size="10" value="#{usuarioBean.nombre}" /></li>
+		</ul>
+		<ul>
+			<li>Apellido:<h:inputText size="10" value="#{usuarioBean.apellido}" /></li>
+		</ul>
+		<ul>
+			<li>Cedula:<h:inputText size="10" value="#{usuarioBean.cedula}" /></li>
+		</ul>
+		<ul>
+			<li>Correo:<h:inputText size="10" value="#{usuarioBean.correo}" /></li>
+		</ul>
+		<ul>
+			<li>Contraseña:<h:inputText size="10" value="#{usuarioBean.passw}" /></li>
+		</ul>
+		<h3>Selecciona El Cargo</h3>
+			<h:selectOneMenu value="#{usuarioBean.nombre}">
+				<f:selectItems value="#{usuarioBean.roles}" var="list1" itemValue="#{list1.cargo}" itemLabel="#{list1.cargo}"/>
+			</h:selectOneMenu>
+		<h:commandButton value="Add" action="#{usuarioBean.addEmpleado()}" />
+	</h:form>
+</body> 
+</html>

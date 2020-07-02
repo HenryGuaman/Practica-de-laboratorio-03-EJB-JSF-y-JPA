@@ -1,7 +1,6 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +11,6 @@ import javax.inject.Named;
 
 import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.entidades.Rol;
-import ec.edu.ups.entidades.Usuario;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -22,25 +20,56 @@ public class RolBean implements Serializable{
 	private static final long serialVersionUID = 1L;
     @EJB
     private RolFacade ejbRolFacade;
-    private List<Rol> list;
-    private List<Usuario> usuarios;
+	private List<Rol> list;
+	private String cargo;
+	
+	public RolBean() {
+		
+	}
+	
+	@PostConstruct
+	public void init() {
+		list = ejbRolFacade.findAll();
+	}
+	
+	public Rol[] getList() {
+		return list.toArray(new Rol[0]);
+	}
+	
+	public void setList(List<Rol> list) {
+		this.list=list;
+	}
 
-    public RolBean() {
-        usuarios = new ArrayList<Usuario>();
-    }
 
-    @PostConstruct
-    public void init() {
-        ejbRolFacade.create(new Rol("Javier", "Rol admin", usuarios));
-        list = ejbRolFacade.findAll();
-    }
+	public String getCargo() {
+		return cargo;
+	}
 
-    public void setList(List<Rol> list) {
-        this.list = list;
-    }
 
-    public Rol[] getList() {
-        return list.toArray(new Rol[0]);
-    }
-
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+	
+	public String add() {
+		ejbRolFacade.create(new Rol(this.cargo));
+		list = ejbRolFacade.findAll();
+		return null;
+	}
+	
+	public String delete (Rol rol) {
+		ejbRolFacade.remove(rol);
+		list = ejbRolFacade.findAll();
+		return null;
+	}
+	
+	public String edit(Rol rol) {
+		rol.setEditable(true);
+		return null;
+	}
+	
+	public String save(Rol rol) {
+		ejbRolFacade.edit(rol);
+		rol.setEditable(false);
+		return null;
+	}
 }

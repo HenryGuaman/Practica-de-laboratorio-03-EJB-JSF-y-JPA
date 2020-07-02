@@ -1,36 +1,75 @@
 package ec.edu.ups.entidades;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Usuario
  *
  */
-@Entity
+@NamedQuery(name = "getByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo AND u.contrasena = :pass")
+@NamedQuery(name = "listarEmpleados", query = "SELECT u FROM Usuario u WHERE u.rol.codigo = :cargo")
+@NamedQuery(name = "listarClientes", query = "SELECT u FROM Usuario u WHERE u.rol.codigo = :cargo")
+@NamedQuery(name = "listarAdmins", query = "SELECT u FROM Usuario u WHERE u.rol.codigo = :cargo")
 
+@Entity
 public class Usuario implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-	private String cedula;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int codigo;
 	private String nombre;
 	private String apellido;
-	private String direccion;
-	private String telefono;
+	@Column(unique=true)
+	private String cedula;
 	private String correo;
-	private String contrasenia;
+	@Column(unique=true)
+	private String contrasena;
 	
 	@ManyToOne
+	@JoinColumn
 	private Rol rol;
 
-	public String getCedula() {
-		return cedula;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+	private Set<FacturaCabecera> listaFacturas = new  HashSet<FacturaCabecera>();
+	
+	@Transient
+    private boolean editable;
+
+	public Usuario() {
+		
 	}
 
-	public void setCedula(String cedula) {
+	public Usuario(String nombre, String apellido, String cedula, String correo, String contrasena) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
 		this.cedula = cedula;
+		this.correo = correo;
+		this.contrasena = contrasena;
+	}
+
+	public Usuario(String nombre, String apellido, String cedula, String correo, String contrasena, Rol rol) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.cedula = cedula;
+		this.correo = correo;
+		this.contrasena = contrasena;
+		this.rol = rol;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNombre() {
@@ -49,20 +88,12 @@ public class Usuario implements Serializable {
 		this.apellido = apellido;
 	}
 
-	public String getDireccion() {
-		return direccion;
+	public String getCedula() {
+		return cedula;
 	}
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
 	}
 
 	public String getCorreo() {
@@ -73,12 +104,12 @@ public class Usuario implements Serializable {
 		this.correo = correo;
 	}
 
-	public String getContrasenia() {
-		return contrasenia;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public Rol getRol() {
@@ -89,40 +120,38 @@ public class Usuario implements Serializable {
 		this.rol = rol;
 	}
 
-
-	public Usuario(String cedula, String nombre, String apellido, String direccion, String telefono, String correo, String contrasenia, Rol rol) {
-		
-		this.cedula = cedula;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.direccion = direccion;
-		this.telefono = telefono;
-		this.correo = correo;
-		this.contrasenia = contrasenia;
-		this.rol = rol;
+	public Set<FacturaCabecera> getListaFacturas() {
+		return listaFacturas;
 	}
 
-	/**
-	 * 
-	 */
-	public Usuario() {
-		super();
+	public void setListaFacturas(Set<FacturaCabecera> listaFacturas) {
+		this.listaFacturas = listaFacturas;
 	}
 
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+	
+	public void addFactura(FacturaCabecera Fcabecera) {
+		this.listaFacturas.add(Fcabecera);
+	}
+	
+	public void removeFactura(FacturaCabecera Fcabecera) {
+		this.listaFacturas.remove(Fcabecera);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((apellido == null) ? 0 : apellido.hashCode());
-		result = prime * result + ((cedula == null) ? 0 : cedula.hashCode());
-		result = prime * result + ((contrasenia == null) ? 0 : contrasenia.hashCode());
-		result = prime * result + ((correo == null) ? 0 : correo.hashCode());
-		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		result = prime * result + ((rol == null) ? 0 : rol.hashCode());
-		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
+		result = prime * result + codigo;
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -133,50 +162,10 @@ public class Usuario implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (apellido == null) {
-			if (other.apellido != null)
-				return false;
-		} else if (!apellido.equals(other.apellido))
-			return false;
-		if (cedula == null) {
-			if (other.cedula != null)
-				return false;
-		} else if (!cedula.equals(other.cedula))
-			return false;
-		if (contrasenia == null) {
-			if (other.contrasenia != null)
-				return false;
-		} else if (!contrasenia.equals(other.contrasenia))
-			return false;
-		if (correo == null) {
-			if (other.correo != null)
-				return false;
-		} else if (!correo.equals(other.correo))
-			return false;
-		if (direccion == null) {
-			if (other.direccion != null)
-				return false;
-		} else if (!direccion.equals(other.direccion))
-			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		if (rol == null) {
-			if (other.rol != null)
-				return false;
-		} else if (!rol.equals(other.rol))
-			return false;
-		if (telefono == null) {
-			if (other.telefono != null)
-				return false;
-		} else if (!telefono.equals(other.telefono))
+		if (codigo != other.codigo)
 			return false;
 		return true;
 	}
-	
-	
 	
 	
 }
