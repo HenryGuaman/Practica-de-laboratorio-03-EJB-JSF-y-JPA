@@ -1,14 +1,12 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 
 import ec.edu.ups.ejb.UbicacionFacade;
@@ -29,8 +27,6 @@ public class UbicacionBean implements Serializable{
 	private String pais;
 	private String provincia;
 	private String ciudad;
-	private List<String> listProvincia = new ArrayList<String>();
-	private List<String> listCiudad = new ArrayList<String>();
 	
 	
 	public UbicacionBean() {
@@ -39,11 +35,10 @@ public class UbicacionBean implements Serializable{
 
 	@PostConstruct
     public void init() {
-	ejbUbicacionFacade.create(new Ubicacion("Ecuador","Azuay","Cuenca"));
-	ejbUbicacionFacade.create(new Ubicacion("Colombia","Cali","Barranquilla"));
-	
 	list = ejbUbicacionFacade.findAll();
     }
+	
+	
 	
 	public Ubicacion[] getList() {
 		return list.toArray(new Ubicacion[0]);
@@ -76,24 +71,8 @@ public class UbicacionBean implements Serializable{
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
-
-	public List<String> getListProvincia() {
-		return listProvincia;
-	}
-
-	public void setListProvincia(List<String> listProvincia) {
-		this.listProvincia = listProvincia;
-	}
-
-	public List<String> getListCiudad() {
-		return listCiudad;
-	}
-
-	public void setListCiudad(List<String> listCiudad) {
-		this.listCiudad = listCiudad;
-	}
 	
-	public String add() {
+		public String add() {
 		ejbUbicacionFacade.create(new Ubicacion(this.pais,this.provincia,this.ciudad));
 		list = ejbUbicacionFacade.findAll();
 		return null;
@@ -115,34 +94,4 @@ public class UbicacionBean implements Serializable{
 		u.setEditable(false);
 		return null;
 	    }
-	
-	
-	public void cargarProvincia(AjaxBehaviorEvent event) {
-		System.out.println("Entrando a provincias");
-		if (this.pais == "Ecuador") {
-			listProvincia.add("Pichincha");
-    		listProvincia.add("Azuay");
-		}else if (this.pais == "Ecuador") {
-			listProvincia.add("Pichincha");
-    		listProvincia.add("Azuay");
-		}
-		
-    }
-	
-	/**
-    public void cargarProvincias(AjaxBehaviorEvent event) {
-    	switch (codPais) {
-    	case "1":
-    		//Ecuador
-    		listProvincia.add("Pichincha");
-    		listProvincia.add("Azuay");
-    		break;
-    	case "2":
-    		//Colombia
-    		listProvincia.add("Antioquia");
-    		listProvincia.add("Atlantico");
-    		
-    	break;
-    	}
-    }**/
 }

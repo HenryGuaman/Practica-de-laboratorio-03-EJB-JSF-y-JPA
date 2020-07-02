@@ -85,28 +85,46 @@
 	<div class="panel-body">
 	<h3 class="page-header">GESTIÓN DE BODEGAS</h3>
 	<h:form>
+			<h:dataTable border="1" style="margin: 0 auto;" value="#{bodegaBean.list}" var= "b" styleClass="tabla"
+					headerClass="cabeceraTabla" rowClasses="filaPar, filaImpar">
+					<h:column>
+						<f:facet name="header">Codigo</f:facet>#{b.codigo}</h:column>
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						<h:inputText value="#{b.nombre}" size="10"
+						rendered="#{b.editable}" />
+						<h:outputText value="#{b.nombre}" rendered="#{not b.editable}"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Ciudad</f:facet>
+						<h:inputText value="#{b.ubicacion.ciudad}" size="10"
+						rendered="#{b.editable}" />
+						<h:outputText value="#{b.ubicacion.ciudad}" rendered="#{not b.editable}"/>
+					</h:column>
+					<h:column>
+					<f:facet name="header">Accion</f:facet>
+					<h:commandLink value="Delete" action="#{bodegaBean.delete(b)}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Accion</f:facet>
+					<h:commandLink value="Edit" action="#{bodegaBean.edit(b)}"
+						rendered="#{not b.editable}" />
+					<h:commandLink value="Save" action="#{bodegaBean.save(b)}"
+						rendered="#{b.editable}" />
+				</h:column>
+			</h:dataTable>
 		<h:panelGrid columns="1">
 			<h:outputText value="Nombre" />
 			<h:inputText id="text" value="#{bodegaBean.nombre}" cols="2" />
 			
-			<h3>Selecciona la ubicacion</h3>
-			<p>Pais:</p>
-			<h:selectOneMenu value="#{bodegaBean.nombre}">
-				<f:selectItems value="#{bodegaBean.ubicacion}" var="list1" itemValue="#{list1.pais}" itemLabel="#{list1.pais}"/>
-			</h:selectOneMenu>
-			
-			<p>Provincia</p>
-			<h:selectOneMenu id="cboProvincia" value="#{bodegaBean.nombre}">
-				<f:selectItems value="#{bodegaBean.ubicacion}" var="list1" itemValue="#{list1.provincia}" itemLabel="#{list1.provincia}"/>
-			</h:selectOneMenu>
+			<h3>Selecciona la Ubicacion</h3>
 			
 			<p>Ciudad:</p>
-			<h:selectOneMenu id="cboCiudad" value="#{bodegaBean.nombre}">
+			<h:selectOneMenu value="#{bodegaBean.ciudad}">
 				<f:selectItems value="#{bodegaBean.ubicacion}" var="list1" itemValue="#{list1.ciudad}" itemLabel="#{list1.ciudad}"/>
 			</h:selectOneMenu>
 			
-			<h:commandButton value="Guardar" type="submit" action="#{bodegaBean.add}" />
-			<h:commandButton value="Nuevo" type="reset" />
+			<h:commandButton class="btn btn-action" value="Guardar" type="submit" action="#{bodegaBean.addBodega()}" />
 		</h:panelGrid>
 		
 	</h:form>

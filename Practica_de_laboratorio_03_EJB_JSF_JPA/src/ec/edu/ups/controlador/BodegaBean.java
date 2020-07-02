@@ -21,14 +21,12 @@ public class BodegaBean implements Serializable{
 	
 	@EJB
 	private BodegaFacade ejbBodegaFacade;
+	private List<Bodega> list;
+	private String nombre;
 	@EJB
 	private UbicacionFacade ejbUbicacionFacade;
-	
-	private List<Bodega> list;
 	private List<Ubicacion> ubicacion;
-	
-	private String nombre;
-	
+	private String ciudad;
 	
 	public BodegaBean() {
 		
@@ -36,21 +34,25 @@ public class BodegaBean implements Serializable{
 	
 	@PostConstruct
     public void init() {
-	ejbBodegaFacade.create(new Bodega("Categoria1"));
-	ejbBodegaFacade.create(new Bodega("Categoria2"));
-	//ejbBodegaFacade.create(new Bodega("cepillo",0.20,10));
 	System.out.println("Ya entro al init de la bodega");
 	
-	ubicacion=ejbUbicacionFacade.findAll();
-	
 	list = ejbBodegaFacade.findAll();
-    }
+	ubicacion=ejbUbicacionFacade.findAll();
+	}
 	
+	public String addBodega() {
+		Ubicacion ubi=ejbUbicacionFacade.readUbicacion(ciudad);
+		ejbBodegaFacade.create(new Bodega(this.nombre,ubi));
+		list = ejbBodegaFacade.findAll();
+		return null;
+	}
+	
+	/**
 	public String add() {
 		ejbBodegaFacade.create(new Bodega(this.nombre));
 		list = ejbBodegaFacade.findAll();
 		return null;
-	    }
+	}**/
 
 	    public String delete(Bodega p) {	
 	    ejbBodegaFacade.remove(p);
@@ -68,14 +70,6 @@ public class BodegaBean implements Serializable{
 		p.setEditable(false);
 		return null;
 	    }
-
-		public List<Ubicacion> getUbicacion() {
-			return ubicacion;
-		}
-
-		public void setUbicacion(List<Ubicacion> ubicacion) {
-			this.ubicacion = ubicacion;
-		}
 
 		public String getNombre() {
 			return nombre;
@@ -107,6 +101,22 @@ public class BodegaBean implements Serializable{
 
 		public void setList(List<Bodega> list) {
 			this.list = list;
+		}
+
+		public List<Ubicacion> getUbicacion() {
+			return ubicacion;
+		}
+
+		public void setUbicacion(List<Ubicacion> ubicacion) {
+			this.ubicacion = ubicacion;
+		} 
+
+		public String getCiudad() {
+			return ciudad;
+		}
+
+		public void setCiudad(String ciudad) {
+			this.ciudad = ciudad;
 		}
 
 	    

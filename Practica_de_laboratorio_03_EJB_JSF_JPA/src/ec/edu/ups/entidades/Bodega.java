@@ -134,15 +134,21 @@ public class Bodega implements Serializable {
 		this.ubicacion = ubicacion;
 	}
 
-
+	
+	public Bodega(String nombre) {
+		
+		this.nombre = nombre;
+	}
 
 
 	/**
 	 * @param nombre
 	 * @param ubicacion
 	 */
-	public Bodega(String nombre) {
+	public Bodega(String nombre, Ubicacion ubicacion) {
+		super();
 		this.nombre = nombre;
+		this.ubicacion = ubicacion;
 	}
 
 
