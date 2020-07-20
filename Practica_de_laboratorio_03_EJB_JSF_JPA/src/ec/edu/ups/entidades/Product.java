@@ -32,7 +32,19 @@ public class Product  implements Serializable{
 	this.cantidadStock=cantidad;
     }
 
-    public int getCodigo() {
+    
+   
+
+	public Product(String nombre, double costoUnitario, int cantidadStock, Category categoria, Bodega bodega) {
+		super();
+		this.nombre = nombre;
+		this.costoUnitario = costoUnitario;
+		this.cantidadStock = cantidadStock;
+		this.categoria = categoria;
+		this.bodega = bodega;
+	}
+
+	public int getCodigo() {
 	return codigo;
     }
 

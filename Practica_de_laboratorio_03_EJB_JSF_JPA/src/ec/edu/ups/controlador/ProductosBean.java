@@ -9,8 +9,10 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
+import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.CategoryFacade;
 import ec.edu.ups.ejb.ProductFacade;
+import ec.edu.ups.entidades.Bodega;
 import ec.edu.ups.entidades.Category;
 import ec.edu.ups.entidades.Product;
 
@@ -29,12 +31,22 @@ public class ProductosBean implements Serializable{
 	    @EJB 
 	    private CategoryFacade ejbCategoryFacade;
 	    
+	    
+	    @EJB
+	    private BodegaFacade ejbBodegaFacade;
+	    
+	    
 	    private List<Product> list;
 	    
 	    private List<Category> categorias;
+	    private List<Bodega> bodegas;
+	    
 	    
 	    
 	    private String nombre;
+	    private String nombreBodega;
+	    
+	    private String nombreCategoria;
 	    private double costoUnitario;
 	    private int cantidadStock;
 	    
@@ -44,10 +56,12 @@ public class ProductosBean implements Serializable{
 	    
 	    @PostConstruct
 	    public void init() {
-	    ejbProductFacade.create(new Product("Papel Higenico",0.20,10));
-	    ejbProductFacade.create(new Product("cepillo",0.20,10));
+	  //  ejbProductFacade.create(new Product("Papel Higenico",0.20,10));
+	   // ejbProductFacade.create(new Product("cepillo",0.20,10));
 	    categorias=ejbCategoryFacade.findAll();
 		list = ejbProductFacade.findAll();
+		bodegas = ejbBodegaFacade.findAll();
+		
 	    }
 	        
 	    
@@ -75,6 +89,14 @@ public class ProductosBean implements Serializable{
 		this.nombre = nombre;
 	    }
 	    
+
+		public String getNombreBodega() {
+			return nombreBodega;
+		}
+
+		public void setNombreBodega(String nombreBodega) {
+			this.nombreBodega = nombreBodega;
+		}
 
 		public ProductFacade getEjbProductFacade() {
 			return ejbProductFacade;
@@ -157,12 +179,41 @@ public class ProductosBean implements Serializable{
 		/**
 		 * @return the serialversionuid
 		 */
+		
+		
 		public static long getSerialversionuid() {
 			return serialVersionUID;
 		}
 
+		public BodegaFacade getEjbBodegaFacade() {
+			return ejbBodegaFacade;
+		}
+
+		public void setEjbBodegaFacade(BodegaFacade ejbBodegaFacade) {
+			this.ejbBodegaFacade = ejbBodegaFacade;
+		}
+
+		public List<Bodega> getBodegas() {
+			return bodegas;
+		}
+
+		public void setBodegas(List<Bodega> bodegas) {
+			this.bodegas = bodegas;
+		}
+		
+
+		public String getNombreCategoria() {
+			return nombreCategoria;
+		}
+
+		public void setNombreCategoria(String nombreCategoria) {
+			this.nombreCategoria = nombreCategoria;
+		}
+
 		public String add() {
-	    ejbProductFacade.create(new Product(this.nombre,this.costoUnitario,this.cantidadStock));
+		Category cat=ejbCategoryFacade.readCategory(nombreCategoria);
+		Bodega bodeg=ejbBodegaFacade.readBodega(nombreBodega);
+	    ejbProductFacade.create(new Product(this.nombre,this.costoUnitario,this.cantidadStock,cat,bodeg));
 		list = ejbProductFacade.findAll();
 		return null;
 	    }

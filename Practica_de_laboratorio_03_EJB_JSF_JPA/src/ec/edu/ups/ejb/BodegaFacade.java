@@ -25,7 +25,7 @@ public class BodegaFacade extends AbstractFacade<Bodega>{
     protected  EntityManager getEntityManager(){
         return entityManager;
     }
-/**
+
     public Bodega readBodega(String nombre) {
     	Query query = entityManager.createNamedQuery("getByNombre");
     	query.setParameter("nombre", nombre);
@@ -35,5 +35,5 @@ public class BodegaFacade extends AbstractFacade<Bodega>{
     		resp = (Bodega)result.get(0);
     	}
     	return resp;
-    }**/
+    }
 }
