@@ -26,6 +26,8 @@ public class BodegaBean implements Serializable{
 	@EJB
 	private UbicacionFacade ejbUbicacionFacade;
 	private List<Ubicacion> ubicacion;
+	private String pais;
+	private String provincia;
 	private String ciudad;
 	
 	public BodegaBean() {
@@ -34,10 +36,10 @@ public class BodegaBean implements Serializable{
 	
 	@PostConstruct
     public void init() {
-	System.out.println("Ya entro al init de la bodega");
-	
-	list = ejbBodegaFacade.findAll();
-	ubicacion=ejbUbicacionFacade.findAll();
+		System.out.println("Ya entro al init de la bodega");
+		
+		list = ejbBodegaFacade.findAll();
+		ubicacion=ejbUbicacionFacade.findAll();
 	}
 	
 	public String addBodega() {
@@ -117,6 +119,22 @@ public class BodegaBean implements Serializable{
 
 		public void setCiudad(String ciudad) {
 			this.ciudad = ciudad;
+		}
+
+		public String getPais() {
+			return pais;
+		}
+
+		public void setPais(String pais) {
+			this.pais = pais;
+		}
+
+		public String getProvincia() {
+			return provincia;
+		}
+
+		public void setProvincia(String provincia) {
+			this.provincia = provincia;
 		}
 
 	    

@@ -21,7 +21,7 @@
 		<link rel="stylesheet" href="resources/assets/css/main.css"></link>
 <h:head>
 	
-	<title>CRUD Empleados</title>
+	<title>Gestionar Clientes</title>
 	<!-- Bootstrap core CSS-->
 	<link href="principal/vendor/bootstrap/css/bootstrap.min.css"
 		rel="stylesheet"></link>
@@ -54,56 +54,177 @@
 	</style>
 </h:head> 
 <body> 
-	<h:form>
-	<h:dataTable value="#{usuarioBean.listEmpleados}" var="c" styleClass="tabla"
-			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-			<h:column>
-				<f:facet name="header">Nombre</f:facet>#{c.nombre}</h:column>
-			<h:column>
-				<f:facet name="header">Apellido</f:facet>
-				<h:inputText value="#{c.apellido}" size="10"
-					rendered="#{c.editable}" />
-				<h:outputText value="#{c.apellido}" rendered="#{not c.editable}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Correo</f:facet>#{c.correo}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Cargo</f:facet>#{c.rol.cargo}
-			</h:column>			
-			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Delete" action="#{usuarioBean.deleteEmpleado(c)}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Edit" action="#{usuarioBean.edit(c)}"
-					rendered="#{not c.editable}" />
-				<h:commandLink value="Save" action="#{usuarioBean.save(c)}"
-					rendered="#{c.editable}" />
-			</h:column>
-		</h:dataTable>
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="index.html"><img src="resources/assets/images/logo.png" alt="Distribuidora"/></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li class="active"><a href="index.xhtml">Inicio</a></li>
+			
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalogos <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="categoryJSF.xhtml">Categorías</a></li>
+							<li class="active"><a href="bodegas.xhtml">Bodegas</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->
+	<header id="head" class="secondary"></header>
 	
-		<ul>
-			<li>Nombre:<h:inputText size="10" value="#{usuarioBean.nombre}" /></li>
-		</ul>
-		<ul>
-			<li>Apellido:<h:inputText size="10" value="#{usuarioBean.apellido}" /></li>
-		</ul>
-		<ul>
-			<li>Cedula:<h:inputText size="10" value="#{usuarioBean.cedula}" /></li>
-		</ul>
-		<ul>
-			<li>Correo:<h:inputText size="10" value="#{usuarioBean.correo}" /></li>
-		</ul>
-		<ul>
-			<li>Contraseña:<h:inputText size="10" value="#{usuarioBean.passw}" /></li>
-		</ul>
-		<h3>Selecciona El Cargo</h3>
-			<h:selectOneMenu value="#{usuarioBean.nombre}">
-				<f:selectItems value="#{usuarioBean.roles}" var="list1" itemValue="#{list1.cargo}" itemLabel="#{list1.cargo}"/>
-			</h:selectOneMenu>
-		<h:commandButton value="Add" action="#{usuarioBean.addEmpleado()}" />
-	</h:form>
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="index.xhtml">Inicio</a></li>
+		</ol>
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-xs-12 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Gestionar Clientes</h1>
+				</header>
+
+							<h:form>
+							<h:dataTable value="#{usuarioBean.listClientes}" var="c" styleClass="tabla"
+									headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+									<h:column>
+										<f:facet name="header">Nombre</f:facet>#{c.nombre}</h:column>
+									<h:column>
+										<f:facet name="header">Apellido</f:facet>
+										<h:inputText value="#{c.apellido}" size="10"
+											rendered="#{c.editable}" />
+										<h:outputText value="#{c.apellido}" rendered="#{not c.editable}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Correo</f:facet>#{c.correo}
+									</h:column>
+									<h:column>
+										<f:facet name="header">Cargo</f:facet>#{c.rol.cargo}
+									</h:column>			
+									<h:column>
+										<f:facet name="header">Accion</f:facet>
+										<h:commandLink value="Eliminar" action="#{usuarioBean.deleteCliente(c)}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Accion</f:facet>
+										<h:commandLink value="Editar" action="#{usuarioBean.edit(c)}"
+											rendered="#{not c.editable}" />
+										<h:commandLink value="Guardar" action="#{usuarioBean.save(c)}"
+											rendered="#{c.editable}" />
+									</h:column>
+								</h:dataTable>
+								
+								<hr></hr>
+								<div class="top-margin">
+									<label>Nombre</label>
+									<h:inputText type="text" class="form-control" value="#{usuarioBean.nombre}" />
+								</div>
+								<div class="top-margin">
+									<label>Apellido</label>
+									<h:inputText type="text" class="form-control" value="#{usuarioBean.apellido}" />
+								</div>
+								<div class="top-margin">
+									<label>Cedula</label>
+									<h:inputText type="text" class="form-control" value="#{usuarioBean.cedula}" />
+								</div>
+								<div class="top-margin">
+									<label>Correo</label>
+									<h:inputText type="text" class="form-control" value="#{usuarioBean.correo}" />
+								</div>
+								<div class="top-margin">
+									<label>Contraseña</label>
+									<h:inputText type="text" class="form-control" value="#{usuarioBean.passw}" />
+								</div>
+								<h3>Selecciona El Cargo</h3>
+									
+									<h:selectOneMenu value="#{usuarioBean.cargo}">
+										<f:selectItems value="#{usuarioBean.roles}" var="list1" itemValue="#{list1.cargo}" itemLabel="#{list1.cargo}"/>
+									</h:selectOneMenu>
+								<hr></hr>
+								<div class="row">
+									<div class="col-lg-4 text-right">
+										<h:commandButton class="btn btn-action" value="Guardar" type="submit" action="#{usuarioBean.addCliente()}" />
+									</div>
+								</div>
+							</h:form>
+			</article>
+			<!-- /Article -->
+
+		</div>
+	</div>	<!-- /container -->
+	
+	
+	
+	<footer id="footer" class="top-space">
+
+		<div class="footer1">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-3 widget">
+						<h3 class="widget-title">Contactos</h3>
+						<div class="widget-body">
+							<p>+593 92 63517621<br></br>
+								<a href="mailto:#">eyungat@est.ups.edu.ec</a>
+								<br></br>
+								<br></br>
+								Cuenca-Ecuador
+							</p>	
+						</div>
+					</div>
+
+					<div class="col-md-3 widget">
+						<h3 class="widget-title">Sigueme</h3>
+						<div class="widget-body">
+							<p class="follow-me-icons">
+								<a href=""><i class="fa fa-twitter fa-2"></i></a>
+								<a href=""><i class="fa fa-github fa-2"></i></a>
+								<a href=""><i class="fa fa-facebook fa-2"></i></a>
+							</p>	
+						</div>
+					</div>
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+
+		<div class="footer2">
+			<div class="container">
+				<div class="row">
+					
+
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="text-right">
+								Copyright &copy; 2020, Javier, Henry, Marcelo, Jonnathan. 
+							</p>
+						</div>
+					</div>
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+
+	</footer>	
+		
+
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="resources/assets/js/headroom.min.js"></script>
+	<script src="resources/assets/js/jQuery.headroom.min.js"></script>
+	<script src="resources/assets/js/template.js"></script>	
 </body> 
 </html>

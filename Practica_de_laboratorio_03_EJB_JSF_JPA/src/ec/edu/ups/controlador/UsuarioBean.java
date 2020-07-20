@@ -26,11 +26,6 @@ public class UsuarioBean implements Serializable {
 	
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
-	@EJB
-	private RolFacade ejbRolFacade;
-	private List<Rol> roles;
-	private String cargo;
-	
 	private List<Usuario> list; 
 	private List<Usuario> listEmpleados;
 	private List<Usuario> listClientes;
@@ -39,6 +34,13 @@ public class UsuarioBean implements Serializable {
 	private String cedula;
 	private String correo;
 	private String passw;
+	
+	@EJB
+	private RolFacade ejbRolFacade;
+	private List<Rol> roles;
+	private String cargo;
+	
+	
 
 	public UsuarioBean() {
 		
@@ -46,11 +48,108 @@ public class UsuarioBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		list = ejbUsuarioFacade.findAll();
+		
+		System.out.println("Entro al init de usuarios");
+		
 		roles=ejbRolFacade.findAll();
+		list = ejbUsuarioFacade.listarAdmins(1);
 		listEmpleados = ejbUsuarioFacade.listarEmpleados(2);
 		listClientes = ejbUsuarioFacade.listarClientes(3);
 	}
+	
+	//CRUD
+	
+	public String addCliente() {
+		
+		Rol cliente=ejbRolFacade.readRol(cargo);
+		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,cliente));
+		listClientes = ejbUsuarioFacade.listarClientes(3);
+		return null;
+	}
+	
+	/**
+	public String addEmpleado() {
+		Rol empleado=ejbRolFacade.readRol(cargo);
+		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,empleado));
+		listEmpleados = ejbUsuarioFacade.findAll();
+		return null;
+	}
+	
+	public String addAdmin() {
+		Rol admin=ejbRolFacade.readRol(cargo);
+		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,admin));
+		list = ejbUsuarioFacade.findAll();
+		return null;
+	}
+	**/
+	
+	public String iniciarSesion() {
+		Usuario usuario = ejbUsuarioFacade.readCorreo(this.correo, this.passw);
+		if(usuario != null) {
+			if(usuario.getRol().getCodigo()==2) {
+				return "crearEmpleados";
+			}
+		}
+		return null;
+	}
+	/**
+	public String delete(Usuario usuario) {
+		ejbUsuarioFacade.remove(usuario);
+		list = ejbUsuarioFacade.findAll();
+		return null;
+	}**/
+	
+	public String deleteCliente(Usuario usuario) {
+		System.out.println("Entro al metodo eliminar clientes");
+		ejbUsuarioFacade.remove(usuario);
+		listClientes = ejbUsuarioFacade.listarClientes(3);
+		return null;
+	}
+	
+	
+	public String edit (Usuario usuario) {
+		usuario.setEditable(true);
+		return null;
+	}
+	
+	public String save (Usuario u) {
+		ejbUsuarioFacade.edit(u);
+		u.setEditable(false);
+		return null;
+	}
+
+	public UsuarioFacade getEjbUsuarioFacade() {
+		return ejbUsuarioFacade;
+	}
+
+	public void setEjbUsuarioFacade(UsuarioFacade ejbUsuarioFacade) {
+		this.ejbUsuarioFacade = ejbUsuarioFacade;
+	}
+
+	public List<Usuario> getList() {
+		return list;
+	}
+
+	public void setList(List<Usuario> list) {
+		this.list = list;
+	}
+
+	public List<Usuario> getListEmpleados() {
+		return listEmpleados;
+	}
+
+	public void setListEmpleados(List<Usuario> listEmpleados) {
+		this.listEmpleados = listEmpleados;
+	}
+
+	public List<Usuario> getListClientes() {
+		return listClientes;
+	}
+
+	public void setListClientes(List<Usuario> listClientes) {
+		this.listClientes = listClientes;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -90,40 +189,6 @@ public class UsuarioBean implements Serializable {
 	public void setPassw(String passw) {
 		this.passw = passw;
 	}
-	
-	public Usuario[] getlist(){
-		return list.toArray(new Usuario[0]);
-	}
-	
-	public void setList(List<Usuario> list) {
-		this.list=list;
-	}
-
-	
-	public Usuario[] getListEmpleados() {
-		return listEmpleados.toArray(new Usuario[0]);
-	}
-
-	public void setListEmpleados(List<Usuario> listEmpleados) {
-		this.listEmpleados = listEmpleados;
-	}
-
-	public Usuario[] getListClientes() {
-		return listClientes.toArray(new Usuario[0]);
-	}
-
-	public void setListClientes(List<Usuario> listClientes) {
-		this.listClientes = listClientes;
-	}
-	
-
-	public UsuarioFacade getEjbUsuarioFacade() {
-		return ejbUsuarioFacade;
-	}
-
-	public void setEjbUsuarioFacade(UsuarioFacade ejbUsuarioFacade) {
-		this.ejbUsuarioFacade = ejbUsuarioFacade;
-	}
 
 	public RolFacade getEjbRolFacade() {
 		return ejbRolFacade;
@@ -141,10 +206,6 @@ public class UsuarioBean implements Serializable {
 		this.roles = roles;
 	}
 
-	public List<Usuario> getList() {
-		return list;
-	}
-
 	public String getCargo() {
 		return cargo;
 	}
@@ -152,64 +213,7 @@ public class UsuarioBean implements Serializable {
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
-
-	//CRUD
-	public String addCliente() {
-		
-		Rol cliente=ejbRolFacade.readRol(cargo);
-		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,cliente));
-		list = ejbUsuarioFacade.findAll();
-		return null;
-	}
-	
-	
-	public String addEmpleado() {
-		Rol empleado=ejbRolFacade.readRol(cargo);
-		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,empleado));
-		listEmpleados = ejbUsuarioFacade.listarEmpleados(2);
-		return null;
-	}
-	
-	public String addAdmin() {
-		Rol admin=ejbRolFacade.readRol(cargo);
-		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,admin));
-		list = ejbUsuarioFacade.findAll();
-		return null;
-	}
-	
-	
-	public String iniciarSesion() {
-		Usuario usuario = ejbUsuarioFacade.readCorreo(this.correo, this.passw);
-		if(usuario != null) {
-			if(usuario.getRol().getCodigo()==1) {
-				return "crearEmpleados";
-			}
-		}
-		return null;
-	}
-	
-	public String delete(Usuario usuario) {
-		ejbUsuarioFacade.remove(usuario);
-		list = ejbUsuarioFacade.findAll();
-		return null;
-	}
-	
-	public String deleteEmpleado(Usuario usuario) {
-		ejbUsuarioFacade.remove(usuario);
-		listEmpleados = ejbUsuarioFacade.listarEmpleados(2);
-		return null;
-	}
 	
 	
 	
-	public String edit (Usuario usuario) {
-		usuario.setEditable(true);
-		return null;
-	}
-	
-	public String save (Usuario usuario) {
-		ejbUsuarioFacade.edit(usuario);
-		usuario.setEditable(false);
-		return null;
-	}
 }

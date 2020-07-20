@@ -73,11 +73,24 @@
 						<h:outputText value="#{b.nombre}" rendered="#{not b.editable}"/>
 					</h:column>
 					<h:column>
+						<f:facet name="header">Pais</f:facet>
+						<h:inputText value="#{b.ubicacion.pais}" size="10"
+						rendered="#{b.editable}" />
+						<h:outputText value="#{b.ubicacion.pais}" rendered="#{not b.editable}"/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Provincia</f:facet>
+						<h:inputText value="#{b.ubicacion.provincia}" size="10"
+						rendered="#{b.editable}" />
+						<h:outputText value="#{b.ubicacion.provincia}" rendered="#{not b.editable}"/>
+					</h:column>
+					<h:column>
 						<f:facet name="header">Ciudad</f:facet>
 						<h:inputText value="#{b.ubicacion.ciudad}" size="10"
 						rendered="#{b.editable}" />
 						<h:outputText value="#{b.ubicacion.ciudad}" rendered="#{not b.editable}"/>
 					</h:column>
+					
 					<h:column>
 					<f:facet name="header">Accion</f:facet>
 					<h:commandLink value="Delete" action="#{bodegaBean.delete(b)}" />
@@ -96,6 +109,14 @@
 			
 			<h3>Selecciona la Ubicacion</h3>
 			
+			<p>Pais:</p>
+			<h:selectOneMenu value="#{bodegaBean.pais}">
+				<f:selectItems value="#{bodegaBean.ubicacion}" var="list" itemValue="#{list.pais}" itemLabel="#{list.pais}"/>
+			</h:selectOneMenu>
+			<p>Provincia:</p>
+			<h:selectOneMenu value="#{bodegaBean.provincia}">
+				<f:selectItems value="#{bodegaBean.ubicacion}" var="list1" itemValue="#{list1.provincia}" itemLabel="#{list1.provincia}"/>
+			</h:selectOneMenu>
 			<p>Ciudad:</p>
 			<h:selectOneMenu value="#{bodegaBean.ciudad}">
 				<f:selectItems value="#{bodegaBean.ubicacion}" var="list1" itemValue="#{list1.ciudad}" itemLabel="#{list1.ciudad}"/>

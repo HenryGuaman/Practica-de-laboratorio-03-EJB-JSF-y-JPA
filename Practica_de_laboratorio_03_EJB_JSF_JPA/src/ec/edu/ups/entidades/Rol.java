@@ -28,7 +28,7 @@ public class Rol implements Serializable {
 	    private String cargo;
 
 	    @OneToMany(mappedBy = "rol")
-	    private Set<Usuario> usuariosRolesList = new  HashSet<Usuario>();
+	    private List<Usuario> usuariosRolesList;
 
 	    @Transient
 	    private boolean editable;
@@ -49,9 +49,10 @@ public class Rol implements Serializable {
 		 * @param cargo
 		 */
 		public Rol(String cargo) {
-			super();
 			this.cargo = cargo;
 		}
+
+		
 
 		public int getCodigo() {
 			return codigo;
@@ -69,11 +70,11 @@ public class Rol implements Serializable {
 			this.cargo = cargo;
 		}
 
-		public Set<Usuario> getUsuariosRolesList() {
+		public List<Usuario> getUsuariosRolesList() {
 			return usuariosRolesList;
 		}
 
-		public void setUsuariosRolesList(Set<Usuario> usuariosRolesList) {
+		public void setUsuariosRolesList(List<Usuario> usuariosRolesList) {
 			this.usuariosRolesList = usuariosRolesList;
 		}
 
@@ -83,14 +84,6 @@ public class Rol implements Serializable {
 
 		public void setEditable(boolean editable) {
 			this.editable = editable;
-		}
-
-		public void addUsuario(Usuario usuario) {
-			this.usuariosRolesList.add(usuario);
-		}
-		
-		public void removeUsuario(Usuario usuario) {
-			this.usuariosRolesList.remove(usuario);
 		}
 
 		@Override
@@ -114,5 +107,7 @@ public class Rol implements Serializable {
 				return false;
 			return true;
 		}
+
+		
 		
 }
