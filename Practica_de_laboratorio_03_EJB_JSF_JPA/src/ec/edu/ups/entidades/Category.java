@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+@NamedQuery(name = "getByDescripcion", query = "SELECT u FROM Category u WHERE u.descripcion =:descripcion")
 
 @Entity
 public class Category implements Serializable{

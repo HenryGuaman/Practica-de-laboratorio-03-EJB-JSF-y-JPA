@@ -76,7 +76,17 @@
 	
 	<div class="panel-body">
 	<h3 class="page-header">GESTIÓN DE PRODUCTOS</h3>
+	
+	
 	<h:form>
+		<h3>Selecciona la Bodega</h3>
+			
+			<h:selectOneMenu value="#{productosBean.nombreBodega}">
+				<f:selectItems value="#{productosBean.bodegas}" var="list1" itemValue="#{list1.nombre}" itemLabel="#{list1.nombre}"/>	
+				
+			</h:selectOneMenu>
+	<hr></hr>				
+		
 		<h:dataTable border="1" style="margin: 0 auto;" value="#{productosBean.list}" var="p" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
 			<h:column>
@@ -104,9 +114,9 @@
 			
 			<h:column>
 				<f:facet name="header">Categoria</f:facet>
-				<h:inputText value="#{p.cantidadStock}" size="10"
+				<h:inputText value="#{p.categoria.descripcion}" size="10"
 					rendered="#{p.editable}" />
-				<h:outputText value="#{p.cantidadStock}" rendered="#{not p.editable}" />
+				<h:outputText value="#{p.categoria.descripcion}" rendered="#{not p.editable}" />
 			</h:column>	
 				
 			<h:column>
@@ -122,23 +132,32 @@
 					rendered="#{p.editable}" />
 			</h:column>
 		</h:dataTable>
+		<h:panelGrid columns="1">
 		
-			<h:panelGrid columns="1">
+		<h3>Agregar Nuevo Producto</h3>
 			<h:outputText value="Nombre" />
 			<h:inputText id="text" value="#{productosBean.nombre}" cols="2" />
-			
-			
+			<hr></hr>	
+			<h:outputText value="Valor Unitario" />
+			<h:inputText id="text1" value="#{productosBean.costoUnitario}" cols="3" />
+			<hr></hr>	
+			<h:outputText value="Cantidad Stock" />
+			<h:inputText id="text2" value="#{productosBean.cantidadStock}" cols="4" />
+			<hr></hr>	
 			<h3>Selecciona la Categoria</h3>
 			
-			<h:selectOneMenu value="#{productosBean.nombre}">
+			<h:selectOneMenu value="#{productosBean.nombreCategoria}">
 				<f:selectItems value="#{productosBean.categorias}" var="list1" itemValue="#{list1.descripcion}" itemLabel="#{list1.descripcion}"/>	
 			</h:selectOneMenu>
-			
-			<h:commandButton value="Guardar" type="submit" action="#{productosBean.add}" />
+			<hr></hr>	
+			<h:commandButton class="btn btn-action" value="Guardar" type="submit" action="#{productosBean.add()}" />
 			<h:commandButton value="Nuevo" type="reset" />
 		</h:panelGrid>
 		
 	</h:form>
+	
+	
+			
 	</div>
 	<footer id="footer" class="top-space">
 
@@ -150,7 +169,7 @@
 						<h3 class="widget-title">Contactos</h3>
 						<div class="widget-body">
 							<p>+593 92 63517621<br></br>
-								<a href="mailto:#">eyungat@est.ups.edu.ec</a><br></br>
+								<a href="mailto:#">tdurazno@est.ups.edu.ec</a><br></br>
 								<br></br>
 								Cuenca-Ecuador
 							</p>	
