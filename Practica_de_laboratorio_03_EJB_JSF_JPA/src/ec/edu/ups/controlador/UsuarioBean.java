@@ -86,7 +86,9 @@ public class UsuarioBean implements Serializable {
 	public String iniciarSesion() {
 		Usuario usuario = ejbUsuarioFacade.readCorreo(this.correo, this.passw);
 		if(usuario != null) {
-			if(usuario.getRol().getCodigo()==2) {
+			if(usuario.getRol().getCodigo()==1) {
+				return "ProductosJSF2";
+			}else if(usuario.getRol().getCodigo()==2) {
 				return "crearEmpleados";
 			}
 		}
