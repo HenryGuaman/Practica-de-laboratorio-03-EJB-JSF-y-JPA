@@ -22,13 +22,20 @@ public class FacturaCabecera implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private GregorianCalendar fecha;
-	private double descuentoFact;
-	private double ivaFact;
-	private double subtotalFact;
-	private double totalFact;
+	private double descuento;
+	private double iva;
+	private double subtotal;
+	private double total;
+	private char anulado;
+
+	@Transient
+	private boolean editable;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facturaCabecera")
 	private List<FacturaDetalle> listaFacturasDetalles;
+
+	@OneToOne
+	private Pedido pedido;
 
 	@ManyToOne
 	private Usuario usuario;
@@ -36,16 +43,31 @@ public class FacturaCabecera implements Serializable {
 	public FacturaCabecera() {
 	}
 
-	public FacturaCabecera(int codigo, GregorianCalendar fecha, double descuentoFact, double ivaFact,
-			double subtotalFact, double totalFact, List<FacturaDetalle> listaFacturasDetalles, Usuario usuario) {
+	public FacturaCabecera(GregorianCalendar fecha, char anulado, double descuento, double subtotal, double iva,
+			double total, Usuario usuario) {
 		this.codigo = codigo;
 		this.fecha = fecha;
-		this.descuentoFact = descuentoFact;
-		this.ivaFact = ivaFact;
-		this.subtotalFact = subtotalFact;
-		this.totalFact = totalFact;
+		this.anulado = anulado;
+		this.descuento = descuento;
+		this.subtotal = subtotal;
+		this.iva = iva;
+		this.iva = iva;
+		this.total = total;
 		this.listaFacturasDetalles = listaFacturasDetalles;
 		this.usuario = usuario;
+	}
+
+	public FacturaCabecera(GregorianCalendar fecha, char anulado, double descuento, double subtotal, double iva,
+			double total, List<FacturaDetalle> listaFacturasDetalles, Usuario usuario, Pedido pedido) {
+		this.fecha = fecha;
+		this.anulado = anulado;
+		this.descuento = descuento;
+		this.subtotal = subtotal;
+		this.iva = iva;
+		this.total = total;
+		this.listaFacturasDetalles = listaFacturasDetalles;
+		this.usuario = usuario;
+		this.pedido = pedido;
 	}
 
 	public int getCodigo() {
@@ -64,36 +86,20 @@ public class FacturaCabecera implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public double getDescuentoFact() {
-		return descuentoFact;
+	public char getAnulado() {
+		return anulado;
 	}
 
-	public void setDescuentoFact(double descuentoFact) {
-		this.descuentoFact = descuentoFact;
+	public void setAnulado(char anulado) {
+		this.anulado = anulado;
 	}
 
-	public double getIvaFact() {
-		return ivaFact;
+	public boolean isEditable() {
+		return editable;
 	}
 
-	public void setIvaFact(double ivaFact) {
-		this.ivaFact = ivaFact;
-	}
-
-	public double getSubtotalFact() {
-		return subtotalFact;
-	}
-
-	public void setSubtotalFact(double subtotalFact) {
-		this.subtotalFact = subtotalFact;
-	}
-
-	public double getTotalFact() {
-		return totalFact;
-	}
-
-	public void setTotalFact(double totalFact) {
-		this.totalFact = totalFact;
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 	public List<FacturaDetalle> getListaFacturasDetalles() {
@@ -128,6 +134,46 @@ public class FacturaCabecera implements Serializable {
 		return 0;
 	}
 
+	public double getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(double descuento) {
+		this.descuento = descuento;
+	}
+
+	public double getIva() {
+		return iva;
+	}
+
+	public void setIva(double iva) {
+		this.iva = iva;
+	}
+
+	public double getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(double subtotal) {
+		this.subtotal = subtotal;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
 	public boolean agregarDetalle(FacturaDetalle facturaDetalle) {
 		return listaFacturasDetalles.add(facturaDetalle);
 	}
@@ -149,7 +195,10 @@ public class FacturaCabecera implements Serializable {
 
 	@Override
 	public String toString() {
-		return "FacturaCabecera{" + "codigo=" + codigo + ", fecha=" + fecha + ", descuentoFact=" + descuentoFact
-				+ ", subtotalFact=" + subtotalFact + ", ivaFact=" + ivaFact + ", totalFact=" + totalFact + '}';
+		return "FacturaCabecera [codigo=" + codigo + ", fecha=" + fecha + ", descuento=" + descuento + ", iva=" + iva
+				+ ", subtotal=" + subtotal + ", total=" + total + ", anulado=" + anulado + ", editable=" + editable
+				+ ", listaFacturasDetalles=" + listaFacturasDetalles + ", pedido=" + pedido + ", usuario=" + usuario
+				+ "]";
 	}
+
 }
