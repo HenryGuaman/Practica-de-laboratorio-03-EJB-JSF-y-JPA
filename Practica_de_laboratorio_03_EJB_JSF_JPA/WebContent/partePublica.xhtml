@@ -21,7 +21,7 @@
 		<link rel="stylesheet" href="resources/assets/css/main.css"></link>
 <h:head>
 	
-	<title>Gestionar Clientes</title>
+	<title>Publico</title>
 	<!-- Bootstrap core CSS-->
 	<link href="principal/vendor/bootstrap/css/bootstrap.min.css"
 		rel="stylesheet"></link>
@@ -65,14 +65,6 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li class="active"><a href="index.xhtml">Inicio</a></li>
-			
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalogos <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="categoryJSF.xhtml">Categorías</a></li>
-							<li class="active"><a href="bodegas.xhtml">Bodegas</a></li>
-						</ul>
-					</li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -92,74 +84,9 @@
 			<!-- Article main content -->
 			<article class="col-xs-12 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Gestionar Clientes</h1>
+					<h1 class="page-title">Gestionar Publicas</h1>
 				</header>
 
-							<h:form>
-							<h:dataTable value="#{usuarioBean.listClientes}" var="c" styleClass="tabla"
-									headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-									<h:column>
-										<f:facet name="header">Nombre</f:facet>
-										<h:inputText value="#{c.nombre}" size="10" rendered="#{c.editable}" />
-										<h:outputText value="#{c.nombre}" rendered="#{not c.editable}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Apellido</f:facet>
-										<h:inputText value="#{c.apellido}" size="10" rendered="#{c.editable}" />
-										<h:outputText value="#{c.apellido}" rendered="#{not c.editable}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Correo</f:facet>
-										<h:inputText value="#{c.correo}" size="10" rendered="#{c.editable}" />
-										<h:outputText value="#{c.correo}" rendered="#{not c.editable}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Cargo</f:facet>#{c.rol.cargo}
-									</h:column>			
-									<h:column>
-										<f:facet name="header">Accion</f:facet>
-										<h:commandLink value="Eliminar" action="#{usuarioBean.deleteCliente(c)}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Accion</f:facet>
-										<h:commandLink value="Editar" action="#{usuarioBean.edit(c)}" rendered="#{not c.editable}" />
-										<h:commandLink value="Guardar" action="#{usuarioBean.save(c)}" rendered="#{c.editable}" />
-									</h:column>
-								</h:dataTable>
-								
-								<hr></hr>
-								<div class="top-margin">
-									<label>Nombre</label>
-									<h:inputText type="text" class="form-control" value="#{usuarioBean.nombre}" />
-								</div>
-								<div class="top-margin">
-									<label>Apellido</label>
-									<h:inputText type="text" class="form-control" value="#{usuarioBean.apellido}" />
-								</div>
-								<div class="top-margin">
-									<label>Cedula</label>
-									<h:inputText type="text" class="form-control" value="#{usuarioBean.cedula}" />
-								</div>
-								<div class="top-margin">
-									<label>Correo</label>
-									<h:inputText type="text" class="form-control" value="#{usuarioBean.correo}" />
-								</div>
-								<div class="top-margin">
-									<label>Contraseña</label>
-									<h:inputText type="text" class="form-control" value="#{usuarioBean.passw}" />
-								</div>
-								<h3>Selecciona El Cargo</h3>
-									
-									<h:selectOneMenu value="#{usuarioBean.cargo}">
-										<f:selectItems value="#{usuarioBean.roles}" var="list1" itemValue="#{list1.cargo}" itemLabel="#{list1.cargo}"/>
-									</h:selectOneMenu>
-								<hr></hr>
-								<div class="row">
-									<div class="col-lg-4 text-right">
-										<h:commandButton class="btn btn-action" value="Guardar" type="submit" action="#{usuarioBean.addCliente()}" />
-									</div>
-								</div>
-							</h:form>
 			</article>
 			<!-- /Article -->
 
@@ -178,7 +105,7 @@
 						<h3 class="widget-title">Contactos</h3>
 						<div class="widget-body">
 							<p>+593 92 63517621<br></br>
-								<a href="mailto:#">eyungat@est.ups.edu.ec</a>
+								<a href="mailto:#">hguamanf@est.ups.edu.ec</a>
 								<br></br>
 								<br></br>
 								Cuenca-Ecuador

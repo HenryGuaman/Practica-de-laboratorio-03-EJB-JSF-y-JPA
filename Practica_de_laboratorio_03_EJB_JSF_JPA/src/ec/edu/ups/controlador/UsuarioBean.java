@@ -90,6 +90,8 @@ public class UsuarioBean implements Serializable {
 				return "ProductosJSF2";
 			}else if(usuario.getRol().getCodigo()==2) {
 				return "crearEmpleados";
+			}else if(usuario.getRol().getCodigo()==3) {
+				return "partePublica";
 			}
 		}
 		return null;
