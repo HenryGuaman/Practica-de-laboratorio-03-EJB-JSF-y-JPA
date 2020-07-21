@@ -25,16 +25,15 @@ public class FacturaDetalle implements Serializable {
 	@ManyToOne
 	private Product product;
 
-	public FacturaDetalle() {
+	public FacturaDetalle(){}
 
-	}
+    public FacturaDetalle(int cantidad, double total, FacturaCabecera facturaCabecera, Product product) {
 
-	public FacturaDetalle(int numDetalle, int cantidad, double total, Product product) {
-		this.numDetalle = numDetalle;
-		this.cantidad = cantidad;
-		this.total = total;
-		this.product = product;
-	}
+        this.cantidad = cantidad;
+        this.total = total;
+        this.facturaCabecera = facturaCabecera;
+        this.product = product;
+    }
 
 	public int getNumDetalle() {
 		return numDetalle;
