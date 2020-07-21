@@ -10,83 +10,181 @@
 
 <h:body>
 
-	<h2>Datos de la Factura</h2>
+	<div class="container col-md-5">
+		<div class="card">
+			<div class="card-body">
 
-	<h:form>
-		<div>
-			<label>Cliente:</label>
-			<h:inputText />
+				<h3>Factura</h3>
+				
+				<h:form id="form">
+					<h:outputLabel class="form-group" for="nombre" value="Cedula: "></h:outputLabel>
+					<h:inputText class="form-group" id="nombre" value="#{facturaDetalleBean.cedula}"></h:inputText>
+
+					<h:commandButton class="btn btn-success" style="margin: 10px"
+						value="BuscarPersona" action="#{facturaDetalleBean.mensaje()}">
+						<f:ajax execute="nombre"
+							render="mensaje salida salida2 salida3 salida4 salida5" />
+					</h:commandButton>
+					
+					<div class="alert alert-primary" role="alert">
+						<h:outputText id="mensaje" value="#{facturaDetalleBean.mensaje}" />
+					</div>
+
+					<p></p>
+					<p></p>
+					
+					<h:outputLabel for="salida" value="Nombre:"></h:outputLabel>
+					<h:inputText id="salida" value="#{facturaDetalleBean.nombre}"></h:inputText>
+					
+					<h:outputLabel for="salida5" value="Apellido:"></h:outputLabel>
+					<h:inputText id="salida5" value="#{facturaDetalleBean.apellido}"></h:inputText>
+					
+					<h:outputLabel for="salida2" value="Cedula:"></h:outputLabel>
+					<h:inputText id="salida2" value="#{facturaDetalleBean.cedula}"></h:inputText>
+					
+					<h:outputLabel for="salida3" value="Correo:"></h:outputLabel>
+					<h:inputText id="salida3" value="#{facturaDetalleBean.correo}"></h:inputText>
+					<h:commandButton value="Crear Usuario" action="#{facturaDetalleBean.crearPersona()}">
+					</h:commandButton>
+
+					<h:outputText id="crear" value="#{facturaDetalleBean.mensaje}" />
+
+				</h:form>
+
+				<h3>Detalle Factura</h3>
+				<h:form>
+					<h:dataTable value="#{facturaDetalleBean.list}" var="o"
+						styleClass="tabla" headerClass="cabeceraTabla"
+						rowClasses="filaPar,filaImpar">
+						<h:column>
+							<f:facet name="header">Codigo</f:facet>#{o.id}</h:column>
+						<h:column>
+							<f:facet name="header">Descripcion</f:facet>
+							<h:inputText value="#{o.name}" size="10" rendered="#{o.editable}" />
+							<h:outputText value="#{o.name}" rendered="#{not o.editable}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Cantidad</f:facet>
+							<h:inputText value="#{o.quantity}" size="10"
+								rendered="#{o.editable}" />
+							<h:outputText value="#{o.quantity}" rendered="#{not o.editable}" />
+						</h:column>
+
+            ///precio subtotal
+            <h:column>
+							<f:facet name="header">Precio</f:facet>
+							<h:inputText value="#{o.precio}" size="10"
+								rendered="#{o.editable}" />
+							<h:outputText value="#{o.precio}" rendered="#{not o.editable}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Subtotal</f:facet>
+							<h:inputText value="#{o.subtotal}" size="10"
+								rendered="#{o.editable}" />
+							<h:outputText value="#{o.subtotal}" rendered="#{not o.editable}">
+								<f:convertNumber pattern="#0.00" />
+							</h:outputText>
+						</h:column>
+
+
+
+						<h:column>
+							<f:facet name="header">Eliminar</f:facet>
+							<h:commandLink value="Delete"
+								action="#{facturaDetalleBean.delete(o)}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Editar</f:facet>
+							<h:commandLink value="Edit"
+								action="#{facturaDetalleBean.edit(o)}"
+								rendered="#{not o.editable}" />
+							<h:commandLink value="Save"
+								action="#{facturaDetalleBean.save(o)}" rendered="#{o.editable}" />
+						</h:column>
+					</h:dataTable>
+
+
+
+
+					<h:dataTable value="#{facturaDetalleBean.fila}" var="o"
+						styleClass="tabla" headerClass="cabeceraTabla"
+						rowClasses="filaPar,filaImpar">
+						<h:column>
+							<f:facet name="header">----------------------------------------------------------- </f:facet>
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">Subtotal</f:facet>
+							<h:outputText value="#{facturaDetalleBean.subtotalcabecera}">
+								<f:convertNumber pattern="#0.00" />
+							</h:outputText>
+						</h:column>
+					</h:dataTable>
+
+					<h:dataTable value="#{facturaDetalleBean.fila}" var="o"
+						styleClass="tabla" headerClass="cabeceraTabla"
+						rowClasses="filaPar,filaImpar">
+						<h:column>
+							<f:facet name="header">----------------------------------------------------------- </f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Descuento</f:facet>
+							<h:outputText value="#{facturaDetalleBean.descuento}">
+								<f:convertNumber pattern="#0.00" />
+							</h:outputText>
+						</h:column>
+					</h:dataTable>
+
+					<h:dataTable value="#{facturaDetalleBean.fila}" var="o"
+						styleClass="tabla" headerClass="cabeceraTabla"
+						rowClasses="filaPar,filaImpar">
+						<h:column>
+							<f:facet name="header">----------------------------------------------------------- </f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Iva</f:facet>
+							<h:outputText value="#{facturaDetalleBean.iva}">
+								<f:convertNumber pattern="#0.00" />
+							</h:outputText>
+						</h:column>
+					</h:dataTable>
+
+					<h:dataTable value="#{facturaDetalleBean.fila}" var="o"
+						styleClass="tabla" headerClass="cabeceraTabla"
+						rowClasses="filaPar,filaImpar">
+						<h:column>
+							<f:facet name="header">----------------------------------------------------------- </f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Total A Pagar</f:facet>
+							<h:outputText value="#{facturaDetalleBean.totalpagar}">
+								<f:convertNumber pattern="#0.00" />
+							</h:outputText>
+
+						</h:column>
+					</h:dataTable>
+					<ul>
+
+						<li>Nombre:<h:inputText size="10"
+								value="#{facturaDetalleBean.name}" /></li>
+						<li>Cantidad:<h:inputText size="10"
+								value="#{facturaDetalleBean.quantity}" />
+						</li>
+					</ul>
+					<h:commandButton value="Buscar Producto" style="margin: 10px"
+						class="btn btn-success" action="#{facturaDetalleBean.add}" />
+
+					<h:outputText id="producto" value="#{facturaDetalleBean.busqueda}" />
+
+					<h:commandButton value="CrearFactura" style="margin: 10px"
+						class="btn btn-success"
+						action="#{facturaDetalleBean.crearFactura()}" />
+
+					<h:link value="listar Facturas" outcome="listarFacturas.xhtml" />
+
+				</h:form>
+			</div>
 		</div>
-	</h:form>
-
-
-	<div>
-		<h4>Ingresar Detalle Factura:</h4>
-
-		<h:form>
-			<label>Producto:</label>
-			<h:inputText />
-
-			<label>Cantidad:</label>
-			<h:inputText />
-
-			<label>Precio:</label>
-			<h:inputText />
-
-			<h:commandButton value="Añadir producto" />
-
-		</h:form>
 	</div>
-
-	<h:panelGrid>
-		<h:form>
-			<br />
-
-			<h:dataTable>
-
-				<h:column>
-					<f:facet name=" ">Producto</f:facet>
-				</h:column>
-
-				<h:column>
-					<f:facet name=" ">Cantidad</f:facet>
-				</h:column>
-
-				<h:column>
-					<f:facet name=" ">Precio</f:facet>
-					<h:inputText value="" size="10" rendered="" />
-					<h:outputText value="" rendered="" />
-				</h:column>
-
-				<h:column>
-					<h:commandLink value="Delete" rendered="" />
-				</h:column>
-
-				<h:column>
-					<h:commandLink value="Edit" rendered="" />
-					<h:commandLink value="Save" rendered="" />
-				</h:column>
-
-			</h:dataTable>
-
-		</h:form>
-	</h:panelGrid>
-	
-	<div>
-		<br />
-
-		<div>
-		    <label>Descuento:</label>
-			<h:outputLabel>0.00</h:outputLabel>
-			<br /> <label>Iva 12%:</label>
-			<h:outputLabel>0.00</h:outputLabel>
-			<br /><label>Subtotal:</label>
-			<h:outputLabel>0.00</h:outputLabel>
-			<br /> <label>Total:</label>
-			<h:outputLabel>0.00</h:outputLabel>
-		</div>
-	</div>
-	<br />
 </h:body>
-
 </html>
