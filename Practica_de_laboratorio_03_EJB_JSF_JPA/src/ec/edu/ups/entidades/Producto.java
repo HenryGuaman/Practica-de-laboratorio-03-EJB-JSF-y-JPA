@@ -190,7 +190,7 @@ public class Producto implements Serializable {
 		List<Producto> productoList = new ArrayList<>();
 
 		productos.forEach(e -> {
-			Categoria categoria = new Categoria(e.getId(), e.getNombre());
+			Categoria categoria = new Categoria(e.id, e.getDescripcion());
 
 			producto = new Producto(e.getNombre(), e.getDescripcion(), e.getPreciounitario(), e.getPreciopublico(),
 					categoria, e.getStock());

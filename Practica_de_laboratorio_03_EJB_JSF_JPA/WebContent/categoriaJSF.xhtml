@@ -4,7 +4,10 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
       
-      	<meta charset="utf-8"></meta>
+      	
+
+<h:head>
+	<meta charset="utf-8"></meta>
 		<meta name="viewport"    content="width=device-width, initial-scale=1.0"></meta>
 		<meta name="description" content=""></meta>
 		<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)"></meta>
@@ -19,8 +22,6 @@
 		<!-- Custom styles for our template -->
 		<link rel="stylesheet" href="resources/assets/css/bootstrap-theme.css" media="screen" ></link>
 		<link rel="stylesheet" href="resources/assets/css/main.css"></link>
-
-<h:head>
 	
 	<title>Categorías</title>
 	<style>
@@ -56,25 +57,14 @@
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a  href="index.html">CATEGORÍAS</a>
+				<a  href="categoriaJSF.xhtml">CATEGORÍAS</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li class="active"><a href="categoryJSF.xhtml">Inicio</a></li>
+					<li class="active"><a href="categoriaJSF.xhtml">Inicio</a></li>
 			
-
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalogos <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="categoryJSF.xhtml">Categorías</a></li>
-							<li class="active"><a href="bodegaJSF.xhtml">Bodegas</a></li>
-						</ul>
-					</li>
-					<li><a href="index.xhtml">Salir</a></li>
-
 					
 					<li class="active"><a href="index.xhtml">Salir</a></li>
-
 					
 				</ul>
 			</div><!--/.nav-collapse -->
@@ -90,7 +80,7 @@
 	<div class="panel-body">
 	<h3 class="page-header">GESTIÓN DE CATEGORÍAS</h3>
 	<h:form >
-		<h:dataTable border="1" style="margin: 0 auto;" value="#{categoryBean.list}" var="c" styleClass="tabla"
+		<h:dataTable border="1" style="margin: 0 auto;" value="#{categoriaBean.list}" var="c" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
 			<h:column >
 				<f:facet name="header">Codigo</f:facet>#{c.codigo}</h:column>
@@ -102,13 +92,13 @@
 			</h:column>			
 			<h:column>
 				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Delete" action="#{categoryBean.delete(c)}" />
+				<h:commandLink value="Delete" action="#{categoriaBean.delete(c)}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Edit" action="#{categoryBean.edit(c)}"
+				<h:commandLink value="Edit" action="#{categoriaBean.edit(c)}"
 					rendered="#{not c.editable}" />
-				<h:commandLink value="Save" action="#{categoryBean.save(c)}"
+				<h:commandLink value="Save" action="#{categoriaBean.save(c)}"
 					rendered="#{c.editable}" />
 			</h:column>
 		</h:dataTable>
@@ -119,10 +109,10 @@
 		
 		
 		<ul style="text-align:center;" >
-			<li >Agregar Nueva Categoría:<h:inputText size="12" value="#{categoryBean.descripcion}"/></li>
+			<li >Agregar Nueva Categoría:<h:inputText size="12" value="#{categoriaBean.descripcion}"/></li>
 		</ul>
 		<div style="text-align:center;">
-			<h:commandButton class="btn btn-action" value="Agregar" action="#{categoryBean.add}" />
+			<h:commandButton class="btn btn-action" value="Agregar" action="#{categoriaBean.add}" />
 		</div>
 		
 		
@@ -193,6 +183,7 @@
 	<script src="resources/assets/js/headroom.min.js"></script>
 	<script src="resources/assets/js/jQuery.headroom.min.js"></script>
 	<script src="resources/assets/js/template.js"></script>
+	
 
 </body> 
 </html>

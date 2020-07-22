@@ -21,14 +21,14 @@ public class CategoriaBean implements Serializable {
 	private CategoriaFacade ejbCategoriaFacade;
 	private List<Categoria> listaCategorias;
 	private String nombre;
-
+	
 	public CategoriaBean() {
-			
-		}
+		
+	}
 
 	@PostConstruct
 	public void init() {
-		listaCategorias = ejbCategoriaFacade.findAll();
+		listaCategorias=ejbCategoriaFacade.findAll();
 	}
 
 	public List<Categoria> getListaCategorias() {
@@ -46,5 +46,4 @@ public class CategoriaBean implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 }
