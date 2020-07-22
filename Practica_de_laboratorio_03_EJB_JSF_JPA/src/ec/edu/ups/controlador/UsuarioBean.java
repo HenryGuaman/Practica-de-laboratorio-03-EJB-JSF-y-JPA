@@ -2,156 +2,86 @@ package ec.edu.ups.controlador;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
-
-import ec.edu.ups.ejb.RolFacade;
-import ec.edu.ups.ejb.UsuarioFacade;
-import ec.edu.ups.entidades.Rol;
-import ec.edu.ups.entidades.Usuario;
+import ec.edu.ups.ejb.*;
+import ec.edu.ups.entidades.*;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 @SessionScoped
 public class UsuarioBean implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
-	private List<Usuario> list; 
-	private List<Usuario> listEmpleados;
-	private List<Usuario> listClientes;
+	private RolFacade ejbRolFacade;
+	private List<Usuario> list;
+	private Rol rol;
+	private int id;
 	private String nombre;
 	private String apellido;
-	private String cedula;
+	private String telefono;
 	private String correo;
-	private String passw;
-	
-	@EJB
-	private RolFacade ejbRolFacade;
-	private List<Rol> roles;
-	private String cargo;
-	
-	
+	private String contrasena;
+	private String direccion;
+	private Rol roll;
+	private String rool;
+	private String corr;
+	private String contra;
+	private String estado = "estado";
 
 	public UsuarioBean() {
-		
+
 	}
-	
+
 	@PostConstruct
 	public void init() {
-		
-		System.out.println("Entro al init de usuarios");
-		
-		roles=ejbRolFacade.findAll();
-		list = ejbUsuarioFacade.listarAdmins(1);
-		listEmpleados = ejbUsuarioFacade.listarEmpleados(2);
-		listClientes = ejbUsuarioFacade.listarClientes(3);
-	}
-	
-	//CRUD
-	
-	public String addCliente() {
-		
-		Rol cliente=ejbRolFacade.readRol(cargo);
-		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,cliente));
-		listClientes = ejbUsuarioFacade.listarClientes(3);
-		return null;
-	}
-	
-	/**
-	public String addEmpleado() {
-		Rol empleado=ejbRolFacade.readRol(cargo);
-		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,empleado));
-		listEmpleados = ejbUsuarioFacade.findAll();
-		return null;
-	}
-	
-	public String addAdmin() {
-		Rol admin=ejbRolFacade.readRol(cargo);
-		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,admin));
 		list = ejbUsuarioFacade.findAll();
-		return null;
-	}
-	**/
-	
-	public String iniciarSesion() {
-		Usuario usuario = ejbUsuarioFacade.readCorreo(this.correo, this.passw);
-		if(usuario != null) {
-			if(usuario.getRol().getCodigo()==1) {
-				return "ProductosJSF2";
-			}else if(usuario.getRol().getCodigo()==2) {
-				return "crearEmpleados";
-			}else if(usuario.getRol().getCodigo()==3) {
-				return "partePublica";
-			}
-		}
-		return null;
-	}
-	/**
-	public String delete(Usuario usuario) {
-		ejbUsuarioFacade.remove(usuario);
-		list = ejbUsuarioFacade.findAll();
-		return null;
-	}**/
-	
-	public String deleteCliente(Usuario usuario) {
-		System.out.println("Entro al metodo eliminar clientes");
-		ejbUsuarioFacade.remove(usuario);
-		listClientes = ejbUsuarioFacade.listarClientes(3);
-		return null;
-	}
-	
-	
-	public String edit (Usuario usuario) {
-		usuario.setEditable(true);
-		return null;
-	}
-	
-	public String save (Usuario u) {
-		ejbUsuarioFacade.edit(u);
-		u.setEditable(false);
-		return null;
 	}
 
-	public UsuarioFacade getEjbUsuarioFacade() {
-		return ejbUsuarioFacade;
-	}
-
-	public void setEjbUsuarioFacade(UsuarioFacade ejbUsuarioFacade) {
-		this.ejbUsuarioFacade = ejbUsuarioFacade;
-	}
-
-	public List<Usuario> getList() {
-		return list;
+	public Usuario[] getList() {
+		return list.toArray(new Usuario[0]);
 	}
 
 	public void setList(List<Usuario> list) {
 		this.list = list;
 	}
 
-	public List<Usuario> getListEmpleados() {
-		return listEmpleados;
+	public String add() {
+		this.estado = "A";
+		ejbUsuarioFacade.create(new Usuario(this.id, this.nombre, this.apellido, this.telefono, this.correo,
+				this.contrasena, buscar(), this.estado));
+		list = ejbUsuarioFacade.findAll();
+		return null;
 	}
 
-	public void setListEmpleados(List<Usuario> listEmpleados) {
-		this.listEmpleados = listEmpleados;
+	public String delete(Usuario c) {
+		ejbUsuarioFacade.remove(c);
+		list = ejbUsuarioFacade.findAll();
+		return null;
 	}
 
-	public List<Usuario> getListClientes() {
-		return listClientes;
+	public String edit(Usuario c) {
+		c.setEditable(true);
+		return null;
 	}
 
-	public void setListClientes(List<Usuario> listClientes) {
-		this.listClientes = listClientes;
+	public String save(Usuario c) {
+		ejbUsuarioFacade.edit(c);
+		c.setEditable(false);
+		return null;
+	}
+
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 
 	public String getNombre() {
@@ -170,12 +100,20 @@ public class UsuarioBean implements Serializable {
 		this.apellido = apellido;
 	}
 
-	public String getCedula() {
-		return cedula;
+	public String getTelefono() {
+		return telefono;
 	}
 
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 	public String getCorreo() {
@@ -186,38 +124,94 @@ public class UsuarioBean implements Serializable {
 		this.correo = correo;
 	}
 
-	public String getPassw() {
-		return passw;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setPassw(String passw) {
-		this.passw = passw;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
-	public RolFacade getEjbRolFacade() {
-		return ejbRolFacade;
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setEjbRolFacade(RolFacade ejbRolFacade) {
-		this.ejbRolFacade = ejbRolFacade;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
-	public List<Rol> getRoles() {
-		return roles;
+	public String getRool() {
+		return rool;
 	}
 
-	public void setRoles(List<Rol> roles) {
-		this.roles = roles;
+	public void setRool(String rool) {
+		this.rool = rool;
 	}
 
-	public String getCargo() {
-		return cargo;
+	public String getCorr() {
+		return corr;
 	}
 
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
+	public void setCorr(String corr) {
+		this.corr = corr;
 	}
-	
-	
-	
+
+	public String getContra() {
+		return contra;
+	}
+
+	public void setContra(String contra) {
+		this.contra = contra;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public Rol buscar() {
+		Rol rol = new Rol();
+		System.out.println("ROL --->");
+		System.out.println(rool);
+		rol = ejbUsuarioFacade.buscarRol(rool);
+		System.out.println("Rol:");
+		System.out.println(rol);
+		return rol;
+	}
+
+	public String inicio() {
+		try {
+			Usuario us = new Usuario();
+			System.out.println(corr);
+			System.out.println(contra);
+			us = ejbUsuarioFacade.inicio(corr, contra);
+			System.out.println("Usuario Registrado");
+			System.out.println(us);
+			Rol rol1 = new Rol();
+			rol1.setNombre("admin");
+			Usuario usu = new Usuario();
+			usu.setRoles(rol1);
+
+			Rol rol2 = new Rol();
+			rol2.setNombre("empleado");
+			Usuario usu1 = new Usuario();
+			usu.setRoles(rol2);
+
+			System.out.println(us.getRoles().equals(rol1));
+			if (us != null && us.getRoles().equals(rol1)) {
+				return "exito";
+			} else if (us != null && us.getRoles().equals(rol2)) {
+				return "exitoEmple";
+			} else {
+				return "fallo";
+			}
+		} catch (Exception e) {
+			return "fallo";
+		}
+
+	}
+
 }

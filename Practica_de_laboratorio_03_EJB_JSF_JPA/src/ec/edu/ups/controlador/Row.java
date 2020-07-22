@@ -6,10 +6,10 @@ import java.util.List;
 
 public class Row implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	private String nombre1;
 	private String descripcion;
 	private double pun;
+	private double ppu;
 	private int stock;
 	private int cantidad;
 	private double subtotal;
@@ -18,28 +18,31 @@ public class Row implements Serializable {
 		super();
 	}
 
-	public Row(String nombre1, String descripcion, double pun, int stock) {
-
+	public Row(String nombre1, String descripcion, double pun, double ppu, int stock) {
+		
 		this.nombre1 = nombre1;
 		this.descripcion = descripcion;
 		this.pun = pun;
+		this.ppu = ppu;
 		this.stock = stock;
 	}
 
-	public Row(String nombre1, String descripcion, double pun, int stock, int cantidad) {
+	public Row(String nombre1, String descripcion, double pun, double ppu, int stock, int cantidad) {
 		super();
 		this.nombre1 = nombre1;
 		this.descripcion = descripcion;
 		this.pun = pun;
+		this.ppu = ppu;
 		this.stock = stock;
-		this.cantidad = cantidad;
+		this.cantidad=cantidad;
 	}
 
-	public Row(String nombre1, String descripcion, double pun, int stock, int cantidad, double subtotal) {
+	public Row(String nombre1, String descripcion, double pun, double ppu, int stock, int cantidad, double subtotal) {
 		super();
 		this.nombre1 = nombre1;
 		this.descripcion = descripcion;
 		this.pun = pun;
+		this.ppu = ppu;
 		this.stock = stock;
 		this.cantidad = cantidad;
 		this.subtotal = subtotal;
@@ -67,6 +70,14 @@ public class Row implements Serializable {
 
 	public void setPun(double pun) {
 		this.pun = pun;
+	}
+
+	public double getPpu() {
+		return ppu;
+	}
+
+	public void setPpu(double ppu) {
+		this.ppu = ppu;
 	}
 
 	public double getSubtotal() {
@@ -100,7 +111,7 @@ public class Row implements Serializable {
 
 		rows.forEach(e -> {
 
-			row = new Row(e.getNombre1(), e.getDescripcion(), e.getPun(), e.getStock(), e.getCantidad());
+			row = new Row(e.getNombre1(), e.getDescripcion(), e.getPun(), e.getPpu(), e.getStock(), e.getCantidad());
 			rowList.add(row);
 		});
 
@@ -109,8 +120,8 @@ public class Row implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Roww [nombre1=" + nombre1 + ", descripcion=" + descripcion + ", pun=" + pun + ", stock=" + stock
-				+ ", cantidad=" + cantidad + ", subtotal=" + subtotal + "]";
+		return "Row [nombre1=" + nombre1 + ", descripcion=" + descripcion + ", pun=" + pun + ", ppu=" + ppu
+				+ ", stock=" + stock + ", cantidad=" + cantidad + ", subtotal=" + subtotal + "]";
 	}
 
 }

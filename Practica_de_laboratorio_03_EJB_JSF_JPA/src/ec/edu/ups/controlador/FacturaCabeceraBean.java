@@ -3,7 +3,6 @@ package ec.edu.ups.controlador;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -11,22 +10,18 @@ import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 import ec.edu.ups.ejb.FacturaCabeceraFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
-import ec.edu.ups.entidades.FacturaCabecera;
-import ec.edu.ups.entidades.Producto;
-import ec.edu.ups.entidades.Usuario;
+import ec.edu.ups.entidades.*;
+import ec.edu.ups.ejb.*;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 @SessionScoped
 public class FacturaCabeceraBean implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private FacturaCabeceraFacade ejbFacturaCabeceraFacade;
-	private UsuarioFacade personaFacade;
+	private PersonaFacade personaFacade;
 	private String fecha;
 	private double total;
 	private String estado;
@@ -60,11 +55,11 @@ public class FacturaCabeceraBean implements Serializable {
 		this.ejbFacturaCabeceraFacade = ejbFacturaCabeceraFacade;
 	}
 
-	public UsuarioFacade getPersonaFacade() {
+	public PersonaFacade getPersonaFacade() {
 		return personaFacade;
 	}
 
-	public void setPersonaFacade(UsuarioFacade personaFacade) {
+	public void setPersonaFacade(PersonaFacade personaFacade) {
 		this.personaFacade = personaFacade;
 	}
 
@@ -131,11 +126,9 @@ public class FacturaCabeceraBean implements Serializable {
 	}
 
 	public List<Usuario> buscar() {
-
-		System.out.println("Si entro");
+		System.out.println("Si entroooooo");
 		personalist = ejbFacturaCabeceraFacade.validarper();
 		System.out.println("Lista:" + personalist);
-
 		return personalist;
 
 	}

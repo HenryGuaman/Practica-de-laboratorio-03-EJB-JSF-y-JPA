@@ -11,10 +11,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 import ec.edu.ups.ejb.*;
-import ec.edu.ups.entidades.FacturaCabecera;
-import ec.edu.ups.entidades.FacturaDetalle;
-import ec.edu.ups.entidades.Producto;
-import ec.edu.ups.entidades.Usuario;
+import ec.edu.ups.entidades.*;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -27,9 +24,8 @@ public class FacturaDetalleBean implements Serializable {
 	@EJB
 	private FacturaDetalleFacade ejbFacturaDetalleFacade;
 	@EJB
-	private ProductFacade ejbProductoFacade;
-	private UsuarioFacade personaFacade;
-
+	private ProductoFacade ejbProductoFacade;
+	private PersonaFacade personaFacade;
 	private int cantidad;
 	private String nombre1;
 	private String descripcion;
@@ -49,7 +45,6 @@ public class FacturaDetalleBean implements Serializable {
 	private String fecha;
 	private Set<Producto> listproducto = new HashSet<Producto>();
 	private Set<Row> lista = new HashSet<Row>();
-
 	private List<FacturaDetalle> facdetalle;
 	private List<FacturaCabecera> faccabecera;
 
@@ -65,19 +60,23 @@ public class FacturaDetalleBean implements Serializable {
 
 	}
 
-	public ProductFacade getEjbProductoFacade() {
+	public ProductoFacade getEjbProductoFacade() {
 		return ejbProductoFacade;
 	}
 
-	public void setEjbProductoFacade(ProductFacade ejbProductoFacade) {
+	public void setEjbProductoFacade(ProductoFacade ejbProductoFacade) {
 		this.ejbProductoFacade = ejbProductoFacade;
 	}
 
-	public UsuarioFacade getPersonaFacade() {
+	public FacturaCabeceraFacade getEjbFacturaCabeceraFacade() {
+		return ejbFacturaCabeceraFacade;
+	}
+
+	public PersonaFacade getPersonaFacade() {
 		return personaFacade;
 	}
 
-	public void setPersonaFacade(UsuarioFacade personaFacade) {
+	public void setPersonaFacade(PersonaFacade personaFacade) {
 		this.personaFacade = personaFacade;
 	}
 
@@ -87,14 +86,6 @@ public class FacturaDetalleBean implements Serializable {
 
 	public void setPersona(String persona) {
 		this.persona = persona;
-	}
-
-	public FacturaCabeceraFacade getEjbFacturaCabeceraFacade() {
-		return ejbFacturaCabeceraFacade;
-	}
-
-	public void setProd(Producto prod) {
-		this.prod = prod;
 	}
 
 	public String getFecha() {
@@ -278,10 +269,8 @@ public class FacturaDetalleBean implements Serializable {
 	}
 
 	public String add() {
-
 		faccabe.setFecha(this.fecha);
 		faccabe.setFacturacab(buscarPersonanombre());
-		;
 		faccabe.setEstado("activo");
 		ejbFacturaCabeceraFacade.create(faccabe);
 		ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad, this.subtotal, this.total, 0, buscarpro()));
@@ -301,7 +290,6 @@ public class FacturaDetalleBean implements Serializable {
 	}
 
 	public Producto buscarpro() {
-
 		System.out.println(producto);
 		prod = ejbFacturaDetalleFacade.buscarProductos(producto);
 		String nombre = prod.getNombre();
@@ -312,7 +300,6 @@ public class FacturaDetalleBean implements Serializable {
 	}
 
 	public Usuario buscarPersonanombre() {
-
 		System.out.println("recupero la person" + persona);
 		Usuario usu = new Usuario();
 		usu = ejbFacturaDetalleFacade.buscarpersona(persona);
@@ -325,15 +312,16 @@ public class FacturaDetalleBean implements Serializable {
 		return prod;
 	}
 
-	public double calcularTotalParcial() {
+	public void setProd(Producto prod) {
+		this.prod = prod;
+	}
 
+	public double calcularTotalParcial() {
 		if (this.cantidad > 1) {
 			if (this.cantidad != 0) {
-
-				this.subtotal = prod.getCostoUnitario() * this.cantidad;
+				this.subtotal = prod.getPreciounitario() * this.cantidad;
 				System.out.println(subtotal);
 				System.out.println(this.subtotal);
-
 			}
 		}
 
@@ -341,22 +329,19 @@ public class FacturaDetalleBean implements Serializable {
 	}
 
 	public double calcularIva() {
-
 		if (this.subtotal != 0) {
-
 			this.iva = 0.12 * this.subtotal;
 			System.out.println("Subtotal mas Iva es:" + this.iva);
 			System.out.println(" Iva es:" + this.iva);
 		}
+
 		return this.iva;
 	}
 
 	public double calculartotalFinal() {
-
 		double aux = 0;
 		this.total = this.subtotal + this.iva;
 		System.out.println("El total a pagar es: " + total);
-
 		for (Row lis : lista) {
 
 			System.out.println("Hola " + lis.getSubtotal());
@@ -374,33 +359,34 @@ public class FacturaDetalleBean implements Serializable {
 		String nombre = prod.getNombre();
 		System.out.println("EL nombre es:" + nombre);
 		nombre1 = prod.getNombre();
-		pun = prod.getCostoUnitario();
-		stock = prod.getCantidadStock();
+		descripcion = prod.getDescripcion();
+		pun = prod.getPreciounitario();
+		ppu = prod.getPreciopublico();
+		stock = prod.getStock();
 		subtotal = calcularTotalParcial();
 
 		this.nombre1 = prod.getNombre();
-		this.pun = prod.getCostoUnitario();
-		this.stock = prod.getCantidadStock();
+		this.descripcion = prod.getDescripcion();
+		this.pun = prod.getPreciounitario();
+		this.ppu = prod.getPreciopublico();
+		this.stock = prod.getStock();
 
 		calcularTotalParcial();
 		calcularIva();
 		calculartotalFinal();
 
 		if (this.cantidad <= this.stock) {
-
-			this.lista.add(new Row(nombre1, descripcion, pun, stock, this.cantidad));
-			this.lista.add(new Row(nombre1, descripcion, pun, stock, this.cantidad, subtotal));
-			System.out.println();
-
-			prod.setCantidadStock(this.stock - this.cantidad);
+			this.lista.add(new Row(nombre1, descripcion, pun, ppu, stock, this.cantidad));
+			this.lista.add(new Row(nombre1, descripcion, pun, ppu, stock, this.cantidad, subtotal));
+			prod.setStock(this.stock - this.cantidad);
 			ejbProductoFacade.edit(prod);
 			calcularTotalParcial();
 			calculartotalFinal();
 			calcularIva();
 		} else {
-			System.out.println("No hay suficientes productos");
+			System.out.println("No hay productos disponibles");
 		}
-		System.out.println("La Lista de productos es: " + lista);
+		System.out.println("Productos encontrados: " + lista);
 
 	}
 

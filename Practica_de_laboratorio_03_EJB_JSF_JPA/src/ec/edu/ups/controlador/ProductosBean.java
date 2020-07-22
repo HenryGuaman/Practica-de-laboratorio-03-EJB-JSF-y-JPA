@@ -1,241 +1,255 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
-
 import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.CategoryFacade;
 import ec.edu.ups.ejb.ProductFacade;
-import ec.edu.ups.entidades.Bodega;
-import ec.edu.ups.entidades.Categoria;
-import ec.edu.ups.entidades.Producto;
-
-
+import ec.edu.ups.ejb.*;
+import ec.edu.ups.entidades.*;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 @SessionScoped
-public class ProductosBean implements Serializable{
-	
-	 private static final long serialVersionUID = 1L;
+public class ProductosBean implements Serializable {
 
-	    @EJB
-	    private ProductFacade ejbProductFacade;
-	    
-	    @EJB 
-	    private CategoryFacade ejbCategoryFacade;
-	    
-	    
-	    @EJB
-	    private BodegaFacade ejbBodegaFacade;
-	    
-	    
-	    private List<Producto> list;
-	    
-	    private List<Categoria> categorias;
-	    private List<Bodega> bodegas;
-	    
-	    
-	    
-	    private String nombre;
-	    private String nombreBodega;
-	    
-	    private String nombreCategoria;
-	    private double costoUnitario;
-	    private int cantidadStock;
-	    
-	    public ProductosBean() {
+	private static final long serialVersionUID = 1L;
+	@EJB
+	private ProductoFacade ejbProductoFacade;
+	private CategoriaFacade ejbCategoriaFacade;
+	@EJB
+	private StockFacade ejbStockFacade;
+	private String nombre;
+	private String descripcion;
+	private double preciounitario;
+	private double preciopublico;
+	private String categoria;
+	private List<Producto> listaProductos;
+	private List<Producto> listaProductos1;
+	private Producto producto;
+	private Stock stock1;
+	private int stock;
+	private String bodega;
+	private Row row;
+	private List<Row> list;
 
-	    }    
-	    
-	    @PostConstruct
-	    public void init() {
-	  //  ejbProductFacade.create(new Product("Papel Higenico",0.20,10));
-	   // ejbProductFacade.create(new Product("cepillo",0.20,10));
-	    categorias=ejbCategoryFacade.findAll();
-		list = ejbProductFacade.findAll();
-		bodegas = ejbBodegaFacade.findAll();
-		
-	    }
-	        
-	    
-
-	    /**
-		 * @return the list
-		 */
-		public List<Producto> getList() {
-			return list;
+	public ProductosBean() {
+			
 		}
 
-		/**
-		 * @param list the list to set
-		 */
-		public void setList(List<Producto> list) {
-			this.list = list;
-		}
+	@PostConstruct
+	public void init() {
+		this.producto = new Producto();
+		this.stock1 = new Stock();
+		listaProductos = ejbProductoFacade.findAll();
+		this.list = new ArrayList<>();
+	}
 
-		public String getnombre() {
+	public String getNombre() {
 		return nombre;
-	    }
+	}
+	
+	public ProductoFacade getEjbProductoFacade() {
+		return ejbProductoFacade;
+	}
 
-	    
-	    public void setnombre(String nombre) {
+	public void setEjbProductoFacade(ProductoFacade ejbProductoFacade) {
+		this.ejbProductoFacade = ejbProductoFacade;
+	}
+
+	public CategoriaFacade getEjbCategoriaFacade() {
+		return ejbCategoriaFacade;
+	}
+
+	public void setEjbCategoriaFacade(CategoriaFacade ejbCategoriaFacade) {
+		this.ejbCategoriaFacade = ejbCategoriaFacade;
+	}
+
+	public StockFacade getEjbStockFacade() {
+		return ejbStockFacade;
+	}
+
+	public void setEjbStockFacade(StockFacade ejbStockFacade) {
+		this.ejbStockFacade = ejbStockFacade;
+	}
+
+	public Row getRow() {
+		return row;
+	}
+
+	public void setRow(Row row) {
+		this.row = row;
+	}
+
+	public void setList(List<Row> list) {
+		this.list = list;
+	}
+
+	public Stock getStock1() {
+		return stock1;
+	}
+
+	public void setStock1(Stock stock1) {
+		this.stock1 = stock1;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	    }
-	    
+	}
 
-		public String getNombreBodega() {
-			return nombreBodega;
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public double getPreciounitario() {
+		return preciounitario;
+	}
+
+	public void setPreciounitario(double preciounitario) {
+		this.preciounitario = preciounitario;
+	}
+
+	public double getPreciopublico() {
+		return preciopublico;
+	}
+
+	public void setPreciopublico(double preciopublico) {
+		this.preciopublico = preciopublico;
+	}
+
+	public Producto[] getListaProductos() {
+		return listaProductos.toArray(new Producto[0]);
+	}
+
+	public void setListaProductos(List<Producto> listaProductos) {
+		this.listaProductos = listaProductos;
+	}
+
+	public String getCategoria() {
+
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	
+	public String getBodega() {
+		return bodega;
+	}
+
+	public void setBodega(String bodega) {
+		this.bodega = bodega;
+	}
+
+	public String add() {
+		try {
+			Producto pro = new Producto(this.nombre, this.descripcion, this.preciounitario, this.preciopublico,
+					buscar(), this.stock);
+			System.out.println(pro);
+			ejbProductoFacade.create(pro);
+
+			listaProductos = ejbProductoFacade.findAll();
+			Stock sto = new Stock(bode(), pro);
+			ejbStockFacade.create(sto);
+			listaProductos = ejbProductoFacade.findAll();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 
-		public void setNombreBodega(String nombreBodega) {
-			this.nombreBodega = nombreBodega;
-		}
-
-		public ProductFacade getEjbProductFacade() {
-			return ejbProductFacade;
-		}
-
-		/**
-		 * @param ejbProductFacade the ejbProductFacade to set
-		 */
-		public void setEjbProductFacade(ProductFacade ejbProductFacade) {
-			this.ejbProductFacade = ejbProductFacade;
-		}
-
-		/**
-		 * @return the ejbCategoryFacade
-		 */
-		public CategoryFacade getEjbCategoryFacade() {
-			return ejbCategoryFacade;
-		}
-
-		/**
-		 * @param ejbCategoryFacade the ejbCategoryFacade to set
-		 */
-		public void setEjbCategoryFacade(CategoryFacade ejbCategoryFacade) {
-			this.ejbCategoryFacade = ejbCategoryFacade;
-		}
-
-		/**
-		 * @return the categorias
-		 */
-		public List<Categoria> getCategorias() {
-			return categorias;
-		}
-
-		/**
-		 * @param categorias the categorias to set
-		 */
-		public void setCategorias(List<Categoria> categorias) {
-			this.categorias = categorias;
-		}
-
-		/**
-		 * @return the nombre
-		 */
-		public String getNombre() {
-			return nombre;
-		}
-
-		/**
-		 * @param nombre the nombre to set
-		 */
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-
-		public double getCostoUnitario() {
-			return costoUnitario;
-		}
-
-		/**
-		 * @param costoUnitario the costoUnitario to set
-		 */
-		public void setCostoUnitario(double costoUnitario) {
-			this.costoUnitario = costoUnitario;
-		}
-
-		/**
-		 * @return the cantidad
-		 */
-		public int getCantidadStock() {
-			return cantidadStock;
-		}
-
-		/**
-		 * @param cantidad the cantidad to set
-		 */
-		public void setCantidadStock(int cantidad) {
-			this.cantidadStock = cantidad;
-		}
-
-		/**
-		 * @return the serialversionuid
-		 */
-		
-		
-		public static long getSerialversionuid() {
-			return serialVersionUID;
-		}
-
-		public BodegaFacade getEjbBodegaFacade() {
-			return ejbBodegaFacade;
-		}
-
-		public void setEjbBodegaFacade(BodegaFacade ejbBodegaFacade) {
-			this.ejbBodegaFacade = ejbBodegaFacade;
-		}
-
-		public List<Bodega> getBodegas() {
-			return bodegas;
-		}
-
-		public void setBodegas(List<Bodega> bodegas) {
-			this.bodegas = bodegas;
-		}
-		
-
-		public String getNombreCategoria() {
-			return nombreCategoria;
-		}
-
-		public void setNombreCategoria(String nombreCategoria) {
-			this.nombreCategoria = nombreCategoria;
-		}
-
-		public String add() {
-		Categoria cat=ejbCategoryFacade.readCategory(nombreCategoria);
-		Bodega bodeg=ejbBodegaFacade.readBodega(nombreBodega);
-	    ejbProductFacade.create(new Producto(this.nombre,this.costoUnitario,this.cantidadStock,cat,bodeg));
-		list = ejbProductFacade.findAll();
 		return null;
-	    }
+	}
 
-	    public String delete(Producto p) {	
-	    ejbProductFacade.remove(p);
-		list = ejbProductFacade.findAll();
+	public String remove(Producto p) {
+		ejbProductoFacade.remove(p);
+		listaProductos = ejbProductoFacade.findAll();
 		return null;
-	    }
+	}
 
-	    public String edit(Producto p) {
+	public String edit(Producto p) {
 		p.setEditable(true);
 		return null;
-	    }
+	}
 
-	    public String save(Producto p) {
-	    	ejbProductFacade.edit(p);
+	public String save(Producto p) {
+		ejbProductoFacade.edit(p);
 		p.setEditable(false);
 		return null;
-	    }
-	    
-	    
+	}
 
+	public List<Producto> getListaProductos1() {
+		return listaProductos1;
+	}
+
+	public void setListaProductos1(List<Producto> listaProductos1) {
+		this.listaProductos1 = listaProductos1;
+	}
+
+	public Categoria buscar() {
+		System.out.println(categoria);
+		Categoria ca = new Categoria();
+		ca = ejbProductoFacade.validar(categoria);
+		System.out.println("Estamos en el metodo buscar:---------");
+		System.out.println(ca.toString());
+		System.out.println(" Id de la categoria es: " + ca.getId());
+		return ca;
+	}
+
+	public Categoria buscarProductos() {
+		System.out.println(categoria);
+		Categoria ca = new Categoria();
+		ca = ejbProductoFacade.validar(categoria);
+		System.out.println("Se busca el id de la categoria para los productos.");
+		System.out.println(ca.toString());
+		int id = ca.getId();
+		System.out.println(id);
+		listaProductos = ejbProductoFacade.buscarProductos(id);
+		System.out.println("La lista de Productos es:" + listaProductos);
+		return ca;
+
+	}
+
+	public Producto buscarProductosnombre() {
+		Producto pro = new Producto();
+		String nombre = pro.getNombre();
+		System.out.println(nombre);
+		listaProductos1 = ejbProductoFacade.buscarProductosnombre(nombre);
+		System.out.println("La lista de Productos es:" + listaProductos1);
+		return pro;
+
+	}
+
+	public Bodega bode() {
+		Bodega bo = new Bodega();
+		bo = ejbProductoFacade.nombreBodega(bodega);
+		System.out.println(bo);
+		return bo;
+	}
 
 }
