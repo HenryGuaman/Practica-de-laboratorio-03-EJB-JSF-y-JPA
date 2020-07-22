@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
 
 import ec.edu.ups.ejb.ProductFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
-import ec.edu.ups.entidades.Product;
+import ec.edu.ups.entidades.Producto;
 import ec.edu.ups.entidades.Usuario;
 
 @Path("/service2")
@@ -35,7 +35,7 @@ public class ApiRest2 {
 	@Path("/productos")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response listarProductos() {
-		List<Product> listaProductos = new ArrayList<Product>();
+		List<Producto> listaProductos = new ArrayList<Producto>();
 		Jsonb jsonb = JsonbBuilder.create();
 		System.out.println("listando productos");
 		listaProductos = ejbProductoFacade.findAll();

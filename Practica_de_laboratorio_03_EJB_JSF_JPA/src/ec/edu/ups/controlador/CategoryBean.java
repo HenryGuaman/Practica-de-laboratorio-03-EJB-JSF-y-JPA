@@ -10,7 +10,7 @@ import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
 import ec.edu.ups.ejb.CategoryFacade;
-import ec.edu.ups.entidades.Category;
+import ec.edu.ups.entidades.Categoria;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -21,7 +21,7 @@ public class CategoryBean implements Serializable{
 
 	    @EJB
 	    private CategoryFacade ejbCategoryFacade;
-	    private List<Category> list;
+	    private List<Categoria> list;
 	    private String descripcion;
 
 	    public CategoryBean() {
@@ -30,16 +30,16 @@ public class CategoryBean implements Serializable{
 	    
 	    @PostConstruct
 	    public void init() {
-		ejbCategoryFacade.create(new Category("Electrodomesticos"));
-		ejbCategoryFacade.create(new Category("Sanitarios"));
+		ejbCategoryFacade.create(new Categoria("Electrodomesticos"));
+		ejbCategoryFacade.create(new Categoria("Sanitarios"));
 		list = ejbCategoryFacade.findAll();
 	    }
 	        
-	    public Category[] getList() {
-		return list.toArray(new Category[0]);
+	    public Categoria[] getList() {
+		return list.toArray(new Categoria[0]);
 	    }
 
-	    public void setList(List<Category> list) {
+	    public void setList(List<Categoria> list) {
 		this.list = list;
 	    }
 
@@ -52,23 +52,23 @@ public class CategoryBean implements Serializable{
 	    }
 
 	    public String add() {
-		ejbCategoryFacade.create(new Category(this.descripcion));
+		ejbCategoryFacade.create(new Categoria(this.descripcion));
 		list = ejbCategoryFacade.findAll();
 		return null;
 	    }
 
-	    public String delete(Category c) {	
+	    public String delete(Categoria c) {	
 		ejbCategoryFacade.remove(c);
 		list = ejbCategoryFacade.findAll();
 		return null;
 	    }
 
-	    public String edit(Category c) {
+	    public String edit(Categoria c) {
 		c.setEditable(true);
 		return null;
 	    }
 
-	    public String save(Category c) {
+	    public String save(Categoria c) {
 		ejbCategoryFacade.edit(c);
 		c.setEditable(false);
 		return null;

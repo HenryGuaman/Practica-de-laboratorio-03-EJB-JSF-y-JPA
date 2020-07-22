@@ -1,26 +1,73 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Row implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int id;
-	private String name;
-	private int quantity;
-	private double precio;
+	private String nombre1;
+	private String descripcion;
+	private double pun;
+	private int stock;
+	private int cantidad;
 	private double subtotal;
-	private boolean editable;
 
-	public Row(int id, String name, int quantity, double precio, double subtotal) {
+	public Row() {
+		super();
+	}
 
-		this.id = id;
-		this.name = name;
-		this.quantity = quantity;
-		this.precio = precio;
+	public Row(String nombre1, String descripcion, double pun, int stock) {
+
+		this.nombre1 = nombre1;
+		this.descripcion = descripcion;
+		this.pun = pun;
+		this.stock = stock;
+	}
+
+	public Row(String nombre1, String descripcion, double pun, int stock, int cantidad) {
+		super();
+		this.nombre1 = nombre1;
+		this.descripcion = descripcion;
+		this.pun = pun;
+		this.stock = stock;
+		this.cantidad = cantidad;
+	}
+
+	public Row(String nombre1, String descripcion, double pun, int stock, int cantidad, double subtotal) {
+		super();
+		this.nombre1 = nombre1;
+		this.descripcion = descripcion;
+		this.pun = pun;
+		this.stock = stock;
+		this.cantidad = cantidad;
 		this.subtotal = subtotal;
 	}
 
+	public String getNombre1() {
+		return nombre1;
+	}
+
+	public void setNombre1(String nombre1) {
+		this.nombre1 = nombre1;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public double getPun() {
+		return pun;
+	}
+
+	public void setPun(double pun) {
+		this.pun = pun;
+	}
 
 	public double getSubtotal() {
 		return subtotal;
@@ -30,62 +77,40 @@ public class Row implements Serializable {
 		this.subtotal = subtotal;
 	}
 
-	public double getPrecio() {
-		return precio;
+	public int getStock() {
+		return stock;
 	}
 
-	public void setPrecio(double precio) {
-		this.precio = precio;
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
-	public int getId() {
-		return id;
+	public int getCantidad() {
+		return cantidad;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
-	public String getName() {
-		return name;
-	}
+	private static Row row;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	public static List<Row> serializeRoww(List<Row> rows) {
+		List<Row> rowList = new ArrayList<>();
 
-	public int getQuantity() {
-		return quantity;
-	}
+		rows.forEach(e -> {
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+			row = new Row(e.getNombre1(), e.getDescripcion(), e.getPun(), e.getStock(), e.getCantidad());
+			rowList.add(row);
+		});
 
-	public boolean isEditable() {
-		return editable;
-	}
-
-	public void setEditable(boolean editable) {
-		this.editable = editable;
-	}
-
-	@Override
-	public int hashCode() {
-		return id;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		return obj.hashCode() == this.hashCode();
+		return rowList;
 	}
 
 	@Override
 	public String toString() {
-		return "Row [id=" + id + ", name=" + name + ", quantity=" + quantity + ", editable=" + editable + "]";
+		return "Roww [nombre1=" + nombre1 + ", descripcion=" + descripcion + ", pun=" + pun + ", stock=" + stock
+				+ ", cantidad=" + cantidad + ", subtotal=" + subtotal + "]";
 	}
+
 }

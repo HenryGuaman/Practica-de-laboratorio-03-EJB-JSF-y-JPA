@@ -13,8 +13,8 @@ import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.CategoryFacade;
 import ec.edu.ups.ejb.ProductFacade;
 import ec.edu.ups.entidades.Bodega;
-import ec.edu.ups.entidades.Category;
-import ec.edu.ups.entidades.Product;
+import ec.edu.ups.entidades.Categoria;
+import ec.edu.ups.entidades.Producto;
 
 
 
@@ -36,9 +36,9 @@ public class ProductosBean implements Serializable{
 	    private BodegaFacade ejbBodegaFacade;
 	    
 	    
-	    private List<Product> list;
+	    private List<Producto> list;
 	    
-	    private List<Category> categorias;
+	    private List<Categoria> categorias;
 	    private List<Bodega> bodegas;
 	    
 	    
@@ -69,14 +69,14 @@ public class ProductosBean implements Serializable{
 	    /**
 		 * @return the list
 		 */
-		public List<Product> getList() {
+		public List<Producto> getList() {
 			return list;
 		}
 
 		/**
 		 * @param list the list to set
 		 */
-		public void setList(List<Product> list) {
+		public void setList(List<Producto> list) {
 			this.list = list;
 		}
 
@@ -126,14 +126,14 @@ public class ProductosBean implements Serializable{
 		/**
 		 * @return the categorias
 		 */
-		public List<Category> getCategorias() {
+		public List<Categoria> getCategorias() {
 			return categorias;
 		}
 
 		/**
 		 * @param categorias the categorias to set
 		 */
-		public void setCategorias(List<Category> categorias) {
+		public void setCategorias(List<Categoria> categorias) {
 			this.categorias = categorias;
 		}
 
@@ -211,25 +211,25 @@ public class ProductosBean implements Serializable{
 		}
 
 		public String add() {
-		Category cat=ejbCategoryFacade.readCategory(nombreCategoria);
+		Categoria cat=ejbCategoryFacade.readCategory(nombreCategoria);
 		Bodega bodeg=ejbBodegaFacade.readBodega(nombreBodega);
-	    ejbProductFacade.create(new Product(this.nombre,this.costoUnitario,this.cantidadStock,cat,bodeg));
+	    ejbProductFacade.create(new Producto(this.nombre,this.costoUnitario,this.cantidadStock,cat,bodeg));
 		list = ejbProductFacade.findAll();
 		return null;
 	    }
 
-	    public String delete(Product p) {	
+	    public String delete(Producto p) {	
 	    ejbProductFacade.remove(p);
 		list = ejbProductFacade.findAll();
 		return null;
 	    }
 
-	    public String edit(Product p) {
+	    public String edit(Producto p) {
 		p.setEditable(true);
 		return null;
 	    }
 
-	    public String save(Product p) {
+	    public String save(Producto p) {
 	    	ejbProductFacade.edit(p);
 		p.setEditable(false);
 		return null;

@@ -12,35 +12,67 @@ import javax.persistence.*;
 public class FacturaDetalle implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int numDetalle;
+	private int id;
 	private int cantidad;
+	private double subtotal;
+	private double descuento;
 	private double total;
+	@Transient
+	private boolean editable;
 
-	@ManyToOne
-	private FacturaCabecera facturaCabecera;
-
-	@ManyToOne
-	private Product product;
-
-	public FacturaDetalle(){}
-
-    public FacturaDetalle(int cantidad, double total, FacturaCabecera facturaCabecera, Product product) {
-
-        this.cantidad = cantidad;
-        this.total = total;
-        this.facturaCabecera = facturaCabecera;
-        this.product = product;
-    }
-
-	public int getNumDetalle() {
-		return numDetalle;
+	public boolean isEditable() {
+		return editable;
 	}
 
-	public void setNumDetalle(int numDetalle) {
-		this.numDetalle = numDetalle;
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+	@ManyToOne
+	private FacturaCabecera faccabeid;
+	@ManyToOne
+	private Producto proid;
+
+	public FacturaDetalle() {
+
+	}
+
+	public FacturaDetalle(int cantidad, double subtotal, double total, double descuento, Producto proid) {
+		super();
+		this.cantidad = cantidad;
+		this.subtotal = subtotal;
+		this.total = total;
+		this.descuento = descuento;
+		this.proid = proid;
+	}
+
+	public FacturaDetalle(int cantidad, double subtotal, double total, double descuento, FacturaCabecera faccabeid,
+			Producto proid) {
+		super();
+		this.cantidad = cantidad;
+		this.subtotal = subtotal;
+		this.total = total;
+		this.descuento = descuento;
+		this.faccabeid = faccabeid;
+		this.proid = proid;
+	}
+
+	public Producto getProid() {
+		return proid;
+	}
+
+	public void setProid(Producto proid) {
+		this.proid = proid;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getCantidad() {
@@ -51,6 +83,14 @@ public class FacturaDetalle implements Serializable {
 		this.cantidad = cantidad;
 	}
 
+	public double getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(double subtotal) {
+		this.subtotal = subtotal;
+	}
+
 	public double getTotal() {
 		return total;
 	}
@@ -59,24 +99,27 @@ public class FacturaDetalle implements Serializable {
 		this.total = total;
 	}
 
-	public Product getProduct() {
-		return product;
+	public double getDescuento() {
+		return descuento;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setDescuento(double descuento) {
+		this.descuento = descuento;
+	}
+
+	public FacturaCabecera getFaccabeid() {
+		return faccabeid;
+	}
+
+	public void setFaccabeid(FacturaCabecera faccabeid) {
+		this.faccabeid = faccabeid;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + cantidad;
-		result = prime * result + numDetalle;
-		result = prime * result + ((product == null) ? 0 : product.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(total);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + id;
 		return result;
 	}
 
@@ -89,23 +132,16 @@ public class FacturaDetalle implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		FacturaDetalle other = (FacturaDetalle) obj;
-		if (cantidad != other.cantidad)
-			return false;
-		if (numDetalle != other.numDetalle)
-			return false;
-		if (product == null) {
-			if (other.product != null)
-				return false;
-		} else if (!product.equals(other.product))
-			return false;
-		if (Double.doubleToLongBits(total) != Double.doubleToLongBits(other.total))
+		if (id != other.id)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "FacturaDetalle{" + "numDetalle=" + numDetalle + ", cantidad=" + cantidad + ", total=" + total
-				+ ", facturaCabecera=" + facturaCabecera + ", product=" + product + '}';
+		return "FacturaDetalle [id=" + id + ", cantidad=" + cantidad + ", subtotal=" + subtotal + ", descuento="
+				+ descuento + ", total=" + total + ", editable=" + editable + ", faccabeid=" + faccabeid + ", proid="
+				+ proid + "]";
 	}
+
 }

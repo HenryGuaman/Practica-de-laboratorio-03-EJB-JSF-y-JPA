@@ -12,43 +12,43 @@ import javax.persistence.criteria.Root;
 import java.util.*;
 import java.util.stream.Collectors;
 import static java.lang.String.valueOf;
-import ec.edu.ups.entidades.Category;
-import ec.edu.ups.entidades.Product;
+import ec.edu.ups.entidades.Categoria;
+import ec.edu.ups.entidades.Producto;
 
 @Stateless
-public class ProductFacade extends AbstractFacade<Product>{
+public class ProductFacade extends AbstractFacade<Producto>{
 
     @PersistenceContext(unitName = "Practica_de_laboratorio_03_EJB_JSF_JPA")
     private EntityManager entityManager;
     
     public ProductFacade(){
-        super(Product.class);
+        super(Producto.class);
         this.entityManager = this.entityManager;
     }   
 
-    public Product buscarProducto(String nombre){
+    public Producto buscarProducto(String nombre){
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(Product.class);
-        Root<Product> usuarioRoot=criteriaQuery.from(Product.class);
+        CriteriaQuery<Producto> criteriaQuery = criteriaBuilder.createQuery(Producto.class);
+        Root<Producto> usuarioRoot=criteriaQuery.from(Producto.class);
         Predicate predicate = criteriaBuilder.equal(usuarioRoot.get("nombre"),nombre);
         criteriaQuery.select(usuarioRoot).where(predicate);
         return entityManager.createQuery(criteriaQuery).getSingleResult();
     }
 
-    public Product buscarPrductoPorNombre(String nombre){
+    public Producto buscarPrductoPorNombre(String nombre){
         CriteriaBuilder criteriaBuilder= entityManager.getCriteriaBuilder();
-        CriteriaQuery<Product> criteriaQuery= criteriaBuilder.createQuery(Product.class);
-        Root<Product> categoriaRoot= criteriaQuery.from(Product.class);
+        CriteriaQuery<Producto> criteriaQuery= criteriaBuilder.createQuery(Producto.class);
+        Root<Producto> categoriaRoot= criteriaQuery.from(Producto.class);
         Predicate predicate= criteriaBuilder.equal(categoriaRoot.get("nombre"),nombre);
         criteriaQuery.select(categoriaRoot).where(predicate);
 
         return entityManager.createQuery(criteriaQuery).getSingleResult();
     }
-    public Product buscarProductoPorCodigo(String id){
+    public Producto buscarProductoPorCodigo(String id){
         CriteriaBuilder criteriaBuilder= entityManager.getCriteriaBuilder();
-        CriteriaQuery<Product> criteriaQuery= criteriaBuilder.createQuery(Product.class);
-        Root<Product> categoriaRoot= criteriaQuery.from(Product.class);
+        CriteriaQuery<Producto> criteriaQuery= criteriaBuilder.createQuery(Producto.class);
+        Root<Producto> categoriaRoot= criteriaQuery.from(Producto.class);
         Predicate predicate= criteriaBuilder.equal(categoriaRoot.get("codigo"),id);
         criteriaQuery.select(categoriaRoot).where(predicate);
         return entityManager.createQuery(criteriaQuery).getSingleResult();
@@ -59,17 +59,17 @@ public class ProductFacade extends AbstractFacade<Product>{
         return entityManager;
     }
 
-    public Map<String, String> getProductosPorCategoria(Category categoria){
+    public Map<String, String> getProductosPorCategoria(Categoria categoria){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Product> productoCriteriaQuery = criteriaBuilder.createQuery(Product.class);
-        Root<Product> productoRoot = productoCriteriaQuery.from(Product.class);
+        CriteriaQuery<Producto> productoCriteriaQuery = criteriaBuilder.createQuery(Producto.class);
+        Root<Producto> productoRoot = productoCriteriaQuery.from(Producto.class);
         productoCriteriaQuery.select(productoRoot)
                 .where(
                         criteriaBuilder.equal(productoRoot.get("categoria"), categoria));
 
          return entityManager.createQuery(productoCriteriaQuery).getResultList()
                  .parallelStream()
-                 .collect(Collectors.toMap(Product::getCodigo, Product::getNombre)).entrySet()
+                 .collect(Collectors.toMap(Producto::getCodigo, Producto::getNombre)).entrySet()
                  .parallelStream()
                  .collect(Collectors.toMap(entry -> valueOf(entry.getKey()), Map.Entry::getValue));
     }
@@ -86,8 +86,8 @@ public class ProductFacade extends AbstractFacade<Product>{
         return codigoProductos;
     }
 
-    private List<Product> productos;
-    public List<Product> getProductos(int codigoBodega, int codigoCategoria){
+    private List<Producto> productos;
+    public List<Producto> getProductos(int codigoBodega, int codigoCategoria){
         productos = new ArrayList<>();
         List<Integer> codigosProducto = getProductosPorBodega(codigoBodega);
         if(!codigosProducto.isEmpty()) {
@@ -96,10 +96,10 @@ public class ProductFacade extends AbstractFacade<Product>{
                     .parallelStream()
                     .filter(producto -> producto.getCategoria().getCodigo() == codigoCategoria)
                     .collect(Collectors.toList());
-            List<Product> productoList = new ArrayList<>();
+            List<Producto> productoList = new ArrayList<>();
 
             productos.forEach(p -> {
-                Product producto = new Product(p.getNombre(), p.getCostoUnitario(),
+                Producto producto = new Producto(p.getNombre(), p.getCostoUnitario(),
                         p.getCantidadStock());
                 productoList.add(producto);
             });
@@ -109,9 +109,9 @@ public class ProductFacade extends AbstractFacade<Product>{
         return productos;
     }
 
-    private List<Category> categoriasList;
+    private List<Categoria> categoriasList;
 
-    public List<Category> getCategorias(int codigoBodega){
+    public List<Categoria> getCategorias(int codigoBodega){
         categoriasList = new ArrayList<>();
         List<Integer> codigosProductos = getProductosPorBodega(codigoBodega);
 
@@ -119,7 +119,7 @@ public class ProductFacade extends AbstractFacade<Product>{
             codigosProductos.forEach(e->{
                 categoriasList.add(super.find(e).getCategoria());
             });
-            Set<Category> categorias = new HashSet<>(categoriasList);
+            Set<Categoria> categorias = new HashSet<>(categoriasList);
             categoriasList.clear();
             categorias.forEach(e->{e.setProductos(null); categoriasList.add(e);});
             return categoriasList;

@@ -1,113 +1,103 @@
 package ec.edu.ups.entidades;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.*;
-
-
-import ec.edu.ups.entidades.Rol;
-import ec.edu.ups.entidades.Usuario;
 
 /**
  * Entity implementation class for Entity: Rol
  *
  */
-@NamedQuery(name = "getByCargo", query = "SELECT r FROM Rol r WHERE r.cargo =:cargo")
-
 @Entity
+
 public class Rol implements Serializable {
 
-	
+	//
 	private static final long serialVersionUID = 1L;
-	 	@Id
-	    private int codigo;
-	    private String cargo;
+	@Id
+	private String nombre;
+	private String descripcion;
 
-	    @OneToMany(mappedBy = "rol")
-	    private List<Usuario> usuariosRolesList;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
+	private List<Usuario> rol;
 
-	    @Transient
-	    private boolean editable;
-	    
-	    public Rol(){}
+	@Transient
+	private boolean editable;
 
-		/**
-		 * @param codigo
-		 * @param cargo
-		 */
-		public Rol(int codigo, String cargo) {
-			super();
-			this.codigo = codigo;
-			this.cargo = cargo;
-		}
+	public Rol() {
+		super();
+	}
 
-		/**
-		 * @param cargo
-		 */
-		public Rol(String cargo) {
-			this.cargo = cargo;
-		}
+	public Rol(String nombre, String descripcion) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
 
-		
+	}
 
-		public int getCodigo() {
-			return codigo;
-		}
+	public String getNombre() {
+		return nombre;
+	}
 
-		public void setCodigo(int codigo) {
-			this.codigo = codigo;
-		}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-		public String getCargo() {
-			return cargo;
-		}
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-		public void setCargo(String cargo) {
-			this.cargo = cargo;
-		}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-		public List<Usuario> getUsuariosRolesList() {
-			return usuariosRolesList;
-		}
+	public List<Usuario> getRol() {
+		return rol;
+	}
 
-		public void setUsuariosRolesList(List<Usuario> usuariosRolesList) {
-			this.usuariosRolesList = usuariosRolesList;
-		}
+	public boolean isEditable() {
+		return editable;
+	}
 
-		public boolean isEditable() {
-			return editable;
-		}
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
 
-		public void setEditable(boolean editable) {
-			this.editable = editable;
-		}
+	public void setRol(List<Usuario> rol) {
+		this.rol = rol;
+	}
 
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + codigo;
-			return result;
-		}
+	public boolean addUsuario(Usuario usuario) {
+		return this.rol.add(usuario);
+	}
 
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Rol other = (Rol) obj;
-			if (codigo != other.codigo)
-				return false;
+	@Override
+	public int hashCode() {
+		return Objects.hash(nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		}
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rol other = (Rol) obj;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
+	}
 
-		
-		
+	@Override
+	public String toString() {
+		return nombre;
+	}
+
 }
