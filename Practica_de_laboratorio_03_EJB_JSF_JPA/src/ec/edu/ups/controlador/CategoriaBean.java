@@ -7,7 +7,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
-import ec.edu.ups.ejb.CategoryFacade;
+import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.entidades.Categoria;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)

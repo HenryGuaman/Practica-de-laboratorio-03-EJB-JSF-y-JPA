@@ -1,13 +1,10 @@
 package ec.edu.ups.ejb;
 
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import ec.edu.ups.entidades.Bodega;
 import ec.edu.ups.entidades.*;
 
 @Stateless
@@ -20,7 +17,7 @@ public class BodegaFacade extends AbstractFacade<Bodega>{
 	public BodegaFacade() {
 		super(Bodega.class);
 	}
-//
+
 	@Override
 	protected EntityManager getEntityManager() {
 		return em;

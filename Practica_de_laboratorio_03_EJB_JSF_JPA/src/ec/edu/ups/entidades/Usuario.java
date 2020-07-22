@@ -2,14 +2,14 @@ package ec.edu.ups.entidades;
 
 import java.io.Serializable;
 import javax.persistence.*;
- 
+
 /**
  * Entity implementation class for Entity: Usuario
  *
  */
 @Entity
 
-public class Usuario implements Serializable {
+public class Usuario extends Persona implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String correo;
@@ -18,18 +18,16 @@ public class Usuario implements Serializable {
 	private boolean editable;
 	@ManyToOne
 	private Rol roles;
-
 	private String estado = "A";
-
 	public Usuario() {
 		super();
 	}
 
-	public Usuario(int id, String nombre, String apellido, String telefono, String correo, String contraseña, Rol roles,
-			String estado) {
-		super(id, nombre, apellido, telefono);
+	public Usuario(String correo, String contraseña, boolean editable, Rol roles, String estado) {
+		super();
 		this.correo = correo;
 		this.contraseña = contraseña;
+		this.editable = editable;
 		this.roles = roles;
 		this.estado = estado;
 	}

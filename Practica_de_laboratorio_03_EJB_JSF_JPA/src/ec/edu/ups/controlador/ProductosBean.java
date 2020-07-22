@@ -8,9 +8,6 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
-import ec.edu.ups.ejb.BodegaFacade;
-import ec.edu.ups.ejb.CategoryFacade;
-import ec.edu.ups.ejb.ProductFacade;
 import ec.edu.ups.ejb.*;
 import ec.edu.ups.entidades.*;
 
