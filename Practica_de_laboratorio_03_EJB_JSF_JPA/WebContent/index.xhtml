@@ -76,59 +76,13 @@
 
 			<h3 class="text-center thin">CATALOGO DE PRODUCTOS</h3>
 
-			<h3>Seleccionar Bodega</h3>
-
-			<h:selectOneMenu value="#{productosBean.nombreBodega}">
-				<f:selectItems value="#{productosBean.bodegas}" var="list1"
-					itemValue="#{list1.nombre}" itemLabel="#{list1.nombre}" />
-
-			</h:selectOneMenu>
-
-			<div class="row">
-
-				<h:dataTable border="1" style="margin: 0 auto;"
-					value="#{productosBean.list}" var="p" styleClass="tabla"
-					headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-					<h:column>
-						<f:facet name="header">Codigo</f:facet>#{p.codigo}</h:column>
-					<h:column>
-						<f:facet name="header">Nombre</f:facet>
-						<h:inputText value="#{p.nombre}" size="10"
-							rendered="#{p.editable}" />
-						<h:outputText value="#{p.nombre}" rendered="#{not p.editable}" />
-					</h:column>
-
-					<h:column>
-						<f:facet name="header">Valor Unitario</f:facet>
-						<h:inputText value="#{p.costoUnitario}" size="10"
-							rendered="#{p.editable}" />
-						<h:outputText value="#{p.costoUnitario}"
-							rendered="#{not p.editable}" />
-					</h:column>
-
-					<h:column>
-						<f:facet name="header">Cantidad</f:facet>
-						<h:inputText value="#{p.cantidadStock}" size="10"
-							rendered="#{p.editable}" />
-						<h:outputText value="#{p.cantidadStock}"
-							rendered="#{not p.editable}" />
-					</h:column>
-
-					<h:column>
-						<f:facet name="header">Categoria</f:facet>
-						<h:inputText value="#{p.categoria.descripcion}" size="10"
-							rendered="#{p.editable}" />
-						<h:outputText value="#{p.categoria.descripcion}"
-							rendered="#{not p.editable}" />
-					</h:column>
-
-				</h:dataTable>
+			
 
 			</div>
 			<!-- /row  -->
 
 		</div>
-	</div>
+
 	<!-- /Highlights -->
 
 

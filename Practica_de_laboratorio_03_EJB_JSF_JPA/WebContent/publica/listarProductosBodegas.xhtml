@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content="Sergey Pozhilov (GetTemplate.com)"></meta>
+
+
+	<link rel="shortcut icon"
+		href="../resources/assets/images/gt_favicon.png"></link>
+
+	<link rel="stylesheet" media="screen"
+		href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"></link>
+	<link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css"></link>
+	<link rel="stylesheet"
+		href="../resources/assets/css/font-awesome.min.css"></link>
+
+	<!-- Custom styles for our template -->
+	<link rel="stylesheet"
+		href="../resources/assets/css/bootstrap-theme.css" media="screen"></link>
+	<link rel="stylesheet" href="../resources/assets/css/main.css"></link>
+	<title>Listar Productos</title>
+	<style>
+.tabla {
+	border-collapse: collapse;
+}
+
+.cabeceraTabla {
+	text-align: center;
+	background: none repeat scroll 0 0 #E5E5E5;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 8px;
+}
+
+.filaPar {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+	border-top: 1px solid #BBBBBB;
+}
+
+.filaImpar {
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 1px solid #BBBBBB;
+}
+</style>
+</h:head>
+<body>
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a href="../index.xhtml">Productos</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li class="active"><a href="../index.xhtml">Inicio</a></li>
+
+
+					<li class="active"><a href="../index.xhtml">Salir</a></li>
+
+
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+	<!-- /.navbar -->
+
+	<header id="head" class="secondary"></header>
+
+	<br></br>
+	<br></br>
+
+	<div class="panel-body">
+		<h3
+			style="text-align: center; border: 1px dotted #000; padding: 8px; width: 50%; border: 1px dotted #f00; padding: 8px; margin: auto;"
+			class="page-header">LISTADO DE PRODUCTOS POR BODEGAS</h3>
+		<br></br>
+		<h:form>
+			<h:dataTable value="#{stockBean.listStock}" var="p"
+				styleClass="tabla" headerClass="cabeceraTabla"
+				rowClasses="filaImpar" class="table table-hover">
+				<h:column>
+					<f:facet name="header">Nombre Bodega</f:facet>
+					<h:outputText value="#{p.getBodega().getNombre()}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Direccion Bodega</f:facet>
+					<h:outputText value="#{p.getBodega().getCiudad().getNombre()}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nombre Producto</f:facet>
+					<h:outputText value="#{p.getProducto().getNombre()}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Descripción Producto</f:facet>
+					<h:outputText value="#{p.getProducto().getDescripcion()}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Precio Público</f:facet>
+					<h:outputText value="#{p.getProducto().getPreciopublico()}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Precio Unitario</f:facet>
+					<h:outputText value="#{p.getProducto().getPreciounitario()}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Stock</f:facet>
+					<h:outputText value="#{p.getProducto().getStock()}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Categoría</f:facet>
+					<h:outputText value="#{p.getProducto().getCategoria().getNombre()}" />
+				</h:column>
+			</h:dataTable>
+
+			<li>Bodegas: <h:selectOneMenu value="#{stockBean.bodega}">
+					<f:selectItems value="#{bodegaBeans.listaBodega}" />
+				</h:selectOneMenu>
+			</li>
+			<br></br>
+			<h:commandButton value="Buscar"
+				action="#{stockBean.listabo}" class="btn btn-danger btn block" />
+		</h:form>
+	</div>
+	
+	<footer id="footer" class="top-space">
+
+	<div class="footer1">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-3 widget">
+					<h3 class="widget-title">Contactos</h3>
+					<div class="widget-body">
+						<p>
+							+593 92 63517621<br></br> <a href="mailto:#">eyungat@est.ups.edu.ec,
+								tdurazno@est.ups.edu.ec, hguamanf@est.ups.edu.ec,
+								jmatutec2@est.ups.edu.ec</a><br></br> <br></br> Cuenca-Ecuador
+						</p>
+					</div>
+				</div>
+
+				<div class="col-md-3 widget">
+					<h3 class="widget-title">Sigueme</h3>
+					<div class="widget-body">
+						<p class="follow-me-icons">
+							<a href=""><i class="fa fa-twitter fa-2"></i></a> <a href=""><i
+								class="fa fa-github fa-2"></i></a> <a href=""><i
+								class="fa fa-facebook fa-2"></i></a>
+						</p>
+					</div>
+				</div>
+
+			</div>
+			<!-- /row of widgets -->
+		</div>
+	</div>
+
+	<div class="footer2">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-6 widget">
+					<div class="widget-body">
+						<p class="simplenav">
+							<a href="#">Inicio</a> | <b><a href="signup.html">Registrarse</a></b>
+						</p>
+					</div>
+				</div>
+
+				<div class="col-md-6 widget">
+					<div class="widget-body">
+						<p class="text-right">Copyright &copy; 2020, Javier, Henry,
+							Marcelo, Jonnathan.</p>
+					</div>
+				</div>
+
+			</div>
+			<!-- /row of widgets -->
+		</div>
+	</div>
+
+	</footer>
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script
+		src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="resources/assets/js/headroom.min.js"></script>
+	<script src="resources/assets/js/jQuery.headroom.min.js"></script>
+	<script src="resources/assets/js/template.js"></script>
+
+</body>
+</html>
