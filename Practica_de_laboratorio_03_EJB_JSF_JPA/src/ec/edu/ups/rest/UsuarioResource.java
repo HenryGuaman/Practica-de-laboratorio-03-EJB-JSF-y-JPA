@@ -70,7 +70,7 @@ public class UsuarioResource {
 		
 	}
 	
-	@POST
+	/*@POST
 	@Path("/post")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
@@ -90,7 +90,7 @@ public class UsuarioResource {
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
 	}
-	
+	*/
 	
 	@POST
 	@Path("/activar")

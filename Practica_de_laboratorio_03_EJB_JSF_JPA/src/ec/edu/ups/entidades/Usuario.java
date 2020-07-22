@@ -18,16 +18,18 @@ public class Usuario extends Persona implements Serializable {
 	private boolean editable;
 	@ManyToOne
 	private Rol roles;
+
 	private String estado = "A";
+
 	public Usuario() {
 		super();
 	}
 
-	public Usuario(String correo, String contraseña, boolean editable, Rol roles, String estado) {
-		super();
+	public Usuario(int id, String nombre, String apellido, String telefono, String correo, String contraseña, Rol roles,
+			String estado) {
+		super(id, nombre, apellido, telefono);
 		this.correo = correo;
 		this.contraseña = contraseña;
-		this.editable = editable;
 		this.roles = roles;
 		this.estado = estado;
 	}
