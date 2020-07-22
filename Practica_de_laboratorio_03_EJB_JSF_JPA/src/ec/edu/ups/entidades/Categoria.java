@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-
 import javax.persistence.*;
 
 /**
@@ -31,7 +30,7 @@ public class Categoria implements Serializable {
 		this.id = id;
 		this.nombre = nombre;
 	}
-	
+
 	public Categoria(int id, String nombre, Set<Producto> usuarioRol) {
 		super();
 		this.id = id;

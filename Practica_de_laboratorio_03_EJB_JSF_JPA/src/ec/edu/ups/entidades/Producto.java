@@ -6,11 +6,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Distribuidora
+ * Entity implementation class for Entity: Producto
  *
  */
 @Entity

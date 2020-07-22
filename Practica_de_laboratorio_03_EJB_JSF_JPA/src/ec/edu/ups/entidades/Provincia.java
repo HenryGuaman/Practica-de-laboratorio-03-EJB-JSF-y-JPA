@@ -2,7 +2,6 @@ package ec.edu.ups.entidades;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.*;
 
 /**
@@ -14,7 +13,6 @@ import javax.persistence.*;
 public class Provincia implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;

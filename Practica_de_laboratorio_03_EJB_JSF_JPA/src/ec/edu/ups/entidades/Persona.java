@@ -1,7 +1,6 @@
 package ec.edu.ups.entidades;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.*;
 
 /**

@@ -2,14 +2,14 @@ package ec.edu.ups.entidades;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
+ 
 /**
  * Entity implementation class for Entity: Usuario
  *
  */
 @Entity
 
-public class Usuario extends Persona implements Serializable {
+public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String correo;

@@ -7,18 +7,19 @@
 		name="Practica_de_laboratorio_03_EJB_JSF_JPA" transaction-type="JTA">
 
 		<jta-data-source>jdbc/_practica</jta-data-source>
-		<class>ec.edu.ups.modelo.Bodega</class>
-		<class>ec.edu.ups.modelo.Pais</class>
-		<class>ec.edu.ups.modelo.Producto</class>
-		<class>ec.edu.ups.modelo.Provincia</class>
-		<class>ec.edu.ups.modelo.Ciudad</class>
-		<class>ec.edu.ups.modelo.Persona</class>
-		<class>ec.edu.ups.modelo.FacturaCabecera</class>
-		<class>ec.edu.ups.modelo.FacturaDetalle</class>
-		<class>ec.edu.ups.modelo.Usuario</class>
-		<class>ec.edu.ups.modelo.Rol</class>
-		<class>ec.edu.ups.modelo.Categoria</class>
-		<class>ec.edu.ups.modelo.Stock</class>
+		<class>ec.edu.ups.entidades.Bodega</class>
+		<class>ec.edu.ups.entidades.Categoria</class>
+		<class>ec.edu.ups.entidades.Ciudad</class>
+		<class>ec.edu.ups.entidades.FacturaCabecera</class>
+		<class>ec.edu.ups.entidades.FacturaDetalle</class>
+		<class>ec.edu.ups.entidades.Pais</class>
+		<class>ec.edu.ups.entidades.Persona</class>
+		<class>ec.edu.ups.entidades.Producto</class>
+		<class>ec.edu.ups.entidades.Provincia</class>
+		<class>ec.edu.ups.entidades.Rol</class>
+		<class>ec.edu.ups.entidades.Stock</class>
+		<class>ec.edu.ups.entidades.Usuario</class>
+
 
 		<properties>
 			<property

@@ -11,24 +11,24 @@ import javax.persistence.*;
 @Entity
 
 public class Pais implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String nombre;
-		
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")
 	private List<Provincia> listaProvincias;
-	
+
 	public Pais(String nombre) {
 		super();
-	
-		this.nombre=nombre;
+
+		this.nombre = nombre;
 	}
-	
+
 	public Pais() {
-		
+
 	}
 
 	public int getId() {
@@ -79,7 +79,7 @@ public class Pais implements Serializable {
 
 	@Override
 	public String toString() {
-		return nombre ;
+		return nombre;
 	}
-   
+
 }
