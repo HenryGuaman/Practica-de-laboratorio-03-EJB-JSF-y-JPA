@@ -11,7 +11,6 @@ import javax.persistence.*;
  *
  */
 
-
 @NamedQuery(name = "getByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo AND u.contrasena = :pass")
 @NamedQuery(name = "listarEmpleados", query = "SELECT u FROM Usuario u WHERE u.rol.codigo = :cargo")
 @NamedQuery(name = "listarClientes", query = "SELECT u FROM Usuario u WHERE u.rol.codigo = :cargo")

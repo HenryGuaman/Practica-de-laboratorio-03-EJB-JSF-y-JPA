@@ -40,13 +40,7 @@
 				<ul class="nav navbar-nav pull-right">
 					<li class="active"><a href="index.xhtml">Inicio</a></li>
 			
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalogos <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="categoryJSF.xhtml">Categorías</a></li>
-							<li class="active"><a href="bodegas.xhtml">Bodegas</a></li>
-						</ul>
-					</li>
+				
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -84,7 +78,7 @@
 								</div>
 								<div class="top-margin">
 									<label>Password <span class="text-danger">*</span></label>
-									<h:inputText type="password" class="form-control" value="#{usuarioBean.passw}" />
+									<h:inputSecret class="form-control" value="#{usuarioBean.passw}" />
 								</div>
 								<hr></hr>
 								<div class="row">
