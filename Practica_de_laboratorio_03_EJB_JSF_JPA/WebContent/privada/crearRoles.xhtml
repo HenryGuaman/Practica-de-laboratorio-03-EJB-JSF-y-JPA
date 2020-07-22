@@ -4,6 +4,203 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="Sergey Pozhilov (GetTemplate.com)" />
 <title>Registro de Roles</title>
+<link rel="shortcut icon"
+	href="../resources/assets/images/gt_favicon.png" />
+<link rel="stylesheet" media="screen"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" />
+<link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="../resources/assets/css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="../resources/assets/css/bootstrap-theme.css" media="screen" />
+<link rel="stylesheet" href="../resources/assets/css/main.css" />
+<style>
+.tabla {
+	border-collapse: collapse;
+}
+
+.cabeceraTabla {
+	text-align: center;
+	background: none repeat scroll 0 0 #E5E5E5;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 8px;
+}
+
+.filaPar {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+	border-top: 1px solid #BBBBBB;
+}
+
+.filaImpar {
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 1px solid #BBBBBB;
+}
+</style>
 </head>
+
+<body class="home">
+
+	<div class="navbar navbar-inverse navbar-fixed-top headroom">
+		<div class="container">
+
+			<div class="navbar-collapse collapse">
+
+				<h:form>
+					<a class="navbar-brand" href="#">ADMINISTRADOR</a>
+				</h:form>
+
+				<ul class="nav navbar-nav pull-right">
+					<li class="nav-item active"><h:link class="nav-link"
+							value="Inicio" outcome="rolP"></h:link></li>
+					<li class="nav-item"><h:link class="nav-link"
+							value="Crear Bodega" outcome="rolD"></h:link></li>
+					<li><h:link class="nav-link" value="Facturar" outcome="rolF"></h:link></li>
+					<li><h:link class="nav-link" value="Crear Usuario"
+							outcome="rolU"></h:link></li>
+					<li><h:link class="nav-link" value="Crear Producto"
+							outcome="rolPp"></h:link></li>
+
+					<li><h:link class="nav-link" value="Inventario"
+							outcome="/publica/listarProductosBodegas"></h:link></li>
+
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+
+	
+
+	<div class="jumbotron top-space">
+		<div class="container">
+			<h3 class="text-center thin">ROLES</h3>
+			<h:form>
+			<center>
+				<h:dataTable value="#{rolBean.list}" var="c" styleClass="tabla"
+					headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+					<h:column>
+						<f:facet name="header">Nombre del Rol</f:facet>
+						<h:inputText value="#{c.nombre}" rendered="#{c.editable}" />
+						<h:outputText value="#{c.nombre}" rendered="#{not c.editable}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Descripcion del Rol</f:facet>
+						<h:inputText value="#{c.descripcion}" rendered="#{c.editable}" />
+						<h:outputText value="#{c.descripcion}"
+							rendered="#{not c.editable}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Accion</f:facet>
+						<h:commandLink value="Delete" action="#{rolBean.delete(c)}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Accion</f:facet>
+						<h:commandLink value="Edit" action="#{rolBean.edit(c)}"
+							rendered="#{not c.editable}" />
+						<h:commandLink value="Save" action="#{rolBean.save(c)}"
+							rendered="#{c.editable}" />
+					</h:column>
+				</h:dataTable>
+<h3 class="text-center thin">CREAR NUEVO ROL</h3>
+				<ul>Nombre:<br></br> <h:inputText value="#{rolBean.nombre}" /></ul>
+
+				<ul>Descripcion:<br></br> <h:inputText
+						value="#{rolBean.descripcion}" /></ul>
+<br></br>
+				<h:commandButton value="Add" action="#{rolBean.add}"
+					class="btn btn-danger btn block" />
+			</center>
+			</h:form>
+
+		</div>
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+	<section id="social">
+	<div class="container">
+		<div class="wrapper clearfix">
+			<div class="addthis_toolbox addthis_default_style">
+				<a class="addthis_button_facebook_like"></a> <a
+					class="addthis_button_tweet"></a> <a
+					class="addthis_button_linkedin_counter"></a> <a
+					class="addthis_button_google_plusone"></a>
+			</div>
+		</div>
+	</div>
+	</section>
+
+
+	<footer id="footer" class="top-space">
+
+	<div class="footer1">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-3 widget">
+					<h3 class="widget-title">Contactos</h3>
+					<div class="widget-body">
+						<p>
+							+593 987654321<br></br> <a href="mailto:#">hguamanf@est.ups.edu.ec</a><br></br>
+							<br></br> Cuenca-Ecuador
+						</p>
+					</div>
+				</div>
+
+				<div class="col-md-3 widget">
+					<h3 class="widget-title">Sigueme</h3>
+					<div class="widget-body">
+						<p class="follow-me-icons">
+							<a href=""><i class="fa fa-twitter fa-2"></i></a> <a href=""><i
+								class="fa fa-github fa-2"></i></a> <a href=""><i
+								class="fa fa-facebook fa-2"></i></a>
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="footer2">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 widget">
+					<div class="widget-body">
+						<p class="text-right">Copyright &copy; 2020, Javier, Henry,
+							Marcelo, Jonnathan.</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	</footer>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script
+		src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="resources/assets/js/headroom.min.js"></script>
+	<script src="resources/assets/js/jQuery.headroom.min.js"></script>
+	<script src="resources/assets/js/template.js"></script>
+</body>
 </html>
