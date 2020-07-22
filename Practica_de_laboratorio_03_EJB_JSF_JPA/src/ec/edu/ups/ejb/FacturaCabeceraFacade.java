@@ -28,7 +28,7 @@ public class FacturaCabeceraFacade extends AbstractFacade<FacturaCabecera> {
 		String sql = "SELECT u FROM Usuario u where u.rol.cargo = 'cliente'";
 
 		List<Usuario> list = em.createQuery(sql).getResultList();
-		System.out.println("Lista persona:" + list);
+		System.out.println("List persona:" + list);
 		return list;
 
 	}

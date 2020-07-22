@@ -8,15 +8,14 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import ec.edu.ups.entidades.Categoria;
-import ec.edu.ups.entidades.Ubicacion;
 
 @Stateless
-public class CategoryFacade extends AbstractFacade<Categoria> {
+public class CategoriaFacade extends AbstractFacade<Categoria> {
 	
 	 @PersistenceContext(unitName = "Practica_de_laboratorio_03_EJB_JSF_JPA")
 	    private EntityManager em;
 
-	    public CategoryFacade() {
+	    public CategoriaFacade() {
 	        super(Categoria.class);
 	    }
 	    

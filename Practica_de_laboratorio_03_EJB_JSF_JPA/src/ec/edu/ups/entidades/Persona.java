@@ -1,6 +1,8 @@
 package ec.edu.ups.entidades;
 
 import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.*;
 
 /**
@@ -22,8 +24,6 @@ public class Persona implements Serializable {
 	private Set<FacturaCabecera> listFacturasCab;
 	@Transient
 	private boolean editable;
-	@OneToMany(mappedBy = "cliente")
-	private Set<PedidosCabecera> listPedidos;
 
 	public Persona() {
 

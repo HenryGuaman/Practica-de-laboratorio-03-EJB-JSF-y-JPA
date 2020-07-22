@@ -1,8 +1,6 @@
 package ec.edu.ups.ejb;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 public abstract class AbstractFacade<T>{

@@ -10,8 +10,8 @@ import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
 import ec.edu.ups.ejb.BodegaFacade;
-import ec.edu.ups.ejb.CategoryFacade;
-import ec.edu.ups.ejb.ProductFacade;
+import ec.edu.ups.ejb.CategoriaFacade;
+import ec.edu.ups.ejb.ProductoFacade;
 import ec.edu.ups.entidades.Bodega;
 import ec.edu.ups.entidades.Categoria;
 import ec.edu.ups.entidades.Producto;
@@ -26,10 +26,10 @@ public class ProductosBean implements Serializable{
 	 private static final long serialVersionUID = 1L;
 
 	    @EJB
-	    private ProductFacade ejbProductFacade;
+	    private ProductoFacade ejbProductFacade;
 	    
 	    @EJB 
-	    private CategoryFacade ejbCategoryFacade;
+	    private CategoriaFacade ejbCategoryFacade;
 	    
 	    
 	    @EJB
@@ -98,28 +98,28 @@ public class ProductosBean implements Serializable{
 			this.nombreBodega = nombreBodega;
 		}
 
-		public ProductFacade getEjbProductFacade() {
+		public ProductoFacade getEjbProductFacade() {
 			return ejbProductFacade;
 		}
 
 		/**
 		 * @param ejbProductFacade the ejbProductFacade to set
 		 */
-		public void setEjbProductFacade(ProductFacade ejbProductFacade) {
+		public void setEjbProductFacade(ProductoFacade ejbProductFacade) {
 			this.ejbProductFacade = ejbProductFacade;
 		}
 
 		/**
 		 * @return the ejbCategoryFacade
 		 */
-		public CategoryFacade getEjbCategoryFacade() {
+		public CategoriaFacade getEjbCategoryFacade() {
 			return ejbCategoryFacade;
 		}
 
 		/**
 		 * @param ejbCategoryFacade the ejbCategoryFacade to set
 		 */
-		public void setEjbCategoryFacade(CategoryFacade ejbCategoryFacade) {
+		public void setEjbCategoryFacade(CategoriaFacade ejbCategoryFacade) {
 			this.ejbCategoryFacade = ejbCategoryFacade;
 		}
 

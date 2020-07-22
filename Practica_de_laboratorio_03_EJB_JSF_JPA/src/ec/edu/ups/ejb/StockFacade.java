@@ -19,6 +19,7 @@ public class StockFacade extends AbstractFacade<Stock> {
 		super(Stock.class);
 	}
 
+//
 	@Override
 	protected EntityManager getEntityManager() {
 		return em;
@@ -26,7 +27,7 @@ public class StockFacade extends AbstractFacade<Stock> {
 
 	public Bodega nombreBodega(String bodega) {
 		Bodega cat = new Bodega();
-		System.out.println("Bodega:");
+		
 		try {
 			String sql = "SELECT b FROM Bodega b where b.nombre='" + bodega + "'";
 			System.out.println(sql);
@@ -46,13 +47,14 @@ public class StockFacade extends AbstractFacade<Stock> {
 		List<Stock> list = em.createQuery(sql).getResultList();
 		for (Stock stock : list) {
 			System.out.println("Nombre  bodega" + stock.getBodega().getNombre());
-			System.out.println("Direccion Bodega" + stock.getBodega().getUbicacion().getCiudad());
+			System.out.println("Direccion Bodega" + stock.getBodega().getCiudad().getNombre());
 			System.out.println("Nombre producto" + stock.getProducto().getNombre());
-			System.out.println("Costo Unitario" + stock.getProducto().getCostoUnitario());
-			System.out.println("Cantidad Stock" + stock.getProducto().getCantidadStock());
-			System.out.println("Categoria" + stock.getProducto().getCategoria().getDescripcion());
+			System.out.println("Descripcion Producto" + stock.getProducto().getDescripcion());
+			System.out.println("Precio Publico" + stock.getProducto().getPreciopublico());
+			System.out.println("Precio Unitario" + stock.getProducto().getPreciounitario());
+			System.out.println("Stock" + stock.getProducto().getStock());
+			System.out.println("Categoria" + stock.getProducto().getCategoria().getNombre());
 		}
-		System.out.println("Recupero Cantidad Stock");
 		System.out.println(list);
 		return list;
 	}
@@ -65,14 +67,18 @@ public class StockFacade extends AbstractFacade<Stock> {
 		System.out.println(sql);
 		List<Stock> list = em.createQuery(sql).getResultList();
 		for (Stock stock : list) {
-			System.out.println("Codigo" + stock.getBodega().getCodigo());
+			System.out.println("Id" + stock.getBodega().getId());
 			System.out.println("Nombre  bodega" + stock.getBodega().getNombre());
+			// System.out.println("Direccion
+			// Bodega"+stock.getBodega().getCiudad().getNombre());
 			System.out.println("Nombre producto" + stock.getProducto().getNombre());
-			System.out.println("Precio Unitario" + stock.getProducto().getCostoUnitario());
-			System.out.println("Stock" + stock.getProducto().getCantidadStock());
-			System.out.println("Categoria" + stock.getProducto().getCategoria().getDescripcion());
+			System.out.println("Descripcion Producto" + stock.getProducto().getDescripcion());
+			System.out.println("Precio Publico" + stock.getProducto().getPreciopublico());
+			System.out.println("Precio Unitario" + stock.getProducto().getPreciounitario());
+			System.out.println("Stock" + stock.getProducto().getStock());
+			System.out.println("Categoria" + stock.getProducto().getCategoria().getNombre());
 		}
-		System.out.println("Recupero Cantidad Stock");
+		System.out.println("Stock Recuperado");
 		System.out.println(list);
 
 		return list;

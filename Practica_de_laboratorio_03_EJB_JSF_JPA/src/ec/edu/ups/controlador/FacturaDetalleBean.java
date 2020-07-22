@@ -27,7 +27,7 @@ public class FacturaDetalleBean implements Serializable {
 	@EJB
 	private FacturaDetalleFacade ejbFacturaDetalleFacade;
 	@EJB
-	private ProductFacade ejbProductoFacade;
+	private ProductoFacade ejbProductoFacade;
 	private UsuarioFacade personaFacade;
 
 	private int cantidad;
@@ -65,11 +65,11 @@ public class FacturaDetalleBean implements Serializable {
 
 	}
 
-	public ProductFacade getEjbProductoFacade() {
+	public ProductoFacade getEjbProductoFacade() {
 		return ejbProductoFacade;
 	}
 
-	public void setEjbProductoFacade(ProductFacade ejbProductoFacade) {
+	public void setEjbProductoFacade(ProductoFacade ejbProductoFacade) {
 		this.ejbProductoFacade = ejbProductoFacade;
 	}
 
