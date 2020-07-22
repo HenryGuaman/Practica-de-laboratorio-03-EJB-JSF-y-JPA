@@ -16,7 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import ec.edu.ups.ejb.ProductFacade;
+import ec.edu.ups.ejb.ProductoFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
 import ec.edu.ups.entidades.Producto;
 import ec.edu.ups.entidades.Usuario;
@@ -25,7 +25,7 @@ import ec.edu.ups.entidades.Usuario;
 public class ApiRest2 {
 	
 	@EJB
-	private ProductFacade ejbProductoFacade;
+	private ProductoFacade ejbProductoFacade;
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
 
