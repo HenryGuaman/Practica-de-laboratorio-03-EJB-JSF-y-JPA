@@ -76,14 +76,113 @@
 
 			<h3 class="text-center thin">CATALOGO DE PRODUCTOS</h3>
 
-			
+			<h:form>
 
-			</div>
-			<!-- /row  -->
+				<br></br>
+				<h3
+					style="text-align: center; border: 1px dotted #000; padding: 8px; width: 50%; border: 1px dotted #f00; padding: 8px; margin: auto;"
+					class="page-header">LISTADO DE PRODUCTOS POR CATEGORIA</h3>
+
+				<br></br>
+				<h:dataTable value="#{productosBean.listaProductos}" var="p"
+					styleClass="tabla" headerClass="cabeceraTabla"
+					rowClasses="filaImpar" class="table table-hover">
+					<h:column>
+						<f:facet name="header">Codigo</f:facet>#{p.id}
+		</h:column>
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						<h:outputText value="#{p.nombre}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Descripción</f:facet>
+						<h:outputText value="#{p.descripcion}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Precio Unitario.</f:facet>
+						<h:outputText value="#{p.preciounitario}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Precio del Producto</f:facet>
+						<h:outputText value="#{p.preciopublico}" />
+					</h:column>
+				</h:dataTable>
+				<ul>
+					<td>SELECCIONAR CATEGORIA<br></br> <h:selectOneMenu
+							value="#{productosBean.categoria}">
+							<f:selectItems value="#{categoriaBean.listaCategorias}" />
+						</h:selectOneMenu>
+					</td>
+				</ul>
+				<h:commandButton value="Buscar"
+					action="#{productosBean.buscarProductos}"
+					class="btn btn-danger btn block" />
+
+				<br></br>
+
+				
+
+			</h:form>
 
 		</div>
+		<!-- /row  -->
+			<div class="panel-body">
+		<h3
+			style="text-align: center; border: 1px dotted #000; padding: 8px; width: 50%; border: 1px dotted #f00; padding: 8px; margin: auto;"
+			class="page-header">LISTADO DE PRODUCTOS POR BODEGAS</h3>
+		<br></br>
+		<h:form>
+			<h:dataTable value="#{stockBean.listStock}" var="p"
+				styleClass="tabla" headerClass="cabeceraTabla"
+				rowClasses="filaImpar" class="table table-hover">
+				<h:column>
+					<f:facet name="header">Nombre Bodega</f:facet>
+					<h:outputText value="#{p.getBodega().getNombre()}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Direccion Bodega</f:facet>
+					<h:outputText value="#{p.getBodega().getCiudad().getNombre()}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nombre Producto</f:facet>
+					<h:outputText value="#{p.getProducto().getNombre()}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Descripción Producto</f:facet>
+					<h:outputText value="#{p.getProducto().getDescripcion()}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Precio Público</f:facet>
+					<h:outputText value="#{p.getProducto().getPreciopublico()}" />
+				</h:column>
 
-	<!-- /Highlights -->
+				<h:column>
+					<f:facet name="header">Precio Unitario</f:facet>
+					<h:outputText value="#{p.getProducto().getPreciounitario()}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Stock</f:facet>
+					<h:outputText value="#{p.getProducto().getStock()}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Categoría</f:facet>
+					<h:outputText value="#{p.getProducto().getCategoria().getNombre()}" />
+				</h:column>
+			</h:dataTable>
+
+			<td>SELECCIONAR BODEGA <h:selectOneMenu value="#{stockBean.bodega}">
+					<f:selectItems value="#{bodegaBean.listaBodega}" />
+				</h:selectOneMenu>
+			</td>
+			<br></br>
+			<h:commandButton value="Buscar"
+				action="#{stockBean.listabo}" class="btn btn-danger btn block" />
+		</h:form>
+	</div>
+	</div>
+
 
 
 	<!-- Social links. @TODO: replace by link/instructions in template -->

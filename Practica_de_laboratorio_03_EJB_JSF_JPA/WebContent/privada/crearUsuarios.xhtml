@@ -4,6 +4,251 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
-<title>Registro de Usuarios</title>
+<title>Crear Usuarios</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="Sergey Pozhilov (GetTemplate.com)" />
+
+<link rel="shortcut icon"
+	href="../resources/assets/images/gt_favicon.png" />
+<link rel="stylesheet" media="screen"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" />
+<link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="../resources/assets/css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="../resources/assets/css/bootstrap-theme.css" media="screen" />
+<link rel="stylesheet" href="../resources/assets/css/main.css" />
 </head>
+<h:body class="home">
+	<div class="navbar navbar-inverse navbar-fixed-top headroom">
+		<div class="container">
+
+			<div class="navbar-collapse collapse">
+
+				<h:form>
+					<a class="navbar-brand" href="#">ADMINISTRADOR</a>
+				</h:form>
+
+				<ul class="nav navbar-nav pull-right">
+					<li class="nav-item active"><h:link class="nav-link"
+							value="Inicio" outcome="usuarioP"></h:link></li>
+							
+					<li class="nav-item"><h:link class="nav-link"
+							value="Crear Bodega" outcome="usuarioB"></h:link></li>
+							
+					<li><h:link class="nav-link" value="Facturación" outcome="usuarioF"></h:link></li>
+					
+							
+					<li><h:link class="nav-link" value="Crear Producto"
+							outcome="usuarioPro"></h:link></li>
+
+					<li><h:link class="nav-link" value="Inventario"
+							outcome="/publica/listarProductosBodegas"></h:link></li>
+
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+
+	<h3
+		style="text-align: center; border: 1px dotted #000; padding: 8px; width: 50%; border: 1px dotted #f00; padding: 8px; margin: auto;"
+		class="page-header">LISTA DE USUARIOS</h3>
+
+
+	<h:form>
+		<h:dataTable value="#{usuarioBean.list}" var="c" styleClass="tabla"
+			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar"
+			class="table table-hover">
+			<h:column>
+				<f:facet name="header">Codigo</f:facet>#{c.id}</h:column>
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+				<h:inputText value="#{c.nombre}" rendered="#{c.editable}"
+					class="form-control" />
+				<h:outputText value="#{c.nombre}" rendered="#{not c.editable}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Apellido</f:facet>
+				<h:inputText value="#{c.apellido}" rendered="#{c.editable}"
+					class="form-control" />
+				<h:outputText value="#{c.apellido}" rendered="#{not c.editable}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Telefono</f:facet>
+				<h:inputText value="#{c.telefono}" size="10"
+					rendered="#{c.editable}" class="form-control" />
+				<h:outputText value="#{c.telefono}" rendered="#{not c.editable}" />
+
+			</h:column>
+
+
+
+			<h:column>
+				<f:facet name="header">Correo</f:facet>
+				<h:inputText value="#{c.correo}" rendered="#{c.editable}"
+					class="form-control" />
+				<h:outputText value="#{c.correo}" rendered="#{not c.editable}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Contraseña</f:facet>
+				<h:inputText value="#{usuarioBean.contrasena}"
+					rendered="#{c.editable}" type="password" class="form-control" />
+				<h:outputText value="#{usuarioBean.contrasena}"
+					rendered="#{not c.editable}" />
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Eliminar" action="#{usuarioBean.delete(c)}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Editar" action="#{usuarioBean.edit(c)}"
+					rendered="#{not c.editable}" />
+				<h:commandLink value="Save" action="#{usuarioBean.save(c)}"
+					rendered="#{c.editable}" />
+			</h:column>
+		</h:dataTable>
+
+<br></br>
+<br></br>
+
+		<h3
+			style="text-align: center; border: 1px dotted #000; padding: 8px; width: 50%; border: 1px dotted #f00; padding: 8px; margin: auto;"
+			class="page-header">CREAR NUEVO USUARIO</h3>
+<br></br>
+		<div class="form-group text-center">
+
+			<label class="form-group">Nombre:<h:inputText
+					value="#{usuarioBean.nombre}" /></label>
+		</div>
+
+		<div class="form-group text-center">
+			<label class="form-group">Apellido:<h:inputText
+					value="#{usuarioBean.apellido}" /></label>
+		</div>
+
+		<div class="form-group text-center">
+			<label class="form-group">Telefono:<h:inputText
+					value="#{usuarioBean.telefono}" /></label>
+		</div>
+
+		<div class="form-group text-center">
+
+			<label class="form-group">Cedula:<h:inputText
+					value="#{usuarioBean.id}" /></label>
+
+		</div>
+
+		<div class="form-group text-center">
+
+			<label class="form-group">Correo:<h:inputText
+					value="#{usuarioBean.correo}" /></label>
+		</div>
+
+		<div class="form-group text-center">
+
+			<label class="form-group">Contraseña:<h:inputText
+					value="#{usuarioBean.contrasena}" type="password" /></label>
+
+		</div>
+
+		<div class="form-group text-center">
+		
+			<h:selectOneMenu value="#{usuarioBean.rool}">
+				Selecciona el Rol: <f:selectItems value="#{rolBean.list}" />
+			</h:selectOneMenu>
+
+			
+		</div>
+
+		<div class="form-group text-center">
+			<h:commandButton value="AGREGAR" action="#{usuarioBean.add}"
+				class="btn btn-danger btn block  text-center form-group" />
+
+		</div>
+	</h:form>
+
+	<footer id="footer" class="top-space">
+
+	<div class="footer1">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-3 widget">
+					<h3 class="widget-title">Contactos</h3>
+					<div class="widget-body">
+						<p>
+							+593 92 63517621<br></br> <a href="mailto:#">eyungat@est.ups.edu.ec,
+								tdurazno@est.ups.edu.ec, hguamanf@est.ups.edu.ec,
+								jmatutec2@est.ups.edu.ec</a><br></br> <br></br> Cuenca-Ecuador
+						</p>
+					</div>
+				</div>
+
+				<div class="col-md-3 widget">
+					<h3 class="widget-title">Sigueme</h3>
+					<div class="widget-body">
+						<p class="follow-me-icons">
+							<a href=""><i class="fa fa-twitter fa-2"></i></a> <a href=""><i
+								class="fa fa-github fa-2"></i></a> <a href=""><i
+								class="fa fa-facebook fa-2"></i></a>
+						</p>
+					</div>
+				</div>
+
+			</div>
+			<!-- /row of widgets -->
+		</div>
+	</div>
+
+	<div class="footer2">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-6 widget">
+					<div class="widget-body">
+						<p class="simplenav">
+							<a href="#">Inicio</a> | <b><a href="signup.html">Registrarse</a></b>
+						</p>
+					</div>
+				</div>
+
+				<div class="col-md-6 widget">
+					<div class="widget-body">
+						<p class="text-right">Copyright &copy; 2020, Javier, Henry,
+							Marcelo, Jonnathan.</p>
+					</div>
+				</div>
+
+			</div>
+			<!-- /row of widgets -->
+		</div>
+	</div>
+
+	</footer>
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script
+		src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="resources/assets/js/headroom.min.js"></script>
+	<script src="resources/assets/js/jQuery.headroom.min.js"></script>
+	<script src="resources/assets/js/template.js"></script>
+</h:body>
+
 </html>
