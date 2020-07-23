@@ -61,14 +61,13 @@
 				<li class="nav-item"><h:link class="nav-link"
 						value="Crear Bodega" outcome="productoDistribuidora"></h:link>
 				</li>
-				<li><h:link class="nav-link" value="Crear Factura"
-						outcome="productoFactura"></h:link></li>
 				<li><h:link class="nav-link" value="Crear Usuario"
 						outcome="productoRegistro"></h:link></li>
 				<li><h:link class="nav-link" value="Crear Rol"
 						outcome="productoRol"></h:link></li>
 				<li><h:link class="nav-link" value="Inventario"
 						outcome="/publica/listarProductosBodegas"></h:link></li>
+				<li class="active"><a href="../index.xhtml">Salir</a></li>
 			</ul>
 		</div>
 
@@ -114,16 +113,12 @@
 						<h:outputText value="#{p.preciounitario}"
 							rendered="#{not p.editable}" />
 					</h:column>
-					
-					<h:column>
-						<f:facet name="header">Accion</f:facet>
-						<h:commandLink value="Eliminar" action="#{productosBean.remove(p)}" />
-					</h:column>
+				
 					<h:column>
 						<f:facet name="header">Accion</f:facet>
 						<h:commandLink value="Editar" action="#{productosBean.edit(p)}"
 							rendered="#{not p.editable}" />
-						<h:commandLink value="Save" action="#{productosBean.save(p)}"
+						<h:commandLink value="Guardar" action="#{productosBean.save(p)}"
 							rendered="#{ p.editable}" />
 					</h:column>
 				</h:dataTable>
@@ -198,25 +193,7 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-	<section id="social">
-	<div class="container">
-		<div class="wrapper clearfix">
-			<div class="addthis_toolbox addthis_default_style">
-				<a class="addthis_button_facebook_like"></a> <a
-					class="addthis_button_tweet"></a> <a
-					class="addthis_button_linkedin_counter"></a> <a
-					class="addthis_button_google_plusone"></a>
-			</div>
-		</div>
-	</div>
-	</section>
-
-
-	<footer id="footer" class="top-space">
+<footer id="footer" class="top-space">
 
 	<div class="footer1">
 		<div class="container">
@@ -226,14 +203,17 @@
 					<h3 class="widget-title">Contactos</h3>
 					<div class="widget-body">
 						<p>
-							+593 987654321<br></br> <a href="mailto:#">hguamanf@est.ups.edu.ec</a><br></br>
-							<br></br> Cuenca-Ecuador
+							<a href="mailto:#">jmatutec2@est.ups.edu.ec</a> 
+							<a href="mailto:#">eyungat@est.ups.edu.ec</a> 
+							<a href="mailto:#">tdurazno@est.ups.edu.ec</a>
+							<a href="mailto:#">hguamanf@est.ups.edu.ec</a>
+
 						</p>
 					</div>
 				</div>
 
 				<div class="col-md-3 widget">
-					<h3 class="widget-title">Sigueme</h3>
+					<h3 class="widget-title">Redes Sociales</h3>
 					<div class="widget-body">
 						<p class="follow-me-icons">
 							<a href=""><i class="fa fa-twitter fa-2"></i></a> <a href=""><i
@@ -243,24 +223,33 @@
 					</div>
 				</div>
 
-			</div>
-		</div>
-	</div>
-
-	<div class="footer2">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 widget">
+				<div class="col-md-3 widget">
+					<h3 class="widget-title">Recursos</h3>
 					<div class="widget-body">
-						<p class="text-right">Copyright &copy; 2020, Javier, Henry,
-							Marcelo, Jonnathan.</p>
+						<p>Ayuda</p>
+						<p>Soporte</p>
+						<p>Privacidad</p>
 					</div>
 				</div>
 
+				<div class="col-md-3 widget">
+					<h3 class="widget-title">Plataformas</h3>
+					<div class="widget-body">
+						<p>Creadores</p>
+						<p>Agencias</p>
+						<p>Comunidad</p>
+					</div>
+				</div>
+
+				<div class="col-md-6 widget">
+					<div class="widget-body">
+						<p>Copyright &copy; Cuenca-Ecuador 2020, Jonnathan, Javier,
+							Henry, Marcelo.</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
 	</footer>
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

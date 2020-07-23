@@ -108,13 +108,10 @@ public class Row implements Serializable {
 
 	public static List<Row> serializeRoww(List<Row> rows) {
 		List<Row> rowList = new ArrayList<>();
-
 		rows.forEach(e -> {
-
 			row = new Row(e.getNombre1(), e.getDescripcion(), e.getPun(), e.getPpu(), e.getStock(), e.getCantidad());
 			rowList.add(row);
 		});
-
 		return rowList;
 	}
 

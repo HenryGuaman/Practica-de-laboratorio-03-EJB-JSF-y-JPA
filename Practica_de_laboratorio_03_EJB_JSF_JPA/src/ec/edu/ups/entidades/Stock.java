@@ -89,8 +89,6 @@ public class Stock implements Serializable {
 	private static Producto producto2;
 	private static Bodega bodega2;
 
-	private static List<Producto> productoList = new ArrayList<>();
-
 	public static List<Stock> serializeStock(List<Stock> stocks) {
 		List<Stock> stockList = new ArrayList<>();
 		stocks.forEach(s -> {

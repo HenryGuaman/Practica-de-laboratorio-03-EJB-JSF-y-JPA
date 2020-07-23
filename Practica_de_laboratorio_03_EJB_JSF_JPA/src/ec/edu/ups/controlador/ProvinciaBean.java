@@ -1,8 +1,6 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
-
-import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
