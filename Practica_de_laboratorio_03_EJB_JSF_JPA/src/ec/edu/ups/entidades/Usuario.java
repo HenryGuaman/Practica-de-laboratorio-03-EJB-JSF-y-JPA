@@ -34,6 +34,8 @@ public class Usuario extends Persona implements Serializable {
 		this.estado = estado;
 	}
 
+	
+
 	public String getCorreo() {
 		return correo;
 	}

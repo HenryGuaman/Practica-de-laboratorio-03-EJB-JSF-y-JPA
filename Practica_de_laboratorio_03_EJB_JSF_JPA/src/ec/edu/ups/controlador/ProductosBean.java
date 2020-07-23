@@ -220,6 +220,7 @@ public class ProductosBean implements Serializable {
 
 	public Categoria buscarProductos() {
 		System.out.println(categoria);
+		System.out.println("Lllega al metooooodooo");
 		Categoria ca = new Categoria();
 		ca = ejbProductoFacade.validar(categoria);
 		System.out.println("Se busca el id de la categoria para los productos.");
