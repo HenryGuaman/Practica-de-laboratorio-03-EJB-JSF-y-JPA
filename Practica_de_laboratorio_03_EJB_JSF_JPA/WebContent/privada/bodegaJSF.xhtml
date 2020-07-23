@@ -50,38 +50,26 @@
 </h:head>
 
 <body class="home">
-
 	<div class="navbar navbar-inverse navbar-fixed-top headroom">
 		<div class="container">
 			<div class="navbar-collapse collapse">
-
 				<h:form>
 					<a class="navbar-brand" href="#">ADMINISTRADOR</a>
 				</h:form>
-
 				<ul class="nav navbar-nav pull-right">
 					<li class="nav-item active"><h:link class="nav-link"
 							value="Inicio" outcome="/privada/PaginaAdministrador.xhtml"></h:link></li>
-							
-							
-							<li><h:link class="nav-link" value="Crear Rol"
+					<li><h:link class="nav-link" value="Crear Rol"
 							outcome="/privada/crearRoles.xhtml"></h:link></li>
-							
-							
-					
-					
 					<li><h:link class="nav-link" value="Crear Usuario"
 							outcome="/privada/crearUsuarios.xhtml"></h:link></li>
-							
 					<li><h:link class="nav-link" value="Crear Producto"
 							outcome="/privada/crearProductos.xhtml"></h:link></li>
-<li><h:link class="nav-link" value="Facturación" outcome="crearFactura"></h:link></li>
 					<li><h:link class="nav-link" value="Inventario"
 							outcome="/publica/listarProductosBodegas"></h:link></li>
-
+					<li class="active"><a href="../index.xhtml">Salir</a></li>
 				</ul>
 			</div>
-			<!--/.nav-collapse -->
 		</div>
 	</div>
 
@@ -134,51 +122,52 @@
 						class="page-header">CREAR NUEVA BODEGA</h3>
 					<br></br>
 
-						
-							<div class="col-lg-4">
-								Nombre: <h:inputText size="15" value="#{bodegaBean.nombre}"
-									class="form-control" />
-							</div>
-					
 
-						
-						<div class="col-lg-2">
+					<div class="col-lg-4">
+						Nombre:
+						<h:inputText size="15" value="#{bodegaBean.nombre}"
+							class="form-control" />
+					</div>
+
+
+
+					<div class="col-lg-2">
 						Pais:
-							<h:selectOneMenu value="#{bodegaBean.pais}" class="form-control">
-								<f:selectItems name="item" value="#{paisBean.listaPais}"
-									class="form-control" />
-								<f:ajax event="change" listener="#{bodegaBean.cargarProvincia}"
-									render="idList2 idList3" execute="@this" />
-							</h:selectOneMenu>
-						</div>
+						<h:selectOneMenu value="#{bodegaBean.pais}" class="form-control">
+							<f:selectItems name="item" value="#{paisBean.listaPais}"
+								class="form-control" />
+							<f:ajax event="change" listener="#{bodegaBean.cargarProvincia}"
+								render="idList2 idList3" execute="@this" />
+						</h:selectOneMenu>
+					</div>
 
-				
-						<div class="col-lg-2">
+
+					<div class="col-lg-2">
 						Provincia:
-							<h:selectOneMenu id="idList2" value="#{bodegaBean.provincia}"
-								class="form-control">
-								<f:selectItems value="#{bodegaBean.listaProvincia}"
-									class="form-control" />
-								<f:ajax event="change" listener="#{bodegaBean.cargarCiudades}"
-									render="idList3" execute="@this" />
-							</h:selectOneMenu>
-						</div>
+						<h:selectOneMenu id="idList2" value="#{bodegaBean.provincia}"
+							class="form-control">
+							<f:selectItems value="#{bodegaBean.listaProvincia}"
+								class="form-control" />
+							<f:ajax event="change" listener="#{bodegaBean.cargarCiudades}"
+								render="idList3" execute="@this" />
+						</h:selectOneMenu>
+					</div>
 
-					
-						
-						<div class="col-lg-2">
+
+
+					<div class="col-lg-2">
 						Ciudad:
-							<h:selectOneMenu value="#{bodegaBean.ciudad}" id="idList3"
-								class="form-control">
-								<f:selectItems value="#{bodegaBean.listaCiudad}"
-									class="form-control" />
-							</h:selectOneMenu>
+						<h:selectOneMenu value="#{bodegaBean.ciudad}" id="idList3"
+							class="form-control">
+							<f:selectItems value="#{bodegaBean.listaCiudad}"
+								class="form-control" />
+						</h:selectOneMenu>
 						<br></br>
-						
-							<h:commandLink value="Guardar" type="submit"
-								action="#{bodegaBean.add}" class="btn btn-danger btn block" />
-						</div>
-				
+
+						<h:commandLink value="Guardar" type="submit"
+							action="#{bodegaBean.add}" class="btn btn-danger btn block" />
+					</div>
+
 				</h:form>
 			</div>
 		</div>

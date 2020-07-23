@@ -6,11 +6,9 @@
 
 
 <h:head>
-	<meta charset="utf-8"></meta>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 	<meta name="description" content=""></meta>
 	<meta name="author" content="Sergey Pozhilov (GetTemplate.com)"></meta>
-
 
 	<link rel="shortcut icon"
 		href="../resources/assets/images/gt_favicon.png"></link>
@@ -21,7 +19,6 @@
 	<link rel="stylesheet"
 		href="../resources/assets/css/font-awesome.min.css"></link>
 
-	<!-- Custom styles for our template -->
 	<link rel="stylesheet"
 		href="../resources/assets/css/bootstrap-theme.css" media="screen"></link>
 	<link rel="stylesheet" href="../resources/assets/css/main.css"></link>
@@ -51,82 +48,90 @@
 }
 </style>
 </h:head>
-<body>
+<body class="home">
 
-	<!-- Fixed navbar -->
 	<div class="navbar navbar-inverse navbar-fixed-top headroom">
-		<div class="container">
-			<div class="navbar-header">
-				<!-- Button for smallest screens -->
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a href="../index.xhtml">Productos</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav pull-right">
-					<li class="active"><a href="../index.xhtml">Inicio</a></li>
+		<div class="container"></div>
+		<div class="navbar-collapse collapse">
 
+			<h:form>
+				<a class="navbar-brand" href="#">ADMINISTRADOR</a>
+			</h:form>
 
-					<li class="active"><a href="../index.xhtml">Salir</a></li>
+			<ul class="nav navbar-nav pull-right">
 
+				<li class="nav-item active"><h:link class="nav-link"
+						value="Inicio" outcome="/privada/PaginaAdministrador.xhtml"></h:link></li>
 
-				</ul>
-			</div>
-			<!--/.nav-collapse -->
+				<li class="nav-item"><h:link class="nav-link"
+						value="Crear Bodega" outcome="/privada/bodegaJSF.xhtml"></h:link></li>
+
+				<li><h:link class="nav-link" value="Crear Usuario"
+						outcome="/privada/crearUsuarios.xhtml"></h:link></li>
+
+				<li><h:link class="nav-link" value="Crear Rol"
+						outcome="/privada/crearRoles.xhtml"></h:link></li>
+
+				<li><h:link class="nav-link" value="Inventario"
+						outcome="/publica/listarProductosBodegas"></h:link></li>
+
+				<li class="active"><a href="../index.xhtml">Salir</a></li>
+			</ul>
 		</div>
 	</div>
-	<!-- /.navbar -->
-
-	<header id="head" class="secondary"></header>
-
 	<br></br>
 	<br></br>
 
-	<div class="panel-body"  >
-		<h3 style="text-align:center;border:1px dotted #000; padding:8px;width:50%;border:1px dotted #f00;padding:8px;margin:auto;" class="page-header">LISTADO DE PRODUCTOS POR CATEGORIAS</h3>
-		<h:form>
-
+	<div class="jumbotron top-space">
+		<div class="container">
+			<h3
+				style="text-align: center; border: 1px dotted #000; padding: 8px; width: 50%; border: 1px dotted #f00; padding: 8px; margin: auto;"
+				class="page-header">LISTADO DE PRODUCTOS POR CATEGORIAS</h3>
 			<br></br>
-			<h:dataTable value="#{productosBean.listaProductos}" var="p"
-				styleClass="tabla" headerClass="cabeceraTabla"
-				rowClasses="filaImpar" class="table table-hover">
-				<h:column>
-					<f:facet name="header">Codigo</f:facet>#{p.id}
-		</h:column>
-				<h:column>
-					<f:facet name="header">Nombre</f:facet>
-					<h:outputText value="#{p.nombre}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Descripción</f:facet>
-					<h:outputText value="#{p.descripcion}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Costo Unitario</f:facet>
-					<h:outputText value="#{p.preciounitario}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Precio del Producto</f:facet>
-					<h:outputText value="#{p.preciopublico}" />
-				</h:column>
-			</h:dataTable>
-			<ul>
+
+			<h:form>
+				<h:dataTable value="#{productosBean.listaProductos}" var="p"
+					styleClass="tabla" headerClass="cabeceraTabla"
+					rowClasses="filaImpar" class="table table-hover">
+					<h:column>
+						<f:facet name="header">Codigo</f:facet>#{p.id}
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						<h:outputText value="#{p.nombre}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Descripción</f:facet>
+						<h:outputText value="#{p.descripcion}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Costo Unitario</f:facet>
+						<h:outputText value="#{p.preciounitario}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Precio del Producto</f:facet>
+						<h:outputText value="#{p.preciopublico}" />
+					</h:column>
+
+				</h:dataTable>
+
 				<td>SELECCIONAR CATEGORIAS<br></br> <h:selectOneMenu
 						value="#{productosBean.categoria}">
 						<f:selectItems value="#{categoriaBean.listaCategorias}" />
 					</h:selectOneMenu>
 				</td>
-			</ul>
-			<h:commandButton value="Buscar"
-				action="#{productosBean.buscarProductos}"
-				class="btn btn-danger btn block" />
-
-			<br></br>
-		</h:form>
+				<br></br>
+				<h:commandButton value="Buscar"
+					action="#{productosBean.buscarProductos}"
+					class="btn btn-danger btn block" />
+			</h:form>
+		</div>
 	</div>
+
 	<footer id="footer" class="top-space">
 
 	<div class="footer1">
