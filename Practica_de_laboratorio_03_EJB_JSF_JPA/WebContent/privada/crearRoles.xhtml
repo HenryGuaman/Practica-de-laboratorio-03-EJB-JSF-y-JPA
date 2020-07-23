@@ -84,7 +84,7 @@
 			<h3
 				style="text-align: center; border: 1px dotted #000; padding: 8px; width: 50%; border: 1px dotted #f00; padding: 8px; margin: auto;"
 				class="page-header">ROLES</h3>
-
+				<br></br>
 			<h:form>
 				<center> <h:dataTable value="#{rolBean.list}" var="c"
 					styleClass="tabla" headerClass="cabeceraTabla"
@@ -104,11 +104,11 @@
 
 					<h:column>
 						<f:facet name="header">Accion</f:facet>
-						<h:commandLink value="Delete" action="#{rolBean.delete(c)}" />
+						<h:commandLink value="Eliminar" action="#{rolBean.delete(c)}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Accion</f:facet>
-						<h:commandLink value="Edit" action="#{rolBean.edit(c)}"
+						<h:commandLink value="Editar" action="#{rolBean.edit(c)}"
 							rendered="#{not c.editable}" />
 						<h:commandLink value="Save" action="#{rolBean.save(c)}"
 							rendered="#{c.editable}" />

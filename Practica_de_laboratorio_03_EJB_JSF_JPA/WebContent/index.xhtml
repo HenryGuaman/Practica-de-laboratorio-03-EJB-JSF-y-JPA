@@ -87,9 +87,7 @@
 				<h:dataTable value="#{productosBean.listaProductos}" var="p"
 					styleClass="tabla" headerClass="cabeceraTabla"
 					rowClasses="filaImpar" class="table table-hover">
-					<h:column>
-						<f:facet name="header">Codigo</f:facet>#{p.id}
-		</h:column>
+					
 					<h:column>
 						<f:facet name="header">Nombre</f:facet>
 						<h:outputText value="#{p.nombre}" />
@@ -99,7 +97,7 @@
 						<h:outputText value="#{p.descripcion}" />
 					</h:column>
 					<h:column>
-						<f:facet name="header">Precio Unitario.</f:facet>
+						<f:facet name="header">Precio Unitario</f:facet>
 						<h:outputText value="#{p.preciounitario}" />
 					</h:column>
 					<h:column>
@@ -147,15 +145,7 @@
 					<f:facet name="header">Nombre Producto</f:facet>
 					<h:outputText value="#{p.getProducto().getNombre()}" />
 				</h:column>
-				<h:column>
-					<f:facet name="header">Descripción Producto</f:facet>
-					<h:outputText value="#{p.getProducto().getDescripcion()}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Precio Público</f:facet>
-					<h:outputText value="#{p.getProducto().getPreciopublico()}" />
-				</h:column>
-
+				
 				<h:column>
 					<f:facet name="header">Precio Unitario</f:facet>
 					<h:outputText value="#{p.getProducto().getPreciounitario()}" />

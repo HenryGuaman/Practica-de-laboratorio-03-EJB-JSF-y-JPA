@@ -56,10 +56,10 @@
 
 			<ul class="nav navbar-nav pull-right">
 				<li class="nav-item active"><h:link class="nav-link"
-						value="Inicio" outcome="rolP"></h:link></li>
+						value="Inicio" outcome="/privada/PaginaAdministrador.xhtml"></h:link></li>
 						
 				<li class="nav-item"><h:link class="nav-link"
-						value="Registrar distribuidora" outcome="productoDistribuidora"></h:link>
+						value="Crear Bodega" outcome="productoDistribuidora"></h:link>
 				</li>
 				<li><h:link class="nav-link" value="Crear Factura"
 						outcome="productoFactura"></h:link></li>
@@ -73,13 +73,18 @@
 		</div>
 
 	</div>
-
+<br></br>
+<br></br>
+<br></br>
 	<div class="jumbotron top-space">
 		<div class="container">
-			<h3 class="text-center thin">PRODUCTOS</h3>
+		<h3
+					style="text-align: center; border: 1px dotted #000; padding: 8px; width: 50%; border: 1px dotted #f00; padding: 8px; margin: auto;"
+					class="page-header">LISTADO DE PRODUCTOS</h3>
+			<br></br>
 
 			<h:form>
-				<h:dataTable value="#{productoBean.listaProductos}" var="p"
+				<h:dataTable value="#{productosBean.listaProductos}" var="p"
 					styleClass="tabla" headerClass="cabeceraTabla"
 					rowClasses="filaImpar" class="table table-hover">
 					<h:column>
@@ -91,7 +96,7 @@
 						<h:outputText value="#{p.nombre}" rendered="#{not p.editable}" />
 					</h:column>
 					<h:column>
-						<f:facet name="header">Descripcion</f:facet>
+						<f:facet name="header">Descripción</f:facet>
 						<h:inputText value="#{p.descripcion}" size="10"
 							rendered="#{p.editable}" />
 						<h:outputText value="#{p.descripcion}"
@@ -103,80 +108,71 @@
 						<h:outputText value="#{p.stock}" rendered="#{not p.editable}" />
 					</h:column>
 					<h:column>
-						<f:facet name="header">PrecioU</f:facet>
+						<f:facet name="header">Costo Unitario</f:facet>
 						<h:inputText value="#{p.preciounitario}" size="10"
 							rendered="#{p.editable}" />
 						<h:outputText value="#{p.preciounitario}"
 							rendered="#{not p.editable}" />
 					</h:column>
+					
 					<h:column>
-						<f:facet name="header">PrecioP</f:facet>
-						<h:inputText value="#{p.preciopublico}" size="10"
-							rendered="#{p.editable}" />
-						<h:outputText value="#{p.preciopublico}"
-							rendered="#{not p.editable}" />
+						<f:facet name="header">Accion</f:facet>
+						<h:commandLink value="Eliminar" action="#{productosBean.remove(p)}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Accion</f:facet>
-						<h:commandLink value="Remove" action="#{productoBean.remove(p)}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Accion</f:facet>
-						<h:commandLink value="Edit" action="#{productoBean.edit(p)}"
+						<h:commandLink value="Editar" action="#{productosBean.edit(p)}"
 							rendered="#{not p.editable}" />
-						<h:commandLink value="Save" action="#{productoBean.save(p)}"
+						<h:commandLink value="Save" action="#{productosBean.save(p)}"
 							rendered="#{ p.editable}" />
 					</h:column>
 				</h:dataTable>
 
 			</h:form>
-			<h3 class="text-center thin">CREAR NUEVO PRODUCTO</h3>
+			<h3
+					style="text-align: center; border: 1px dotted #000; padding: 8px; width: 50%; border: 1px dotted #f00; padding: 8px; margin: auto;"
+					class="page-header">CREAR NUEVO PRODUCTO</h3>
+			
 
 			<div class="abs-center">
 				<h:form class="login">
 					<div class="form-group">
 						<label class="col-lg-6 control-label"> Nombre:<br></br>
 							<div class="col-lg-6">
-								<h:inputText size="10" value="#{productoBean.nombre}"
+								<h:inputText size="10" value="#{productosBean.nombre}"
 									class="form-control" />
 							</div></label>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-6 control-label"> Descripcion: <br></br>
+						<label class="col-lg-6 control-label"> Descripción: <br></br>
 							<div class="col-lg-6">
-								<h:inputText size="10" value="#{productoBean.descripcion}"
+								<h:inputText size="10" value="#{productosBean.descripcion}"
 									class="form-control" />
 							</div></label>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-6 control-label"> Precio Unitario :<br></br>
+						<label class="col-lg-6 control-label"> Costo Unitario :<br></br>
 							<div class="col-lg-6">
-								<h:inputText size="10" value="#{productoBean.preciounitario}"
+								<h:inputText size="10" value="#{productosBean.preciounitario}"
 									class="form-control" />
 							</div></label>
 
 					</div>
-					<div class="form-group">
-						<label class="col-lg-6 control-label"> Precio Publico: <br></br>
-							<div class="col-lg-6">
-								<h:inputText size="10" value="#{productoBean.preciopublico}"
-									class="form-control" />
-							</div></label>
-					</div>
+					
 					<div class="form-group">
 						<label class="col-lg-6 control-label"> Stock: <br></br>
 							<div class="col-lg-6">
-								<h:inputText size="10" value="#{productoBean.stock}"
+								<h:inputText size="10" value="#{productosBean.stock}"
 									class="form-control" />
 							</div></label>
 
 					</div>
 					<div class="form-group">
-						<label class="col-lg-6 control-label"> Categoria:<br></br>
+						<label class="col-lg-6 control-label"> Categoría:<br></br>
 							<div class="col-lg-6">
-								<h:selectOneMenu value="#{productoBean.categoria}"
+								<h:selectOneMenu value="#{productosBean.categoria}"
 									class="form-control">
-									<f:selectItems value="#{categoriaBeans.listaCategorias}"
+									<f:selectItems value="#{categoriaBean.listaCategorias}"
 										class="form-control" />
 								</h:selectOneMenu>
 							</div>
@@ -185,14 +181,14 @@
 					<div class="form-group">
 						<label class="col-lg-6 control-label"> Bodega:<br></br>
 							<div class="col-lg-6">
-								<h:selectOneMenu value="#{productoBean.bodega}"
+								<h:selectOneMenu value="#{productosBean.bodega}"
 									class="form-control">
-									<f:selectItems value="#{bodegaBeans.listaBodega}"
+									<f:selectItems value="#{bodegaBean.listaBodega}"
 										class="form-control" />
 								</h:selectOneMenu>
 							</div>
 						</label>
-						<h:commandButton value="Registrar" action="#{productoBean.add}"
+						<h:commandButton value="Registrar" action="#{productosBean.add}"
 							class="btn btn-danger btn block" />
 					</div>
 

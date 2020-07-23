@@ -108,10 +108,7 @@
 					<f:facet name="header">Descripción Producto</f:facet>
 					<h:outputText value="#{p.getProducto().getDescripcion()}" />
 				</h:column>
-				<h:column>
-					<f:facet name="header">Precio Público</f:facet>
-					<h:outputText value="#{p.getProducto().getPreciopublico()}" />
-				</h:column>
+				
 
 				<h:column>
 					<f:facet name="header">Precio Unitario</f:facet>
@@ -129,10 +126,10 @@
 				</h:column>
 			</h:dataTable>
 
-			<li>Bodegas: <h:selectOneMenu value="#{stockBean.bodega}">
+			<td>SELECCIONAR BODEGAS <h:selectOneMenu value="#{stockBean.bodega}">
 					<f:selectItems value="#{bodegaBean.listaBodega}" />
 				</h:selectOneMenu>
-			</li>
+			</td>
 			<br></br>
 			<h:commandButton value="Buscar"
 				action="#{stockBean.listabo}" class="btn btn-danger btn block" />

@@ -204,7 +204,7 @@ public class UsuarioBean implements Serializable {
 			if (us != null && us.getRoles().equals(rol1)) {
 				return "exito";
 			} else if (us != null && us.getRoles().equals(rol2)) {
-				return "exitoEmple";
+				return "privada/PaginaEmpleado.xhtml";
 			} else {
 				return "fallo";
 			}

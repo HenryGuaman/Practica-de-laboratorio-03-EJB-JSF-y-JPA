@@ -105,7 +105,7 @@
 					<h:outputText value="#{p.descripcion}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Precio Unitario.</f:facet>
+					<f:facet name="header">Costo Unitario</f:facet>
 					<h:outputText value="#{p.preciounitario}" />
 				</h:column>
 				<h:column>
@@ -114,11 +114,11 @@
 				</h:column>
 			</h:dataTable>
 			<ul>
-				<li>CATEGORIAS:<br></br> <h:selectOneMenu
+				<td>SELECCIONAR CATEGORIAS<br></br> <h:selectOneMenu
 						value="#{productosBean.categoria}">
 						<f:selectItems value="#{categoriaBean.listaCategorias}" />
 					</h:selectOneMenu>
-				</li>
+				</td>
 			</ul>
 			<h:commandButton value="Buscar"
 				action="#{productosBean.buscarProductos}"
