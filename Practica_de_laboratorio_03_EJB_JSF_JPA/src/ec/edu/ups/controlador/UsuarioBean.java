@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import ec.edu.ups.ejb.*;
 import ec.edu.ups.entidades.*;
@@ -204,7 +205,7 @@ public class UsuarioBean implements Serializable {
 			if (us != null && us.getRoles().equals(rol1)) {
 				return "exito";
 			} else if (us != null && us.getRoles().equals(rol2)) {
-				return "privada/PaginaEmpleado.xhtml";
+				return "exitoEmple";
 			} else {
 				return "fallo";
 			}

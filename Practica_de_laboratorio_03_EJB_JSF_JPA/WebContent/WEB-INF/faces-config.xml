@@ -14,7 +14,7 @@
 			<to-view-id>/iniciarSesion.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>privada/PaginaEmpleado.xhtml</from-outcome>
+			<from-outcome>exitoEmple</from-outcome>
 			<to-view-id>/privada/PaginaEmpleado.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
@@ -378,20 +378,20 @@
 		<from-view-id>/privada/PaginaEmpleado.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>empleadoF</from-outcome>
-			<to-view-id>/privada/crearFactura2.xhtml</to-view-id>
+			<to-view-id>/privada/.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>privada/crearFactura2.xhtml</display-name>
-		<from-view-id>/privada/crearFactura2.xhtml</from-view-id>
+		<display-name>privada/.xhtml</display-name>
+		<from-view-id>/privada/.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>facturaP</from-outcome>
 			<to-view-id>/privada/PaginaEmpleado.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>privada/crearFactura2.xhtml</display-name>
-		<from-view-id>/privada/crearFactura2.xhtml</from-view-id>
+		<display-name>privada/.xhtml</display-name>
+		<from-view-id>/privada/.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>facturaR</from-outcome>
 			<to-view-id>/privada/crearClientes.xhtml</to-view-id>
@@ -402,7 +402,7 @@
 		<from-view-id>/privada/crearClientes.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>registroE</from-outcome>
-			<to-view-id>/privada/crearFactura2.xhtml</to-view-id>
+			<to-view-id>/privada/.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>
