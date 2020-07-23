@@ -34,8 +34,7 @@ public class ProductosBean implements Serializable {
 	private int stock;
 	private String bodega;
 	private Row row;
-	private List<Row> list;
-
+	
 	public ProductosBean() {
 			
 		}
@@ -45,7 +44,7 @@ public class ProductosBean implements Serializable {
 		this.producto = new Producto();
 		this.stock1 = new Stock();
 		listaProductos = ejbProductoFacade.findAll();
-		this.list = new ArrayList<>();
+		new ArrayList<>();
 	}
 
 	public String getNombre() {
@@ -85,7 +84,6 @@ public class ProductosBean implements Serializable {
 	}
 
 	public void setList(List<Row> list) {
-		this.list = list;
 	}
 
 	public Stock getStock1() {
@@ -183,7 +181,7 @@ public class ProductosBean implements Serializable {
 		return null;
 	}
 
-	public String remove(Producto p) {
+	public String delete(Producto p) {
 		ejbProductoFacade.remove(p);
 		listaProductos = ejbProductoFacade.findAll();
 		return null;
@@ -212,9 +210,8 @@ public class ProductosBean implements Serializable {
 		System.out.println(categoria);
 		Categoria ca = new Categoria();
 		ca = ejbProductoFacade.validar(categoria);
-		System.out.println("Estamos en el metodo buscar:---------");
 		System.out.println(ca.toString());
-		System.out.println(" Id de la categoria es: " + ca.getId());
+		System.out.println(ca.getId());
 		return ca;
 	}
 
@@ -222,12 +219,11 @@ public class ProductosBean implements Serializable {
 		System.out.println(categoria);
 		Categoria ca = new Categoria();
 		ca = ejbProductoFacade.validar(categoria);
-		System.out.println("Se busca el id de la categoria para los productos.");
 		System.out.println(ca.toString());
 		int id = ca.getId();
 		System.out.println(id);
 		listaProductos = ejbProductoFacade.buscarProductos(id);
-		System.out.println("La lista de Productos es:" + listaProductos);
+		System.out.println(listaProductos);
 		return ca;
 
 	}
@@ -237,7 +233,7 @@ public class ProductosBean implements Serializable {
 		String nombre = pro.getNombre();
 		System.out.println(nombre);
 		listaProductos1 = ejbProductoFacade.buscarProductosnombre(nombre);
-		System.out.println("La lista de Productos es:" + listaProductos1);
+		System.out.println(listaProductos1);
 		return pro;
 
 	}

@@ -51,7 +51,7 @@ public class Checklogin implements Filter {
 
 		if (String.valueOf(sesion.getAttribute("sesionID")).equals(String.valueOf(sesion.getId()))) {
 
-			res.sendRedirect("my-agenda");
+			res.sendRedirect("Practica");
 		} else {
 			// System.out.println("redirect login .....");
 			chain.doFilter(request, response);

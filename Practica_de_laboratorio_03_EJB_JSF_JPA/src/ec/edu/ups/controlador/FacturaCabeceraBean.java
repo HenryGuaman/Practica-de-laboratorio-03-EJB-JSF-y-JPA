@@ -9,7 +9,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 import ec.edu.ups.ejb.FacturaCabeceraFacade;
-import ec.edu.ups.ejb.UsuarioFacade;
 import ec.edu.ups.entidades.*;
 import ec.edu.ups.ejb.*;
 
@@ -19,6 +18,7 @@ import ec.edu.ups.ejb.*;
 public class FacturaCabeceraBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@EJB
 	private FacturaCabeceraFacade ejbFacturaCabeceraFacade;
 	private PersonaFacade personaFacade;
@@ -126,7 +126,6 @@ public class FacturaCabeceraBean implements Serializable {
 	}
 
 	public List<Usuario> buscar() {
-		System.out.println("Si entroooooo");
 		personalist = ejbFacturaCabeceraFacade.validarper();
 		System.out.println("Lista:" + personalist);
 		return personalist;

@@ -41,209 +41,159 @@
 	background: none repeat scroll 0 0 #F9F9F9;
 	border-topro: 1px solid #BBBBBB;
 }
-</style>
 
-<style>
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
 
 body, h1, h2, h3, h4, h5, h6 {
 	font-family: 'Bree Serif', serif;
 }
 </style>
-
 </head>
-
-<body class="home">
+<h:body class="home">
 
 	<div class="navbar navbar-inverse navbar-fixed-top headroom">
-		<div class="container"></div>
-		<div class="navbar-collapse collapse">
+		<div class="container">
 
-			<h:form>
-				<a class="navbar-brand" href="#">ADMINISTRADOR</a>
-			</h:form>
+			<div class="navbar-collapse collapse">
 
+				<h:form>
+					<a class="navbar-brand" href="#">EMPLEADO</a>
+				</h:form>
 
-			<ul class="nav navbar-nav pull-right">
-				<li class="nav-item active"><h:link class="nav-link"
-						value="Inicio" outcome="facturaAdm"></h:link></li>
-				<li class="nav-item"><h:link class="nav-link"
-						value="Crear Bodega" outcome="facturaD"></h:link></li>
-				<li><h:link class="nav-link" value="Crear Producto"
-						outcome="facturaP"></h:link></li>
-				<li><h:link class="nav-link" value="Registro Usuario"
-						outcome="facturaU"></h:link></li>
-				<li><h:link class="nav-link" value="Crear Rol"
-						outcome="facturaR"></h:link></li>
-				<li><h:link class="nav-link" value="Inventario"
-						outcome="/publica/listarProductosBodegas"></h:link></li>
-				<li class="active"><a href="../index.xhtml">Salir</a></li>
-			</ul>
+				<ul class="nav navbar-nav pull-right">
+					<li class="nav-item active"><h:link class="nav-link"
+							value="Inicio" outcome="/privada/PaginaEmpleado.xhtml"></h:link></li>
+
+					<li><h:link class="nav-link" value="Crear Clientes"
+							outcome="/privada/crearClientes.xhtml"></h:link></li>
+							
+					<li class="active"><a href="../index.xhtml">Salir</a></li>
+							
+				</ul>
+			</div>
 		</div>
 	</div>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<div class="container">
+		<div class="row">
 
-	<div class="jumbotron top-space">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-6">
-					<h1>
-						<a href=" "><img alt="" src="image/logo.png" /> Distribuidora
-							UPS </a>
-					</h1>
-				</div>
-				<div class="col-xs-6 text-right">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4>
-								NIT : <a href="#">124356789012</a>
-							</h4>
-							<h4>
-								AUTORIZACI&Oacute;N : <a href="#">9990000</a>
-							</h4>
-						</div>
-						<div class="panel-body">
-							<h4>
-								FACTURA : <a href="#">0000000001</a>
-							</h4>
-						</div>
+			<div class="col-xs-6">
+				<h1>
+					<a href=" "><img alt="" src="image/logo.png" /> Distribuidora
+						UPS </a>
+				</h1>
+			</div>
+			<div class="col-xs-6 text-right">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>
+							NIT : <a href="#">010203040522</a>
+						</h4>
+						<h4>
+							AUTORIZACI&Oacute;N : <a href="#">00099998</a>
+						</h4>
+					</div>
+					<div class="panel-body">
+						<h4>
+							FACTURA : <a href="#">000 - 999</a>
+						</h4>
 					</div>
 				</div>
-				<hr />
-
-				<h1 style="text-align: center;">FACTURA</h1>
+			</div>
+			<hr />
+			<h1 style="text-align: center;">FACTURA</h1>
+			<h:form>
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4>
-									<script>
-										var meses = new Array("Enero",
-												"Febrero", "Marzo", "Abril",
-												"Mayo", "Junio", "Julio",
-												"Agosto", "Septiembre",
-												"Octubre", "Noviembre",
-												"Diciembre");
-										var diasSemana = new Array("Domingo",
-												"Lunes", "Martes", "Miércoles",
-												"Jueves", "Viernes", "Sábado");
-										var f = new Date();
-										document.write(diasSemana[f.getDay()]
-												+ ", " + f.getDate() + " de "
-												+ meses[f.getMonth()] + " de "
-												+ f.getFullYear());
-									</script>
-								</h4>
-							</div>
+							<div class="panel-heading"></div>
 							<div class="panel-body">
 								<h4>
+									Fecha:
+									<h:inputText size="15" value="#{facturaDetaBean.fecha}" />
 									Comprador :
-									<h:selectOneMenu value="#{facturaDetalleBean.persona}"
-										class="form-control">
-										<f:selectItems value="#{facturaCabeceraBean.personalist}"
-											class="form-control" />
+									<h:selectOneMenu value="#{facturaDetaBean.persona}">
+										<f:selectItems value="#{facturaCabeceraBean.personalist}" />
 									</h:selectOneMenu>
-
 									Cantidad:
-									<h:inputText size="10" value="#{facturaDetalleBean.cantidad}"
-										class="form-control" />
-
+									<h:inputText size="10" value="#{facturaDetaBean.cantidad}" />
 									Producto:
-									<h:inputText size="10" value="#{facturaDetalleBean.producto}"
-										class="form-control" />
+									<h:inputText size="10" value="#{facturaDetaBean.producto}" />
 								</h4>
 							</div>
 						</div>
 					</div>
+
 				</div>
 				<pre></pre>
-				<div class="abs-center">
-					<h:form>
-						<h:dataTable value="#{facturaDetalleBean.lista}" var="fd"
-							styleClass="tabla" headerClass="cabeceraTabla"
-							rowClasses="filaImpar" class="table table-hover">
-							<h:column>
-								<f:facet name="header">Cantidad</f:facet>
-								<h:outputText value="#{fd.cantidad}" size="10" />
-							</h:column>
 
-							<h:column>
-								<f:facet name="header">Producto Detalle Nombre</f:facet>
-								<h:outputText value="#{fd.nombre1} " size="10" />
-							</h:column>
-
-							<h:column>
-								<f:facet name="header">V. Unitario</f:facet>
-								<h:outputText value="#{fd.pun}" size="10" />
-							</h:column>
+				<h:dataTable value="#{facturaDetaBean.lista}" var="fd"
+					styleClass="tabla" headerClass="cabeceraTabla"
+					rowClasses="filaImpar" class="table table-bordered">
+					<h:column>
+						<f:facet name="header">Cantidad</f:facet>
+						<h:outputText value="#{fd.cantidad}" size="10" />
+					</h:column>
 
 
-							<h:column>
-								<f:facet name="header">Subtotal</f:facet>
-								<h:outputText value="#{fd.subtotal}" size="10" />
-							</h:column>
+					<h:column>
+						<f:facet name="header">Producto</f:facet>
+						<h:outputText value="#{fd.nombre1} " size="10" />
+					</h:column>
 
-						</h:dataTable>
+					<h:column>
+						<f:facet name="header">Costo Unitario</f:facet>
+						<h:outputText value="#{fd.pun}" size="10" />
+					</h:column>
 
-						<h:dataTable value="#{facturaDetalleBean.lista}" var="fd"
-							styleClass="tabla" headerClass="cabeceraTabla"
-							rowClasses="filaImpar" class="table table-hover">
-							<h:column>
-								<f:facet name="header">Iva 12 %</f:facet>
-								<h:outputText label="Iva 12%"
-									value="#{facturaDetalleBean.calcularIva()}" size="10" />
-							</h:column>
+					<h:column>
+						<f:facet name="header">Subtotal</f:facet>
+						<h:outputText label="SubTotal" value="#{fd.subtotal}" size="10" />
+					</h:column>
 
-							<h:column>
-								<f:facet name="header">Total</f:facet>
-								<h:outputText label="Total"
-									value="#{facturaDetalleBean.calculartotalFinal()}" size="10" />
-							</h:column>
+					<h:column>
+						<f:facet name="header">Iva 12 %</f:facet>
+						<h:outputText label="Iva 12%"
+							value="#{facturaDetaBean.calcularIva()}" size="10" />
+					</h:column>
 
-						</h:dataTable>
+					<h:column>
+						<f:facet name="header">Total</f:facet>
+						<h:outputText label="Total"
+							value="#{facturaDetaBean.calculartotalFinal()}" size="10" />
+					</h:column>
 
-						<h:commandButton value="Calcular"
-							action="#{facturaDetalleBean.agregar()}" />
+				</h:dataTable>
 
-					</h:form>
+				<center> <h:commandButton value="Calcular"
+					action="#{facturaDetaBean.agregar()}" /> </center>
+			</h:form>
+			<pre></pre>
+			<div class="row">
+				<div class="col-xs-4">
+					<h1>
+						<a href=" "><img alt="" src="image/qr.png" /></a>
+					</h1>
 				</div>
+				<div class="col-xs-8">
 
-				<pre></pre>
-
-				<div class="row">
-					<div class="col-xs-4">
-						<h1>
-							<a href=" "><img alt="" src="image/qr.png" /></a>
-						</h1>
+					<div class="panel panel-info" style="text-align: right;">
+						<h6>"LA ALTERACI&Oacute;N, FALSIFICACI&Oacute;N O
+							COMERCIALIZACI&Oacute;N ILEGAL DE ESTE DOCUMENTO ESTA PENADO POR
+							LA LEY"</h6>
 					</div>
-					<div class="col-xs-8">
 
-						<div class="panel panel-info" style="text-align: right;">
-							<h6>"LA ALTERACI&Oacute;N, FALSIFICACI&Oacute;N O
-								COMERCIALIZACI&Oacute;N ILEGAL DE ESTE DOCUMENTO ESTA PENADO POR
-								LA LEY"</h6>
-						</div>
-
-					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
-
-	<section id="social">
-	<div class="container">
-		<div class="wrapper clearfix">
-			<div class="addthis_toolbox addthis_default_style">
-				<a class="addthis_button_facebook_like"></a> <a
-					class="addthis_button_tweet"></a> <a
-					class="addthis_button_linkedin_counter"></a> <a
-					class="addthis_button_google_plusone"></a>
-			</div>
-		</div>
-	</div>
-	</section>
-
-
-	<footer id="footer" class="top-space">
+<footer id="footer" class="top-space">
 
 	<div class="footer1">
 		<div class="container">
@@ -253,14 +203,17 @@ body, h1, h2, h3, h4, h5, h6 {
 					<h3 class="widget-title">Contactos</h3>
 					<div class="widget-body">
 						<p>
-							+593 987654321<br></br> <a href="mailto:#">hguamanf@est.ups.edu.ec</a><br></br>
-							<br></br> Cuenca-Ecuador
+							<a href="mailto:#">jmatutec2@est.ups.edu.ec</a> 
+							<a href="mailto:#">eyungat@est.ups.edu.ec</a> 
+							<a href="mailto:#">tdurazno@est.ups.edu.ec</a>
+							<a href="mailto:#">hguamanf@est.ups.edu.ec</a>
+
 						</p>
 					</div>
 				</div>
 
 				<div class="col-md-3 widget">
-					<h3 class="widget-title">Sigueme</h3>
+					<h3 class="widget-title">Redes Sociales</h3>
 					<div class="widget-body">
 						<p class="follow-me-icons">
 							<a href=""><i class="fa fa-twitter fa-2"></i></a> <a href=""><i
@@ -270,24 +223,33 @@ body, h1, h2, h3, h4, h5, h6 {
 					</div>
 				</div>
 
-			</div>
-		</div>
-	</div>
-
-	<div class="footer2">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 widget">
+				<div class="col-md-3 widget">
+					<h3 class="widget-title">Recursos</h3>
 					<div class="widget-body">
-						<p class="text-right">Copyright &copy; 2020, Javier, Henry,
-							Marcelo, Jonnathan.</p>
+						<p>Ayuda</p>
+						<p>Soporte</p>
+						<p>Privacidad</p>
 					</div>
 				</div>
 
+				<div class="col-md-3 widget">
+					<h3 class="widget-title">Plataformas</h3>
+					<div class="widget-body">
+						<p>Creadores</p>
+						<p>Agencias</p>
+						<p>Comunidad</p>
+					</div>
+				</div>
+
+				<div class="col-md-6 widget">
+					<div class="widget-body">
+						<p>Copyright &copy; Cuenca-Ecuador 2020, Jonnathan, Javier,
+							Henry, Marcelo.</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
 	</footer>
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -296,5 +258,5 @@ body, h1, h2, h3, h4, h5, h6 {
 	<script src="resources/assets/js/headroom.min.js"></script>
 	<script src="resources/assets/js/jQuery.headroom.min.js"></script>
 	<script src="resources/assets/js/template.js"></script>
-</body>
+</h:body>
 </html>

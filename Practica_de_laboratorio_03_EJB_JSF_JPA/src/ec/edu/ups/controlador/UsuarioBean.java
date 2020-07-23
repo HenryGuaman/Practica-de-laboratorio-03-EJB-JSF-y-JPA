@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import ec.edu.ups.ejb.*;
 import ec.edu.ups.entidades.*;
@@ -175,10 +174,8 @@ public class UsuarioBean implements Serializable {
 
 	public Rol buscar() {
 		Rol rol = new Rol();
-		System.out.println("ROL --->");
 		System.out.println(rool);
 		rol = ejbUsuarioFacade.buscarRol(rool);
-		System.out.println("Rol:");
 		System.out.println(rol);
 		return rol;
 	}
@@ -186,10 +183,7 @@ public class UsuarioBean implements Serializable {
 	public String inicio() {
 		try {
 			Usuario us = new Usuario();
-			System.out.println(corr);
-			System.out.println(contra);
 			us = ejbUsuarioFacade.inicio(corr, contra);
-			System.out.println("Usuario Registrado");
 			System.out.println(us);
 			Rol rol1 = new Rol();
 			rol1.setNombre("admin");
@@ -198,7 +192,6 @@ public class UsuarioBean implements Serializable {
 
 			Rol rol2 = new Rol();
 			rol2.setNombre("empleado");
-			Usuario usu1 = new Usuario();
 			usu.setRoles(rol2);
 
 			System.out.println(us.getRoles().equals(rol1));
@@ -215,4 +208,19 @@ public class UsuarioBean implements Serializable {
 
 	}
 
+	public RolFacade getEjbRolFacade() {
+		return ejbRolFacade;
+	}
+
+	public void setEjbRolFacade(RolFacade ejbRolFacade) {
+		this.ejbRolFacade = ejbRolFacade;
+	}
+
+	public Rol getRoll() {
+		return roll;
+	}
+
+	public void setRoll(Rol roll) {
+		this.roll = roll;
+	}
 }

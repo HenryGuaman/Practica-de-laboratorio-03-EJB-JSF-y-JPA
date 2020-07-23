@@ -3,18 +3,15 @@ package ec.edu.ups.controlador;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
-import org.eclipse.persistence.internal.jpa.config.mappings.ManyToOneImpl;
 import ec.edu.ups.ejb.*;
 import ec.edu.ups.entidades.*;
 
