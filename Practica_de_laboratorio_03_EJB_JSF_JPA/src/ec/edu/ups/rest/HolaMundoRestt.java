@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import ec.edu.ups.ejb.FacturaCabeceraFacade;
+import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
 import ec.edu.ups.entidades.FacturaCabecera;
@@ -28,7 +29,7 @@ public class HolaMundoRestt {
 	private RolFacade ejbRolFacade;
 	
 	@EJB
-	private UsuarioFacade ejbPersonaFacade;
+	private PersonaFacade ejbPersonaFacade;
 	
 	@EJB
 	private FacturaCabeceraFacade ejbFactFacade;
