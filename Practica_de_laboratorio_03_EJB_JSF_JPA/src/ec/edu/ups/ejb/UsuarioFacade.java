@@ -34,7 +34,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
 	public Usuario inicio(String username, String password) {
 		Usuario us = new Usuario();
 		String query = "SELECT e " + "FROM Usuario e " + "WHERE e.correo = '" + username + "' AND "
-				+ " e.contraseña = '" + password + "'";
+				+ " e.contrasena = '" + password + "'";
 		us = em.createQuery(query, Usuario.class).getSingleResult();
 		return us;
 	}
@@ -49,7 +49,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
 	public Usuario inicioo(String username, String password) {
 		Usuario us = new Usuario();
 		String query = "SELECT e " + "FROM Usuario e " + "WHERE e.estado='A' AND  e.correo = '" + username + "' AND "
-				+ " e.contraseña = '" + password + "'";
+				+ " e.contrasena = '" + password + "'";
 		us = em.createQuery(query, Usuario.class).getSingleResult();
 		return us;
 	}

@@ -208,8 +208,8 @@ public class ApiREST {
     	usu.setCorreo(correo);
     	String correoo=usu.getCorreo();
     	
-    	usu.setContraseña(contrasena);
-    	String contrasenaa=usu.getContraseña();
+    	usu.setContrasena(contrasena);
+    	String contrasenaa=usu.getContrasena();
     	
     	try {
     	us = ejbUsuarioFacade.inicio(correoo, contrasenaa);
@@ -534,7 +534,7 @@ public class ApiREST {
         usu2.setApellido(apellidos);
     	usu2.setTelefono(telefono);
     	usu2.setCorreo(correo);
-    	usu2.setContraseña(contrasena);
+    	usu2.setContrasena(contrasena);
     	usu2.setEstado("A");
     	
     	Rol rol3=new Rol();

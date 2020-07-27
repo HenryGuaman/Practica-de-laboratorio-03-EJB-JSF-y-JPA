@@ -83,11 +83,11 @@ public class ClienteBean implements Serializable {
 		Usuario usuario = new Usuario();
 		rol3.setNombre("cliente");
 		System.out.println(rol3.getNombre());
-		usuario.setContraseña("12");
-		System.out.println(usuario.getContraseña());
+		usuario.setContrasena("12");
+		System.out.println(usuario.getContrasena());
 		this.estado = "A";
 		ejbUsuarioFacade.create(new Usuario(this.id, this.nombre, this.apellido, this.telefono, this.correo,
-				usuario.getContraseña(), rol3, this.estado));
+				usuario.getContrasena(), rol3, this.estado));
 		list = ejbUsuarioFacade.muestraClientes();
 		return null;
 	}
