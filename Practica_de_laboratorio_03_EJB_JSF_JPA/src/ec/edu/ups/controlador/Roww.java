@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Row implements Serializable {
+public class Roww implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String nombre1;
 	private String descripcion;
@@ -14,11 +14,11 @@ public class Row implements Serializable {
 	private int cantidad;
 	private double subtotal;
 
-	public Row() {
+	public Roww() {
 		super();
 	}
 
-	public Row(String nombre1, String descripcion, double pun, double ppu, int stock) {
+	public Roww(String nombre1, String descripcion, double pun, double ppu, int stock) {
 		
 		this.nombre1 = nombre1;
 		this.descripcion = descripcion;
@@ -27,7 +27,7 @@ public class Row implements Serializable {
 		this.stock = stock;
 	}
 
-	public Row(String nombre1, String descripcion, double pun, double ppu, int stock, int cantidad) {
+	public Roww(String nombre1, String descripcion, double pun, double ppu, int stock, int cantidad) {
 		super();
 		this.nombre1 = nombre1;
 		this.descripcion = descripcion;
@@ -37,7 +37,7 @@ public class Row implements Serializable {
 		this.cantidad=cantidad;
 	}
 
-	public Row(String nombre1, String descripcion, double pun, double ppu, int stock, int cantidad, double subtotal) {
+	public Roww(String nombre1, String descripcion, double pun, double ppu, int stock, int cantidad, double subtotal) {
 		super();
 		this.nombre1 = nombre1;
 		this.descripcion = descripcion;
@@ -104,13 +104,13 @@ public class Row implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	private static Row row;
+	private static Roww roww;
 
-	public static List<Row> serializeRoww(List<Row> rows) {
-		List<Row> rowList = new ArrayList<>();
-		rows.forEach(e -> {
-			row = new Row(e.getNombre1(), e.getDescripcion(), e.getPun(), e.getPpu(), e.getStock(), e.getCantidad());
-			rowList.add(row);
+	public static List<Roww> serializeRoww(List<Roww> rowws) {
+		List<Roww> rowList = new ArrayList<>();
+		rowws.forEach(e -> {
+			roww = new Roww(e.getNombre1(), e.getDescripcion(), e.getPun(), e.getPpu(), e.getStock(), e.getCantidad());
+			rowList.add(roww);
 		});
 		return rowList;
 	}

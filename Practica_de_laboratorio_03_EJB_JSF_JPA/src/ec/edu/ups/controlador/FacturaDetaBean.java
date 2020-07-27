@@ -47,7 +47,7 @@ public class FacturaDetaBean implements Serializable {
 	private String persona;
 	private String fecha;
 	private Set<Producto> listproducto = new HashSet<Producto>();
-	private Set<Row> lista = new HashSet<Row>();
+	private Set<Roww> lista = new HashSet<Roww>();
 
 	private List<FacturaDetalle> facdetalle;
 	private List<FacturaCabecera> faccabecera;
@@ -255,11 +255,11 @@ public class FacturaDetaBean implements Serializable {
 		this.listproducto = listproducto;
 	}
 
-	public Set<Row> getLista() {
+	public Set<Roww> getLista() {
 		return lista;
 	}
 
-	public void setLista(Set<Row> lista) {
+	public void setLista(Set<Roww> lista) {
 		this.lista = lista;
 	}
 
@@ -342,7 +342,7 @@ public class FacturaDetaBean implements Serializable {
 		double aux = 0;
 		this.total = this.subtotal + this.iva;
 		System.out.println("El total es: " + total);
-		for (Row lis : lista) {
+		for (Roww lis : lista) {
 			System.out.println("Hola " + lis.getSubtotal());
 			aux = aux + lis.getSubtotal();
 			calcularIva();
@@ -372,8 +372,8 @@ public class FacturaDetaBean implements Serializable {
 		calculartotalFinal();
 
 		if (this.cantidad <= this.stock) {
-			this.lista.add(new Row(nombre1, descripcion, pun, ppu, stock, this.cantidad));
-			this.lista.add(new Row(nombre1, descripcion, pun, ppu, stock, this.cantidad, subtotal));
+			this.lista.add(new Roww(nombre1, descripcion, pun, ppu, stock, this.cantidad));
+			this.lista.add(new Roww(nombre1, descripcion, pun, ppu, stock, this.cantidad, subtotal));
 			prod.setStock(this.stock - this.cantidad);
 			ejbProductoFacade.edit(prod);
 			calcularTotalParcial();

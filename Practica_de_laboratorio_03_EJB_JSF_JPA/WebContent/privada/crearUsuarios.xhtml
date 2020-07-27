@@ -124,49 +124,42 @@
 			style="text-align: center; border: 1px dotted #000; padding: 8px; width: 50%; border: 1px dotted #f00; padding: 8px; margin: auto;"
 			class="page-header">CREAR NUEVO USUARIO</h3>
 <br></br>
-		<div class="form-group text-center">
-
-			<label class="form-group">Nombre:<h:inputText
-					value="#{usuarioBean.nombre}" /></label>
-		</div>
-
-		<div class="form-group text-center">
-			<label class="form-group">Apellido:<h:inputText
-					value="#{usuarioBean.apellido}" /></label>
-		</div>
-
-		<div class="form-group text-center">
-			<label class="form-group">Telefono:<h:inputText
-					value="#{usuarioBean.telefono}" /></label>
-		</div>
-
-		<div class="form-group text-center">
-
-			<label class="form-group">Cedula:<h:inputText
-					value="#{usuarioBean.id}" /></label>
-
-		</div>
-
-		<div class="form-group text-center">
-
-			<label class="form-group">Correo:<h:inputText
-					value="#{usuarioBean.correo}" /></label>
-		</div>
-
-		<div class="form-group text-center">
-
-			<label class="form-group">Contraseña:<h:inputText
-					value="#{usuarioBean.contrasena}" type="password" /></label>
-
-		</div>
-
-		<div class="form-group text-center">
 		
+
+		<div class="top-margin">
+			<label>Nombre:</label>
+			<h:inputText type="text" class="form-control"
+			value="#{usuarioBean.nombre}" />
+		</div>
+		<div class="top-margin">
+			<label>Apellido:</label>
+			<h:inputText type="text" class="form-control"
+			value="#{usuarioBean.apellido}" />
+		</div>
+		<div class="top-margin">
+			<label>Telefono:</label>
+			<h:inputText type="text" class="form-control"
+			value="#{usuarioBean.telefono}" />
+		</div>
+		<div class="top-margin">
+			<label>Cedula:</label>
+			<h:inputText type="text" class="form-control"
+			value="#{usuarioBean.id}" />
+		</div>
+		<div class="top-margin">
+			<label>Correo:</label>
+			<h:inputText type="text" class="form-control"
+			value="#{usuarioBean.correo}" />
+		</div>
+		<div class="top-margin">
+			<label>Contraseña:</label>
+			<h:inputText class="form-control"
+			value="#{usuarioBean.contrasena}" type="password" />
+		</div>
+		<div class="form-group text-center">
 			<h:selectOneMenu value="#{usuarioBean.rool}">
 				Selecciona el Rol: <f:selectItems value="#{rolBean.list}" />
 			</h:selectOneMenu>
-
-			
 		</div>
 
 		<div class="form-group text-center">

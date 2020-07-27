@@ -47,14 +47,14 @@ public class ApiRest2 {
 	}
 	
 
-	/*@POST
+	@POST
 	@Path("/inicio")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response inicio(@FormParam("correo") String correo, @FormParam("contrasena") String contrasena) {
 		
 		Usuario usu = new Usuario();
 		System.out.println("validando ingreso de usuario");
-		usu = ejbUsuarioFacade.readCorreo(correo, contrasena);
+		usu = ejbUsuarioFacade.inicio(correo, contrasena);
 		System.out.println("usuario recuperado: "+usu);
 		
 		return Response.status(201).entity("usuario salvado: "+usu)
@@ -62,7 +62,7 @@ public class ApiRest2 {
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
 		
-	}*/
+	}
 
 	
 	

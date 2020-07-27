@@ -33,7 +33,7 @@ public class ProductosBean implements Serializable {
 	private Stock stock1;
 	private int stock;
 	private String bodega;
-	private Row row;
+	private Roww roww;
 	
 	public ProductosBean() {
 			
@@ -75,15 +75,15 @@ public class ProductosBean implements Serializable {
 		this.ejbStockFacade = ejbStockFacade;
 	}
 
-	public Row getRow() {
-		return row;
+	public Roww getRow() {
+		return roww;
 	}
 
-	public void setRow(Row row) {
-		this.row = row;
+	public void setRow(Roww roww) {
+		this.roww = roww;
 	}
 
-	public void setList(List<Row> list) {
+	public void setList(List<Roww> list) {
 	}
 
 	public Stock getStock1() {

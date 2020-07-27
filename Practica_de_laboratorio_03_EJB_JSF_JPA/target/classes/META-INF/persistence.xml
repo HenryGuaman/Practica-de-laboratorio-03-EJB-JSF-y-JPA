@@ -19,6 +19,8 @@
 		<class>ec.edu.ups.entidades.Rol</class>
 		<class>ec.edu.ups.entidades.Stock</class>
 		<class>ec.edu.ups.entidades.Usuario</class>
+		<class>ec.edu.ups.entidades.PedidoDetalle</class>
+		<class>ec.edu.ups.entidades.PedidosCabecera</class>
 
 
 		<properties>

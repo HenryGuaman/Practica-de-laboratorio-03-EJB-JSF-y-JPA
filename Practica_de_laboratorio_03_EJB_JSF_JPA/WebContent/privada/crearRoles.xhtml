@@ -116,18 +116,18 @@
 				<h3
 					style="text-align: center; border: 1px dotted #000; padding: 8px; width: 50%; border: 1px dotted #f00; padding: 8px; margin: auto;"
 					class="page-header">CREAR NUEVO ROL</h3>
+				
+				<div class="top-margin">
+								<label>Nombre </label>
+								<h:inputText type="text" class="form-control"
+									value="#{rolBean.nombre}" />
+				</div>
+				<div class="top-margin">
+								<label>Descripcion </label>
+								<h:inputText type="text" class="form-control"
+									value="#{rolBean.descripcion}" />
+				</div>
 
-				<ul>
-					Nombre:
-					<br></br>
-					<h:inputText value="#{rolBean.nombre}" />
-				</ul>
-
-				<ul>
-					Descripcion:
-					<br></br>
-					<h:inputText value="#{rolBean.descripcion}" />
-				</ul>
 				<br></br>
 				<h:commandButton value="AGREGAR" action="#{rolBean.add}"
 					class="btn btn-danger btn block" /> </center>

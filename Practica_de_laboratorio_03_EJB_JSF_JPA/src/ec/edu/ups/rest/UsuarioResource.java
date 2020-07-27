@@ -36,7 +36,7 @@ public class UsuarioResource {
 	@EJB
 	private PersonaFacade ejbPersonaFacade;
 	
-	private Usuario usuario;
+	private Persona usuario;
 	private Rol rol;
 	
 	
@@ -59,8 +59,8 @@ public class UsuarioResource {
 	@GET
 	@Path("/{cedula}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response listarUsuario(@PathParam("cedula") String cedula) {
-		Usuario usu = new Usuario();
+	public Response listarUsuario(@PathParam("cedula") int cedula) {
+		Persona usu = new Persona();
 		Jsonb jsonb = JsonbBuilder.create();
 		usu = ejbUsuarioFacade.find(cedula);
 		System.out.println("usuario recuperado: "+usu);
@@ -82,15 +82,17 @@ public class UsuarioResource {
 		System.out.println("creando nuevo usuario");
 		rol = ejbRolFacade.find(1);
 		System.out.println("rol de cliente: "+rol);
-		String estado = "activo";
+		String estado = "A";
 		usuario = new Usuario(cedula, nombre, apellido,telefono, correo, contrasena, rol,estado);
 		System.out.println("persistiendo usuario");
-		ejbUsuarioFacade.create(usuario);
+		ejbPersonaFacade.create(usuario);
+		//ejbUsuarioFacade.create(usuario);
 		
 		return Response.ok("exito")
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+	
 	}
 	
 	
@@ -126,14 +128,15 @@ public class UsuarioResource {
 		
 	}
 	
-	
+	/**
 	@POST
 	@Path("/inicio")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response inicio(@FormParam("correo") String correo, @FormParam("contrasena") String contrasena) {
-		
+	
 		Usuario usu = new Usuario();
 		System.out.println("validando ingreso de usuario");
+		
 		usu = ejbUsuarioFacade.inicio(correo, contrasena);
 		System.out.println("usuario recuperado: "+usu);
 		
@@ -143,5 +146,5 @@ public class UsuarioResource {
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
 		
 	}
-
+**/
 }
