@@ -17,11 +17,6 @@ public class HttpClient {
         httpRequestComplete.add(o);
     }
 
-    /**
-     * Este método hace una solicitud web a la url enviada como parametro, y al terminar, se ejecuta el
-     * listener OnHttpRequestComplete [seteado al instanciar clase]
-     * @param urlHttp url para request
-     */
     public void excecute(String urlHttp){
         Response r = getResponse(urlHttp);
         for (OnHttpRequestComplete http : httpRequestComplete) {

@@ -118,14 +118,6 @@ public class PersonaBean implements Serializable {
 		this.correo = correo;
 	}
 
-	public String getContraseña() {
-		return contrasena;
-	}
-
-	public void setContraseña(String contraseña) {
-		this.contrasena = contraseña;
-	}
-
 	public String getContrasena() {
 		return contrasena;
 	}
